@@ -1,0 +1,13 @@
+/build/classes/java/main
+contient les fichiers .class (compilés) du code source
+
+
+/src/main/java/
+contient le code source du jeu
+
+-> gui
+    -> App.java: lancement du jeu et gestion des contrôles (fenêtre)
+    -> GameView.java: affiche le terrain
+-> model
+    -> Court.java: tous les paramètres du jeu comme déplacement, vitesse des éléments, calcul des trajectoires, etc..
+    -> RacketController.java: fait la liaison entre App et Court pour les mouvements de la raquette
