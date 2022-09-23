@@ -12,6 +12,7 @@ public class Court {
     private double racketB; // m
     private double ballX, ballY; // m
     private double ballSpeedX, ballSpeedY; // m
+    private int scoreA, scoreB; // pts
 
     public Court(RacketController playerA, RacketController playerB, double width, double height) {
         this.playerA = playerA;
@@ -47,6 +48,14 @@ public class Court {
 
     public double getBallY() {
         return ballY;
+    }
+
+    public int getScoreA(){
+	    return scoreA;
+    }
+
+    public int getScoreB(){
+	    return scoreB;
     }
 
     public void update(double deltaT) {
@@ -96,9 +105,11 @@ public class Court {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
+		scoreB += 1;
             return true;
         } else if (nextBallX > width) {
-            return true;
+            	scoreA += 1;
+		return true;
         }
         ballX = nextBallX;
         ballY = nextBallY;
