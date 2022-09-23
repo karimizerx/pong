@@ -11,6 +11,7 @@ Pour l'instant, seules les fonctionnalités basiques sont implémentées : 2 raq
 
 ## Instructions
 
+<<<<<<< HEAD
 Dans les instructions ci-dessous, il faut remplacer `myteam` par
 - soit le nom de votre équipe dans gaufre, si le dépôt a été forké au nom de votre équipe,
 - soit le login du membre de votre equipe qui a forké le dépôt pour tout le monde,
@@ -119,8 +120,13 @@ Important : là aussi, il faut ensuite que toute votre équipe travaille avec la
 
 La raquette de gauche est contrôlée par les touches CONTROL et ALT, alors que celle de droite est contrôlée par les flèches HAUT et BAS.
 =======
+=======
+>>>>>>> bf0763ac780c107ed036e54f8a580598b9fb53fc
 1. Télécharger le projet en le clonant via git: `git clone https://gaufre.informatique.univ-paris-diderot.fr/cproj2022/pong.git`.
 2. Compiler avec gradle. La commande est, dans le répertoire du projet, exécutez `./gradlew build`. Au besoin, cela téléchargera la bonne version de gradle.
 3. Exécuter avec `./gradlew run` (cela inclut `./gradlew build` si le projet n'est pas déjà compilé).
 4. Jouer ! La raquette de gauche est contrôlée par les touches CONTROL et ALT, alors que celle de droite est contrôlée par les flèches HAUT et BAS.
+<<<<<<< HEAD
 >>>>>>> 995d930 (Readme qui se tient à un court descriptif du projet, sans les souhaits d'amélioration.)
+=======
+>>>>>>> bf0763ac780c107ed036e54f8a580598b9fb53fc
