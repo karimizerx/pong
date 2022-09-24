@@ -1,24 +1,33 @@
 package model;
 
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.Color;
+import javafx.scene.layout.Pane;
+
+import game_objects.Racket;
+import gui.GameView;
+
 public class Court {
     // instance parameters
-    private final RacketController playerA, playerB;
+    private final Racket playerA, playerB;
     private final double width, height; // m
     private final double racketSpeed = 300.0; // m/s
-    private final double racketSize = 100.0; // m
     private final double ballRadius = 10.0; // m
     // instance state
-    private double racketA; // m
-    private double racketB; // m
     private double ballX, ballY; // m
     private double ballSpeedX, ballSpeedY; // m
 
-    public Court(RacketController playerA, RacketController playerB, double width, double height) {
+    private Circle ball;
+
+    public Court(Pane root, Racket playerA, Racket playerB, double width, double height) {
         this.playerA = playerA;
         this.playerB = playerB;
         this.width = width;
         this.height = height;
         reset();
+
+        ball = new Circle();
+        root.getChildren().add(ball);
     }
 
     public double getWidth() {
@@ -29,16 +38,8 @@ public class Court {
         return height;
     }
 
-    public double getRacketSize() {
-        return racketSize;
-    }
-
-    public double getRacketA() {
-        return racketA;
-    }
-
-    public double getRacketB() {
-        return racketB;
+    public double getRacketSpeed() {
+        return racketSpeed;
     }
 
     public double getBallX() {
@@ -50,32 +51,19 @@ public class Court {
     }
 
     public void update(double deltaT) {
-
-        switch (playerA.getState()) {
-            case GOING_UP:
-                racketA -= racketSpeed * deltaT;
-                if (racketA < 0.0) racketA = 0.0;
-                break;
-            case IDLE:
-                break;
-            case GOING_DOWN:
-                racketA += racketSpeed * deltaT;
-                if (racketA + racketSize > height) racketA = height - racketSize;
-                break;
-        }
-        switch (playerB.getState()) {
-            case GOING_UP:
-                racketB -= racketSpeed * deltaT;
-                if (racketB < 0.0) racketB = 0.0;
-                break;
-            case IDLE:
-                break;
-            case GOING_DOWN:
-                racketB += racketSpeed * deltaT;
-                if (racketB + racketSize > height) racketB = height - racketSize;
-                break;
-        }
+        playerA.update(this, deltaT);
+        playerB.update(this, deltaT);
         if (updateBall(deltaT)) reset();
+    }
+
+    public void render(GameView view) {
+        ball.setRadius(getBallRadius());
+        ball.setFill(Color.BLACK);
+        ball.setCenterX(ballX * view.getScale() + view.getXMargin());
+        ball.setCenterY(ballY * view.getScale());
+
+        playerA.render(view, this);
+        playerB.render(view, this);
     }
 
 
@@ -91,8 +79,7 @@ public class Court {
             ballSpeedY = -ballSpeedY;
             nextBallY = ballY + deltaT * ballSpeedY;
         }
-        if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
-                || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) {
+        if ((nextBallX < 0 && playerA.collides(nextBallY)) || (nextBallX > width && playerB.collides(nextBallY))) {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
@@ -110,8 +97,8 @@ public class Court {
     }
 
     void reset() {
-        this.racketA = height / 2;
-        this.racketB = height / 2;
+        this.playerA.reset(this);
+        this.playerB.reset(this);
         this.ballSpeedX = 200.0;
         this.ballSpeedY = 200.0;
         this.ballX = width / 2;
