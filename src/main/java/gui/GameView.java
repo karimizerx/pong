@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import model.Court;
+import model.Scoreboard;
 
 public class GameView {
     // class parameters
@@ -17,7 +18,7 @@ public class GameView {
     // children of the game main node
     private final Rectangle racketA, racketB;
     private final Circle ball;
-    private Text scoreboard;
+    private Scoreboard scoreboard;
 
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -55,13 +56,9 @@ public class GameView {
         ball.setCenterX(court.getBallX() * scale + xMargin);
         ball.setCenterY(court.getBallY() * scale);
 		
-	scoreboard = new Text();
-	scoreboard.setX(500);
-	scoreboard.setY(800);
-	scoreboard.setFont(new Font(100));
-	scoreboard.setText("0 : 0");
+	scoreboard = new Scoreboard(2);
 
-        gameRoot.getChildren().addAll(racketA, racketB, ball, scoreboard);
+        gameRoot.getChildren().addAll(racketA, racketB, ball, scoreboard.getText());
 
 
     }
@@ -82,8 +79,8 @@ public class GameView {
                 racketB.setY(court.getRacketB() * scale);
                 ball.setCenterX(court.getBallX() * scale + xMargin);
                 ball.setCenterY(court.getBallY() * scale);
-		
-		scoreboard.setText(court.getScoreA() + " : " + court.getScoreB());
+								int[] scores = {court.getScoreA(), court.getScoreB()};
+								scoreboard.setScores(scores);
             }
         }.start();
     }
