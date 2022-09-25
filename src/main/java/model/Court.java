@@ -19,6 +19,8 @@ public class Court {
 
     private Circle ball;
 
+		private Scoreboard scoreboard;
+
     public Court(Pane root, Racket playerA, Racket playerB, double width, double height) {
         this.playerA = playerA;
         this.playerB = playerB;
@@ -27,8 +29,9 @@ public class Court {
         reset();
 
         ball = new Circle();
-        root.getChildren().add(ball);
-    }
+    		this.scoreboard = new Scoreboard(2);
+        root.getChildren().addAll(ball, scoreboard.getText());
+		}
 
     public double getWidth() {
         return width;
@@ -83,9 +86,11 @@ public class Court {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
-            return true;
+          scoreboard.addPoint(1);  
+					return true;
         } else if (nextBallX > width) {
-            return true;
+          scoreboard.addPoint(0);  
+					return true;
         }
         ballX = nextBallX;
         ballY = nextBallY;
