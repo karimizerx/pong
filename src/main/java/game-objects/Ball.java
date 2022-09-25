@@ -32,26 +32,18 @@ public class Ball {
 		if (new_y < 0) {
 			new_y = -new_y;
 			vy = Math.abs(vy);
-		}
-		if (new_y > c.getHeight()) {
+		} else if (new_y > c.getHeight()) {
 			new_y = c.getHeight() - (new_y - c.getHeight());
 			vy = -Math.abs(vy);
 		}
-		if (new_x < 0) {
-			if (c.getPlayerA().collides(new_y)) {
-				new_x = -new_x;
-				vx = Math.abs(vx);
-			} else {
-				return true;
-			}
-		}
-		if (new_x > c.getWidth()) {
-			if (c.getPlayerB().collides(new_y)) {
-				new_x = c.getWidth() - (new_x - c.getWidth());
-				vx = -Math.abs(vx);
-			} else {
-				return true;
-			}
+		if (new_x < 0 && c.getPlayerA().collides(new_y)) {
+			new_x = -new_x;
+			vx = Math.abs(vx);
+		} else if (new_x > c.getWidth() && c.getPlayerB().collides(new_y)) {
+			new_x = c.getWidth() - (new_x - c.getWidth());
+			vx = -Math.abs(vx);
+		} else if (new_x < 0 || new_x > c.getWidth()) {
+			return true;
 		}
 		x = new_x;
 		y = new_y;
