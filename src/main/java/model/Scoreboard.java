@@ -1,12 +1,14 @@
-package model; 
 
-import javafx.scene.text.*; 
+package model;
+
+import javafx.scene.text.*;
 
 public class Scoreboard{
 	private int[] scores;
 	private Text text;
 	private int posX = 500;
 	private int posY = 800;
+
 	public static String makeScoreboard(int[] s){
 		String acc = "";
 		for(int i = 0; i < s.length; i++){
@@ -16,7 +18,7 @@ public class Scoreboard{
 		}
 		return acc;
 	}
-	
+
 	public Scoreboard(int n){
 		this.scores = new int[n];
 		this.text = new Text();
@@ -50,5 +52,3 @@ public class Scoreboard{
 		return true;
 	}
 }
-
-

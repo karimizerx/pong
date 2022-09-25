@@ -16,6 +16,7 @@ public class Court {
     // instance state
     private double ballX, ballY; // m
     private double ballSpeedX, ballSpeedY; // m
+    private int scoreA, scoreB; // pts
 
     private Circle ball;
 
@@ -51,6 +52,14 @@ public class Court {
 
     public double getBallY() {
         return ballY;
+    }
+
+    public int getScoreA(){
+	    return scoreA;
+    }
+
+    public int getScoreB(){
+	    return scoreB;
     }
 
     public void update(double deltaT) {
