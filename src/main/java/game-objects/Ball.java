@@ -27,26 +27,24 @@ public class Ball {
 	 * @return true if a player lost
 	 */
 	public boolean update(Court c, double deltaT) {
-		double new_x = x + vx * deltaT;
-		double new_y = y + vy * deltaT;
-		if (new_y < 0) {
-			new_y = -new_y;
+		x += vx * deltaT;
+		y += vy * deltaT;
+		if (y < 0) {
+			y = -y;
 			vy = Math.abs(vy);
-		} else if (new_y > c.getHeight()) {
-			new_y = c.getHeight() - (new_y - c.getHeight());
+		} else if (y > c.getHeight()) {
+			y = c.getHeight() - (y - c.getHeight());
 			vy = -Math.abs(vy);
 		}
-		if (new_x < 0 && c.getPlayerA().collides(new_y)) {
-			new_x = -new_x;
+		if (x < 0 && c.getPlayerA().collides(y)) {
+			x = -x;
 			vx = Math.abs(vx);
-		} else if (new_x > c.getWidth() && c.getPlayerB().collides(new_y)) {
-			new_x = c.getWidth() - (new_x - c.getWidth());
+		} else if (x > c.getWidth() && c.getPlayerB().collides(y)) {
+			x = c.getWidth() - (x - c.getWidth());
 			vx = -Math.abs(vx);
-		} else if (new_x < 0 || new_x > c.getWidth()) {
+		} else if (x < 0 || x > c.getWidth()) {
 			return true;
 		}
-		x = new_x;
-		y = new_y;
 		return false;
 	}
 
