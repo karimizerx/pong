@@ -23,6 +23,19 @@ public class Ball {
 		size = 10;
 	}
 
+	public double get_left_x() {
+		return x - size;
+	}
+	public double get_right_x() {
+		return x + size;
+	}
+	public double get_up_y() {
+		return y - size;
+	}
+	public double get_down_y() {
+		return y + size;
+	}
+
 	/**
 	 * @return true if a player lost
 	 */
@@ -36,11 +49,13 @@ public class Ball {
 			y = c.getHeight() - (y - c.getHeight());
 			vy = -Math.abs(vy);
 		}
-		if (x < 0 && c.getPlayerA().collides(y)) {
-			x = -x;
+		if (c.getPlayerA().collides(this)) {
+			// This formula mirrors x compared to the point where x would touch the bar.
+			x = (c.getPlayerA().get_right_x() + size) - (x - (c.getPlayerA().get_right_x() + size));
 			vx = Math.abs(vx);
-		} else if (x > c.getWidth() && c.getPlayerB().collides(y)) {
-			x = c.getWidth() - (x - c.getWidth());
+		} else if (c.getPlayerB().collides(this)) {
+			// Likewise.
+			x = (c.getPlayerB().get_left_x() - size) - (x - (c.getPlayerB().get_left_x() - size));
 			vx = -Math.abs(vx);
 		} else if (x < 0 || x > c.getWidth()) {
 			return true;
@@ -51,7 +66,7 @@ public class Ball {
 	public void render(GameView view, Court court) {
 		circle.setRadius(size);
 		circle.setFill(Color.BLACK);
-		circle.setCenterX(x * view.getScale() + view.getXMargin());
+		circle.setCenterX((x + view.getXMargin()) * view.getScale());
 		circle.setCenterY(y * view.getScale());
 	}
 
