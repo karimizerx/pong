@@ -6,8 +6,9 @@ import javafx.scene.paint.Color;
 
 import model.Court;
 import gui.GameView;
+import game_objects.GameObject;
 
-public class Ball {
+public class Ball implements GameObject {
 	private Circle circle;
 
 	private double x;
@@ -23,16 +24,16 @@ public class Ball {
 		size = 10;
 	}
 
-	public double get_left_x() {
+	public double get_left() {
 		return x - size;
 	}
-	public double get_right_x() {
+	public double get_right() {
 		return x + size;
 	}
-	public double get_up_y() {
+	public double get_up() {
 		return y - size;
 	}
-	public double get_down_y() {
+	public double get_down() {
 		return y + size;
 	}
 
@@ -49,13 +50,13 @@ public class Ball {
 			y = c.getHeight() - (y - c.getHeight());
 			vy = -Math.abs(vy);
 		}
-		if (c.getPlayerA().collides(this)) {
+		if (this.collides(c.getPlayerA())) {
 			// This formula mirrors x compared to the point where x would touch the bar.
-			x = (c.getPlayerA().get_right_x() + size) - (x - (c.getPlayerA().get_right_x() + size));
+			x = (c.getPlayerA().get_right() + size) - (x - (c.getPlayerA().get_right() + size));
 			vx = Math.abs(vx);
-		} else if (c.getPlayerB().collides(this)) {
+		} else if (this.collides(c.getPlayerB())) {
 			// Likewise.
-			x = (c.getPlayerB().get_left_x() - size) - (x - (c.getPlayerB().get_left_x() - size));
+			x = (c.getPlayerB().get_left() - size) - (x - (c.getPlayerB().get_left() - size));
 			vx = -Math.abs(vx);
 		} else if (x < 0 || x > c.getWidth()) {
 			return true;

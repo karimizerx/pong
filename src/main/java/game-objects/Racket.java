@@ -8,8 +8,9 @@ import javafx.scene.paint.Color;
 import model.Court;
 import game_objects.Ball;
 import gui.GameView;
+import game_objects.GameObject;
 
-public class Racket {
+public class Racket implements GameObject {
 	private KeyCode up_key;
 	private KeyCode down_key;
 	private int direction; // -1 is up, 1 is down, 0 is idle
@@ -34,16 +35,16 @@ public class Racket {
 		root.getChildren().add(rectangle);
 	}
 
-	public double get_left_x() {
+	public double get_left() {
 		return x;
 	}
-	public double get_right_x() {
+	public double get_right() {
 		return x + w;
 	}
-	public double get_up_y() {
+	public double get_up() {
 		return y;
 	}
-	public double get_down_y() {
+	public double get_down() {
 		return y + h;
 	}
 
@@ -71,14 +72,6 @@ public class Racket {
 		if (y + h > court.getHeight()) {
 			y = court.getHeight() - h;
 		}
-	}
-
-	public boolean collides(Ball b) {
-		// For the purposes of collisions, the Ball is treated as a square.
-		return   get_up_y()   < b.get_down_y()
-		    && b.get_up_y()   <   get_down_y()
-		    &&   get_left_x() < b.get_right_x()
-		    && b.get_left_x() <   get_right_x();
 	}
 
 	public void reset(Court court) {
