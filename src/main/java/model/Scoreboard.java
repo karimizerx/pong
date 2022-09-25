@@ -2,8 +2,10 @@
 package model;
 
 import javafx.scene.text.*;
+import javafx.scene.layout.Pane;
 
 public class Scoreboard{
+	private Pane root;
 	private int[] scores;
 	private Text text;
 	private int posX = 500;
@@ -19,13 +21,15 @@ public class Scoreboard{
 		return acc;
 	}
 
-	public Scoreboard(int n){
+	public Scoreboard(Pane root, int n){
+		this.root = root;
 		this.scores = new int[n];
 		this.text = new Text();
 		this.text.setX(posX);
 		this.text.setY(posY);
 		this.text.setFont(new Font(100));
 		this.text.setText(makeScoreboard(scores));
+		root.getChildren().add(this.text);
 	}
 	
 	public Text getText(){ return this.text; }
