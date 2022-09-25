@@ -9,7 +9,7 @@ public class Scoreboard{
 	private int[] scores;
 	private Text text;
 	private int posX = 500;
-	private int posY = 800;
+	private int posY = 20;
 
 	public static String makeScoreboard(int[] s){
 		String acc = "";
@@ -27,7 +27,7 @@ public class Scoreboard{
 		this.text = new Text();
 		this.text.setX(posX);
 		this.text.setY(posY);
-		this.text.setFont(new Font(100));
+		this.text.setFont(new Font(20));
 		this.text.setText(makeScoreboard(scores));
 		root.getChildren().add(this.text);
 	}

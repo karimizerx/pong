@@ -6,12 +6,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import model.Court;
+import game_objects.Ball;
 import gui.GameView;
+import game_objects.GameObject;
 
-public class Racket {
+public class Racket implements GameObject {
 	private KeyCode up_key;
 	private KeyCode down_key;
 	private int direction; // -1 is up, 1 is down, 0 is idle
+	private double x;
 	private double y;
 	private double w;
 	private double h;
@@ -30,6 +33,19 @@ public class Racket {
 		rectangle = new Rectangle();
 		rectangle.setFill(Color.BLACK);
 		root.getChildren().add(rectangle);
+	}
+
+	public double get_left() {
+		return x;
+	}
+	public double get_right() {
+		return x + w;
+	}
+	public double get_up() {
+		return y;
+	}
+	public double get_down() {
+		return y + h;
 	}
 
 	public void on_key_pressed(KeyCode key) {
@@ -58,10 +74,6 @@ public class Racket {
 		}
 	}
 
-	public boolean collides(double y) {
-		return this.y < y && y < this.y + this.h;
-	}
-
 	public void reset(Court court) {
 		y = (court.getHeight() - h) / 2;
 	}
@@ -71,9 +83,11 @@ public class Racket {
 		rectangle.setWidth(w * view.getScale());
 
 		if (is_left_racket) {
-			rectangle.setX((view.getXMargin() - w) * view.getScale());
+			x = -w;
+			rectangle.setX((x + view.getXMargin()) * view.getScale());
 		} else {
-			rectangle.setX((court.getWidth() + view.getXMargin()) * view.getScale());
+			x = court.getWidth();
+			rectangle.setX((x + view.getXMargin()) * view.getScale());
 		}
 		rectangle.setY(y * view.getScale());
 	}

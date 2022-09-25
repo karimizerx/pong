@@ -6,8 +6,9 @@ import javafx.scene.paint.Color;
 
 import model.Court;
 import gui.GameView;
+import game_objects.GameObject;
 
-public class Ball {
+public class Ball implements GameObject {
 	private Circle circle;
 
 	private double x;
@@ -23,47 +24,54 @@ public class Ball {
 		size = 10;
 	}
 
+	public double get_left() {
+		return x - size;
+	}
+	public double get_right() {
+		return x + size;
+	}
+	public double get_up() {
+		return y - size;
+	}
+	public double get_down() {
+		return y + size;
+	}
+
 	/**
 	 * @return true if a player lost
 	 */
 	public boolean update(Court c, double deltaT) {
-		double new_x = x + vx * deltaT;
-		double new_y = y + vy * deltaT;
-		if (new_y < 0) {
-			new_y = -new_y;
+		x += vx * deltaT;
+		y += vy * deltaT;
+		if (y < 0) {
+			y = -y;
 			vy = Math.abs(vy);
-		}
-		if (new_y > c.getHeight()) {
-			new_y = c.getHeight() - (new_y - c.getHeight());
+		} else if (y > c.getHeight()) {
+			y = c.getHeight() - (y - c.getHeight());
 			vy = -Math.abs(vy);
 		}
-		if (new_x < 0) {
-			if (c.getPlayerA().collides(new_y)) {
-				new_x = -new_x;
-				vx = Math.abs(vx);
-			} else {
+		if (this.collides(c.getPlayerA())) {
+			// This formula mirrors x compared to the point where x would touch the bar.
+			x = (c.getPlayerA().get_right() + size) - (x - (c.getPlayerA().get_right() + size));
+			vx = Math.abs(vx);
+		} else if (this.collides(c.getPlayerB())) {
+			// Likewise.
+			x = (c.getPlayerB().get_left() - size) - (x - (c.getPlayerB().get_left() - size));
+			vx = -Math.abs(vx);
+		} else if (x < 0 || x > c.getWidth()) {
+			if(x < 0)
 				c.getScoreboard().addPoint(1);
-				return true;
-			}
-		}
-		if (new_x > c.getWidth()) {
-			if (c.getPlayerB().collides(new_y)) {
-				new_x = c.getWidth() - (new_x - c.getWidth());
-				vx = -Math.abs(vx);
-			} else {
+			if(x > c.getWidth())
 				c.getScoreboard().addPoint(0);
-				return true;
-			}
+			return true;
 		}
-		x = new_x;
-		y = new_y;
 		return false;
 	}
 
 	public void render(GameView view, Court court) {
 		circle.setRadius(size);
 		circle.setFill(Color.BLACK);
-		circle.setCenterX(x * view.getScale() + view.getXMargin());
+		circle.setCenterX((x + view.getXMargin()) * view.getScale());
 		circle.setCenterY(y * view.getScale());
 	}
 

@@ -61,7 +61,6 @@ public class Court {
         ball.render(view, this);
         playerA.render(view, this);
         playerB.render(view, this);
-    		// scoreboard.render(view, this);
 		}
 
     void reset() {
