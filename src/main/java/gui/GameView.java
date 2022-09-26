@@ -2,9 +2,8 @@ package gui;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
 import model.Court;
 
 public class GameView {
@@ -12,11 +11,7 @@ public class GameView {
     private final Court court;
     private final Pane gameRoot; // main node of the game
     private final double scale;
-    private final double xMargin = 50.0, racketThickness = 10.0; // pixels
-
-    // children of the game main node
-    private final Rectangle racketA, racketB;
-    private final Circle ball;
+    private final double xMargin = 50.0; // pixels
 
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -30,36 +25,17 @@ public class GameView {
 
         root.setMinWidth(court.getWidth() * scale + 2 * xMargin);
         root.setMinHeight(court.getHeight() * scale);
+    }
 
-        racketA = new Rectangle();
-        racketA.setHeight(court.getRacketSize() * scale);
-        racketA.setWidth(racketThickness);
-        racketA.setFill(Color.BLACK);
-
-        racketA.setX(xMargin - racketThickness);
-        racketA.setY(court.getRacketA() * scale);
-
-        racketB = new Rectangle();
-        racketB.setHeight(court.getRacketSize() * scale);
-        racketB.setWidth(racketThickness);
-        racketB.setFill(Color.BLACK);
-
-        racketB.setX(court.getWidth() * scale + xMargin);
-        racketB.setY(court.getRacketB() * scale);
-
-        ball = new Circle();
-        ball.setRadius(court.getBallRadius());
-        ball.setFill(Color.BLACK);
-
-        ball.setCenterX(court.getBallX() * scale + xMargin);
-        ball.setCenterY(court.getBallY() * scale);
-
-        gameRoot.getChildren().addAll(racketA, racketB, ball);
-
-
+    public double getScale() {
+        return scale;
+    }
+    public double getXMargin() {
+        return xMargin;
     }
 
     public void animate() {
+        GameView view = this;
         new AnimationTimer() {
             long last = 0;
 
@@ -71,10 +47,7 @@ public class GameView {
                 }
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
-                racketA.setY(court.getRacketA() * scale);
-                racketB.setY(court.getRacketB() * scale);
-                ball.setCenterX(court.getBallX() * scale + xMargin);
-                ball.setCenterY(court.getBallY() * scale);
+                court.render(view);
             }
         }.start();
     }
