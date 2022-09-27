@@ -1,16 +1,18 @@
 package gui;
-
+import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import model.Court;
+import model.Scoreboard;
 
 public class GameView {
     // class parameters
     private final Court court;
     private final Pane gameRoot; // main node of the game
     private final double scale;
+
     private final double xMargin = 50.0; // pixels
 
     /**

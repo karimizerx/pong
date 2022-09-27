@@ -59,6 +59,10 @@ public class Ball implements GameObject {
 			x = (c.getPlayerB().get_left() - size) - (x - (c.getPlayerB().get_left() - size));
 			vx = -Math.abs(vx);
 		} else if (x < 0 || x > c.getWidth()) {
+			if(x < 0)
+				c.getScoreboard().addPoint(1);
+			if(x > c.getWidth())
+				c.getScoreboard().addPoint(0);
 			return true;
 		}
 		return false;

@@ -15,12 +15,15 @@ public class Court {
     private final double racketSpeed = 300.0; // m/s
     private final Ball ball;
 
+		private Scoreboard scoreboard;
+
     public Court(Pane root, Racket playerA, Racket playerB, double width, double height) {
         this.playerA = playerA;
         this.playerB = playerB;
         this.ball = new Ball(root);
         this.width = width;
         this.height = height;
+				this.scoreboard = new Scoreboard(root, 2);
         reset();
     }
 
@@ -41,6 +44,10 @@ public class Court {
     public double getRacketSpeed() {
         return racketSpeed;
     }
+		
+		public Scoreboard getScoreboard(){
+			return scoreboard;
+		}
 
     public void update(double deltaT) {
         playerA.update(this, deltaT);
@@ -54,7 +61,7 @@ public class Court {
         ball.render(view, this);
         playerA.render(view, this);
         playerB.render(view, this);
-    }
+		}
 
     void reset() {
         this.playerA.reset(this);
