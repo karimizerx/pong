@@ -71,7 +71,7 @@ public class Racket implements GameObject {
 public void update(Court court, double deltaT) {
 		//
 		if(this.is_IA){
-		y=court.getBall().getY();
+		y=court.getBall().getY()-this.h/2;
 		if (y < 0) {
 			y = 0;
 		}
