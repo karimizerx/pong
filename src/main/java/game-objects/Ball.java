@@ -36,6 +36,7 @@ public class Ball implements GameObject {
 	public double get_down() {
 		return y + size;
 	}
+	public double getY(){return y;}
 
 	/**
 	 * @return true if a player lost

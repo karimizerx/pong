@@ -11,6 +11,7 @@ import gui.GameView;
 import game_objects.GameObject;
 
 public class Racket implements GameObject {
+	private Pane proot;
 	private KeyCode up_key;
 	private KeyCode down_key;
 	private int direction; // -1 is up, 1 is down, 0 is idle
@@ -20,8 +21,9 @@ public class Racket implements GameObject {
 	private double h;
 	private Rectangle rectangle;
 	private boolean is_left_racket;
+	private boolean is_IA;
 
-	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double w, double h, boolean is_left_racket) {
+	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double w, double h, boolean is_left_racket, boolean ia) {
 		this.up_key = up_key;
 		this.down_key = down_key;
 		direction = 0;
@@ -29,6 +31,8 @@ public class Racket implements GameObject {
 		this.w = w;
 		this.h = h;
 		this.is_left_racket = is_left_racket;
+		this.is_IA=ia;
+		this.proot=root;
 
 		rectangle = new Rectangle();
 		rectangle.setFill(Color.BLACK);
@@ -64,13 +68,25 @@ public class Racket implements GameObject {
 		}
 	}
 
-	public void update(Court court, double deltaT) {
-		y += direction * deltaT * court.getRacketSpeed();
+public void update(Court court, double deltaT) {
+		//
+		if(this.is_IA){
+		y=court.getBall().getY();
 		if (y < 0) {
 			y = 0;
 		}
 		if (y + h > court.getHeight()) {
 			y = court.getHeight() - h;
+		}
+		}
+		else{
+			y += direction * deltaT * court.getRacketSpeed();
+					if (y < 0) {
+			y = 0;
+		}
+		if (y + h > court.getHeight()) {
+			y = court.getHeight() - h;
+		}
 		}
 	}
 

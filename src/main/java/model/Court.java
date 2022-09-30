@@ -27,6 +27,7 @@ public class Court {
         reset();
     }
 
+    public Ball getBall(){return ball;  }
     public Racket getPlayerA() {
         return playerA;
     }
@@ -43,8 +44,8 @@ public class Court {
 
     public double getRacketSpeed() {
         return racketSpeed;
-    }
-		
+    
+    }	
 		public Scoreboard getScoreboard(){
 			return scoreboard;
 		}

@@ -14,8 +14,8 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         var root = new Pane();
         var gameScene = new Scene(root);
-        var playerA = new Racket(root, KeyCode.CONTROL, KeyCode.ALT, 10, 100, true);
-        var playerB = new Racket(root, KeyCode.UP, KeyCode.DOWN, 10, 100, false);
+        var playerA = new Racket(root, KeyCode.CONTROL, KeyCode.ALT, 10, 100, true,false);
+        var playerB = new Racket(root, KeyCode.UP, KeyCode.DOWN, 10, 100, false,true);
         gameScene.setOnKeyPressed(ev -> {
             playerA.on_key_pressed(ev.getCode());
             playerB.on_key_pressed(ev.getCode());
