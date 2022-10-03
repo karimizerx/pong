@@ -21,10 +21,18 @@ public class Racket implements GameObject {
 	private double h;
 	private Rectangle rectangle;
 	private boolean is_left_racket;
-	private boolean is_IA;
-	private double difficulte;
+	private double mode_de_jeu;
+    
+    /*mode de jeu :
+0 := joueur
+tier 1-3 :  si la balle est plus haute que la raquette, cette dernière monte, si elle est plus basse, elle descend.
+1 := IA tier 1 : la raquette se déplace de 0.2
+2 := IA tier 2 : la raquette se déplace de 0.25
+3 := IA tier 3 : la raquette se déplace de 25
+4 := IA tier 4 : associe la coordonnée en y de la raquette à celle de la balle
+    */
 
-	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double w, double h, boolean is_left_racket, boolean ia, double difficulte) {
+	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double w, double h, boolean is_left_racket, double mode_de_jeu) {
 		this.up_key = up_key;
 		this.down_key = down_key;
 		direction = 0;
@@ -32,9 +40,8 @@ public class Racket implements GameObject {
 		this.w = w;
 		this.h = h;
 		this.is_left_racket = is_left_racket;
-		this.is_IA=ia;
 		this.proot=root;
-		this.difficulte=difficulte;
+		this.mode_de_jeu=mode_de_jeu;
 		rectangle = new Rectangle();
 		rectangle.setFill(Color.BLACK);
 		root.getChildren().add(rectangle);
@@ -71,26 +78,29 @@ public class Racket implements GameObject {
 
 public void update(Court court, double deltaT) {
 		//
-		if(this.is_IA){
-		if(difficulte==1){
-		if(court.getBall().getUp())y+=0.19;
-				else y-=0.19;//On peut faire une IA imbattable en lui assignant le même y que la balle.
+		if(mode_de_jeu ==1){
+			if(court.getBall().getY()>this.y)y+=0.20;
+			else y-=0.20;
 		}
-		if(difficulte==2){
-			if(court.getBall().getY()>this.y)y+=0.19;
-			else y-=0.19;
+		if(mode_de_jeu==2){
+			if(court.getBall().getY()>this.y)y+=0.25;
+			else y-=0.25;
 		}
-		if(difficulte==3){
-			y=court.getBall().getY()-h/2;
+		if(mode_de_jeu==3){
+			if(court.getBall().getY()>this.y)y+=25;
+			else y-=25;
 		}
-
+		if(mode_de_jeu==4){
+		    y=court.getBall().getY()-h/2;
+		}
+		else{
 		if (y < 0) {
 			y = 0;
 		}
 		if (y + h > court.getHeight()) {
 			y = court.getHeight() - h;
 		}
-		}
+		
 		else{
 			y += direction * deltaT * court.getRacketSpeed();
 					if (y < 0) {
@@ -100,7 +110,10 @@ public void update(Court court, double deltaT) {
 			y = court.getHeight() - h;
 		}
 		}
-	}
+		}
+}
+
+	
 
 	public void reset(Court court) {
 		y = (court.getHeight() - h) / 2;

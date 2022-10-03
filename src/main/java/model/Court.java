@@ -23,7 +23,7 @@ public class Court {
         this.ball = new Ball(root);
         this.width = width;
         this.height = height;
-				this.scoreboard = new Scoreboard(root, 2);
+	this.scoreboard = new Scoreboard(root, 2);
         reset();
     }
 
