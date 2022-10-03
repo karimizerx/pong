@@ -16,6 +16,8 @@ public class Ball implements GameObject {
 	private double vx;
 	private double vy;
 	private double size;
+	private double ch;
+	private boolean up;
 
 	public Ball(Pane root) {
 		circle = new Circle();
@@ -38,11 +40,17 @@ public class Ball implements GameObject {
 	}
 	public double getY(){return y;}
 
+	public boolean getUp(){return up;}
 	/**
 	 * @return true if a player lost
 	 */
 	public boolean update(Court c, double deltaT) {
 		x += vx * deltaT;
+
+	
+
+		if(vy>0){up=true;}
+		else{up=false;}
 		y += vy * deltaT;
 		if (y < 0) {
 			y = -y;
@@ -51,19 +59,25 @@ public class Ball implements GameObject {
 			y = c.getHeight() - (y - c.getHeight());
 			vy = -Math.abs(vy);
 		}
+		
 		if (this.collides(c.getPlayerA())) {
 			// This formula mirrors x compared to the point where x would touch the bar.
+
 			x = (c.getPlayerA().get_right() + size) - (x - (c.getPlayerA().get_right() + size));
 			vx = Math.abs(vx);
+			ch+=0.3;
 		} else if (this.collides(c.getPlayerB())) {
 			// Likewise.
 			x = (c.getPlayerB().get_left() - size) - (x - (c.getPlayerB().get_left() - size));
 			vx = -Math.abs(vx);
+			ch+=0.3;
 		} else if (x < 0 || x > c.getWidth()) {
 			if(x < 0)
 				c.getScoreboard().addPoint(1);
+				resetV();
 			if(x > c.getWidth())
 				c.getScoreboard().addPoint(0);
+				resetV();
 			return true;
 		}
 		return false;
@@ -81,5 +95,10 @@ public class Ball implements GameObject {
 		vy = 200;
 		x = c.getWidth() / 2;
 		y = c.getHeight() / 2;
+	}
+	public void resetV(){
+		vx = 200;
+		vy = 200;
+		ch=0.3;
 	}
 }

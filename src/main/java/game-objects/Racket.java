@@ -22,8 +22,9 @@ public class Racket implements GameObject {
 	private Rectangle rectangle;
 	private boolean is_left_racket;
 	private boolean is_IA;
+	private double difficulte;
 
-	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double w, double h, boolean is_left_racket, boolean ia) {
+	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double w, double h, boolean is_left_racket, boolean ia, double difficulte) {
 		this.up_key = up_key;
 		this.down_key = down_key;
 		direction = 0;
@@ -33,7 +34,7 @@ public class Racket implements GameObject {
 		this.is_left_racket = is_left_racket;
 		this.is_IA=ia;
 		this.proot=root;
-
+		this.difficulte=difficulte;
 		rectangle = new Rectangle();
 		rectangle.setFill(Color.BLACK);
 		root.getChildren().add(rectangle);
@@ -71,7 +72,18 @@ public class Racket implements GameObject {
 public void update(Court court, double deltaT) {
 		//
 		if(this.is_IA){
-		y=court.getBall().getY()-this.h/2;
+		if(difficulte==1){
+		if(court.getBall().getUp())y+=0.19;
+				else y-=0.19;//On peut faire une IA imbattable en lui assignant le même y que la balle.
+		}
+		if(difficulte==2){
+			if(court.getBall().getY()>this.y)y+=0.19;
+			else y-=0.19;
+		}
+		if(difficulte==3){
+			y=court.getBall().getY()-h/2;
+		}
+
 		if (y < 0) {
 			y = 0;
 		}
