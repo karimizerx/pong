@@ -12,7 +12,7 @@ public class Court {
     // instance parameters
     private final Racket playerA, playerB;
     private final double width, height; // m
-    private final double racketSpeed = 300.0; // m/s
+    private double racketSpeed = 300.0; // m/s
     private final Ball ball;
 
 		private Scoreboard scoreboard;
@@ -42,6 +42,14 @@ public class Court {
         return height;
     }
 
+    public void setRacketSpeed(double s){
+	racketSpeed = s;
+    }
+
+    public void reSetRacketSpeed(){
+	racketSpeed = 300;
+    }
+    
     public double getRacketSpeed() {
         return racketSpeed;
     

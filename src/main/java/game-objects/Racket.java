@@ -22,7 +22,7 @@ public class Racket implements GameObject {
 	private Rectangle rectangle;
 	private boolean is_left_racket;
 	private double mode_de_jeu;
-    
+    private double acceleration = 0;
     /*mode de jeu :
 0 := joueur
 tier 1-3 :  si la balle est plus haute que la raquette, cette dernière monte, si elle est plus basse, elle descend.
@@ -77,18 +77,17 @@ tier 1-3 :  si la balle est plus haute que la raquette, cette dernière monte, s
 	}
 
 public void update(Court court, double deltaT) {
-		//
 		if(mode_de_jeu ==1){
 			if(court.getBall().getY()>this.y)y+=0.20;
 			else y-=0.20;
 		}
 		if(mode_de_jeu==2){
-			if(court.getBall().getY()>this.y)y+=0.25;
-			else y-=0.25;
+			if(court.getBall().getY()>this.y)y+=0.5;
+			else y-=0.5;
 		}
 		if(mode_de_jeu==3){
-			if(court.getBall().getY()>this.y)y+=25;
-			else y-=25;
+			if(court.getBall().getY()>this.y)y+=2.5;
+			else y-=2.5;
 		}
 		if(mode_de_jeu==4){
 		    y=court.getBall().getY()-h/2;
@@ -102,7 +101,8 @@ public void update(Court court, double deltaT) {
 		}
 		
 		else{
-			y += direction * deltaT * court.getRacketSpeed();
+		    y += direction * deltaT * court.getRacketSpeed() ;
+		    court.setRacketSpeed(court.getRacketSpeed() + acceleration);
 					if (y < 0) {
 			y = 0;
 		}
@@ -117,6 +117,7 @@ public void update(Court court, double deltaT) {
 
 	public void reset(Court court) {
 		y = (court.getHeight() - h) / 2;
+		court.reSetRacketSpeed();
 	}
 
 	public void render(GameView view, Court court) {

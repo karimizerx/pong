@@ -18,7 +18,7 @@ public class Ball implements GameObject {
 	private double vx;
 	private double vy;
 	private double size;
-	private double ch=1.1;
+	private double ch=1;
 	private boolean up;
 
         
@@ -29,6 +29,10 @@ public class Ball implements GameObject {
 
 		size = 10;
 	}
+
+    public double getCh(){
+	return ch;
+    }
 
 	public double get_left() {
 		return x - 10;
@@ -116,6 +120,5 @@ public class Ball implements GameObject {
 	        Random r = new Random();
 		vx = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
 		vy = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
-		ch=1.1;
 	}
 }
