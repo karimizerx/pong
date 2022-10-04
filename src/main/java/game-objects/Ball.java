@@ -8,6 +8,8 @@ import model.Court;
 import gui.GameView;
 import game_objects.GameObject;
 
+import java.util.Random;
+
 public class Ball implements GameObject {
 	private Circle circle;
 
@@ -94,15 +96,26 @@ public class Ball implements GameObject {
 		circle.setCenterY(y * view.getScale());
 	}
 
+    private static int un_ou_moins_un(){
+	Random r = new Random();
+	int n = r.nextInt(2);
+	if(n==0){return -1;}
+	return 1;
+    }
+
+
 	public void reset(Court c) {
-		vx = 200;
-		vy = 200;
+	        Random r = new Random();
+		vx = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
+		vy = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
+
 		x = c.getWidth() / 2;
 		y = c.getHeight() / 2;
 	}
 	public void resetV(){
-		vx = 200;
-		vy = 200;
+	        Random r = new Random();
+		vx = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
+		vy = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
 		ch=1.1;
 	}
 }
