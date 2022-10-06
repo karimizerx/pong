@@ -5,9 +5,13 @@ contient les fichiers .class (compilés) du code source
 /src/main/java/
 contient le code source du jeu
 
+-> game-objects
+    -> Ball.java:fait la liaison entre App et Court pour les mouvements de la balle.
+    -> GameObject.java:vérifie que la balle touche la raquette.
+    -> Racket.java:fait la liaison entre App et Court pour les mouvements de la raquette
 -> gui
     -> App.java: lancement du jeu et gestion des contrôles (fenêtre)
     -> GameView.java: affiche le terrain
 -> model
     -> Court.java: tous les paramètres du jeu comme déplacement, vitesse des éléments, calcul des trajectoires, etc..
-    -> RacketController.java: fait la liaison entre App et Court pour les mouvements de la raquette
+    -> Scoreboard.java: crée le Scoreboard (affichage des résultats)
