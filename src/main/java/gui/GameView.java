@@ -13,8 +13,6 @@ public class GameView {
 	private final Pane gameRoot; // main node of the game
 	private final double scale;
 
-	private final double xMargin = 50.0; // pixels
-
 	/**
 	 * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
 	 * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera affiché
@@ -25,15 +23,12 @@ public class GameView {
 		this.gameRoot = root;
 		this.scale = scale;
 
-		root.setMinWidth(court.getWidth() * scale + 2 * xMargin);
+		root.setMinWidth(court.getWidth() * scale);
 		root.setMinHeight(court.getHeight() * scale);
 	}
 
 	public double getScale() {
 		return scale;
-	}
-	public double getXMargin() {
-		return xMargin;
 	}
 
 	public void animate() {

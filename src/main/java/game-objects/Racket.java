@@ -14,21 +14,21 @@ public class Racket implements GameObject {
 	private KeyCode up_key;
 	private KeyCode down_key;
 	private int direction; // -1 is up, 1 is down, 0 is idle
+	private double rel_x;
 	private double x;
 	private double y;
 	private double w;
 	private double h;
 	private Rectangle rectangle;
-	private boolean is_left_racket;
 
-	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double w, double h, boolean is_left_racket) {
+	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h) {
 		this.up_key = up_key;
 		this.down_key = down_key;
 		direction = 0;
-		y = 0;
+		this.rel_x = x;
+		this.y = y;
 		this.w = w;
 		this.h = h;
-		this.is_left_racket = is_left_racket;
 
 		rectangle = new Rectangle();
 		rectangle.setFill(Color.BLACK);
@@ -82,13 +82,8 @@ public class Racket implements GameObject {
 		rectangle.setHeight(h * view.getScale());
 		rectangle.setWidth(w * view.getScale());
 
-		if (is_left_racket) {
-			x = -w;
-			rectangle.setX((x + view.getXMargin()) * view.getScale());
-		} else {
-			x = court.getWidth();
-			rectangle.setX((x + view.getXMargin()) * view.getScale());
-		}
+		x = rel_x >= 0 ? rel_x : court.getWidth() + rel_x;
+		rectangle.setX(x * view.getScale());
 		rectangle.setY(y * view.getScale());
 	}
 }

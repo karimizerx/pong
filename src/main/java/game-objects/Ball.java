@@ -75,7 +75,7 @@ public class Ball implements GameObject {
 	public void render(GameView view, Court court) {
 		circle.setRadius(size);
 		circle.setFill(Color.BLACK);
-		circle.setCenterX((x + view.getXMargin()) * view.getScale());
+		circle.setCenterX(x * view.getScale());
 		circle.setCenterY(y * view.getScale());
 	}
 
