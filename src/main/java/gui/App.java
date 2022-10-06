@@ -16,6 +16,8 @@ public class App extends Application {
         var gameScene = new Scene(root);
         var playerA = new Racket(root, KeyCode.CONTROL, KeyCode.ALT, 10, 100, true);
         var playerB = new Racket(root, KeyCode.UP, KeyCode.DOWN, 10, 100, false);
+        var court = new Court(root, playerA, playerB, 1000, 600);
+        var gameView = new GameView(court, root, 1.0);
         gameScene.setOnKeyPressed(ev -> {
             playerA.on_key_pressed(ev.getCode());
             playerB.on_key_pressed(ev.getCode());
@@ -24,8 +26,12 @@ public class App extends Application {
             playerA.on_key_released(ev.getCode());
             playerB.on_key_released(ev.getCode());
         });
-        var court = new Court(root, playerA, playerB, 1000, 600);
-        var gameView = new GameView(court, root, 1.0);
+        gameScene.widthProperty().addListener((obs, oldVal, newVal) -> {
+            court.setWidth((double)newVal - gameView.getXMargin() * 2);
+        });
+        gameScene.heightProperty().addListener((obs, oldVal, newVal) -> {
+            court.setHeight((double)newVal);
+        });
         primaryStage.setScene(gameScene);
         primaryStage.show();
         gameView.animate();

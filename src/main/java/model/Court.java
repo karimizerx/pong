@@ -11,7 +11,7 @@ import gui.GameView;
 public class Court {
     // instance parameters
     private final Racket playerA, playerB;
-    private final double width, height; // m
+    private double width, height; // m
     private final double racketSpeed = 300.0; // m/s
     private final Ball ball;
 
@@ -39,6 +39,12 @@ public class Court {
     }
     public double getHeight() {
         return height;
+    }
+    public void setWidth(double v) {
+        width = v;
+    }
+    public void setHeight(double v) {
+        height = v;
     }
 
     public double getRacketSpeed() {
