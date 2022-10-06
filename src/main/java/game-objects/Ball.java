@@ -61,10 +61,12 @@ public class Ball implements GameObject {
 			x = (c.getPlayerB().get_left() - size) - (x - (c.getPlayerB().get_left() - size));
 			vx = -Math.abs(vx);
 		} else if (x < 0 || x > c.getWidth()) {
-			if(x < 0)
+			if(x < 0) {
 				c.getScoreboard().addPoint(1);
-			if(x > c.getWidth())
+			}
+			if(x > c.getWidth()) {
 				c.getScoreboard().addPoint(0);
+			}
 			return true;
 		}
 		return false;
@@ -77,18 +79,18 @@ public class Ball implements GameObject {
 		circle.setCenterY(y * view.getScale());
 	}
 
-    private static int un_ou_moins_un(){
-	Random r = new Random();
-	int n = r.nextInt(2);
-	if(n==0){return -1;}
-	return 1;
-    }
+	private static int un_ou_moins_un(){
+		Random r = new Random();
+		int n = r.nextInt(2);
+		if (n==0) { return -1; }
+		return 1;
+	}
 
 	public void reset(Court c) {
-	    Random r = new Random();
-	    vx = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
-	    vy = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
-	    x = c.getWidth() / 2;
-	    y = c.getHeight() / 2;
+		Random r = new Random();
+		vx = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
+		vy = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
+		x = c.getWidth() / 2;
+		y = c.getHeight() / 2;
 	}
 }
