@@ -48,6 +48,22 @@ public class Racket implements GameObject {
 		return y + h;
 	}
 
+	public double get_height(){
+		return h;
+	}
+
+	public void set_height(double h){
+		this.h = h;
+	}
+
+	public void add_height(double h){
+		this.h += h;
+	}
+	
+	public void add_y(double y){
+		this.y += y;
+	}
+
 	public void on_key_pressed(KeyCode key) {
 		if (key == up_key) {
 			direction = -1;
