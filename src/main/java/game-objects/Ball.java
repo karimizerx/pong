@@ -39,6 +39,13 @@ public class Ball implements GameObject {
 		return y + size;
 	}
 
+	public void acc_x(double v) {
+		vx += v;
+	}
+	public void acc_y(double v) {
+		vy += v;
+	}
+
 	/**
 	 * @return true if a player lost
 	 */
