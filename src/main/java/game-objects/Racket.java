@@ -15,31 +15,30 @@ public class Racket implements GameObject {
 	private KeyCode up_key;
 	private KeyCode down_key;
 	private int direction; // -1 is up, 1 is down, 0 is idle
+	private double rel_x;
 	private double x;
 	private double y;
 	private double w;
 	private double h;
 	private Rectangle rectangle;
-	private boolean is_left_racket;
 	private double mode_de_jeu;
-    private double acceleration = 0;
-    /*mode de jeu :
-0 := joueur
-tier 1-3 :  si la balle est plus haute que la raquette, cette dernière monte, si elle est plus basse, elle descend.
-1 := IA tier 1 : la raquette se déplace de 0.2
-2 := IA tier 2 : la raquette se déplace de 0.25
-3 := IA tier 3 : la raquette se déplace de 25
-4 := IA tier 4 : associe la coordonnée en y de la raquette à celle de la balle
-    */
+	private double acceleration = 0;
+		/*mode de jeu :
+		0 := joueur
+		tier 1-3 :  si la balle est plus haute que la raquette, cette dernière monte, si elle est plus basse, elle descend.
+		1 := IA tier 1 : la raquette se déplace de 0.2
+		2 := IA tier 2 : la raquette se déplace de 0.25
+		3 := IA tier 3 : la raquette se déplace de 25
+		4 := IA tier 4 : associe la coordonnée en y de la raquette à celle de la balle */
 
-	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double w, double h, boolean is_left_racket, double mode_de_jeu) {
+	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h, double mode_de_jeu) {
 		this.up_key = up_key;
 		this.down_key = down_key;
 		direction = 0;
-		y = 0;
+		this.rel_x = x;
+		this.y = y;
 		this.w = w;
 		this.h = h;
-		this.is_left_racket = is_left_racket;
 		this.proot=root;
 		this.mode_de_jeu=mode_de_jeu;
 		rectangle = new Rectangle();
@@ -124,13 +123,8 @@ public void update(Court court, double deltaT) {
 		rectangle.setHeight(h * view.getScale());
 		rectangle.setWidth(w * view.getScale());
 
-		if (is_left_racket) {
-			x = -w;
-			rectangle.setX((x + view.getXMargin()) * view.getScale());
-		} else {
-			x = court.getWidth();
-			rectangle.setX((x + view.getXMargin()) * view.getScale());
-		}
+		x = rel_x >= 0 ? rel_x : court.getWidth() + rel_x;
+		rectangle.setX(x * view.getScale());
 		rectangle.setY(y * view.getScale());
 	}
 }

@@ -15,8 +15,8 @@ public class Ball implements GameObject {
 
 	private double x;
 	private double y;
-	private double vx;
-	private double vy;
+	private int vx;
+	private int vy;
 	private double size;
 	private double ch=1;
 	private boolean up;
@@ -49,6 +49,14 @@ public class Ball implements GameObject {
 	public double getY(){return y;}
 
 	public boolean getUp(){return up;}
+
+	public void acc_x(double v) {
+		vx += v;
+	}
+	public void acc_y(double v) {
+		vy += v;
+	}
+
 	/**
 	 * @return true if a player lost
 	 */
@@ -82,12 +90,13 @@ public class Ball implements GameObject {
 			vx = -Math.abs(vx)*ch;
 			vy *= ch;
 		} else if (x < 0 || x > c.getWidth()) {
-			if(x < 0)
+			if(x < 0) {
 				c.getScoreboard().addPoint(1);
 				resetV();
-			if(x > c.getWidth())
+			} if(x > c.getWidth()) {
 				c.getScoreboard().addPoint(0);
 				resetV();
+			}
 			return true;
 		}
 		return false;
@@ -96,23 +105,21 @@ public class Ball implements GameObject {
 	public void render(GameView view, Court court) {
 		circle.setRadius(size);
 		circle.setFill(Color.BLACK);
-		circle.setCenterX((x + view.getXMargin()) * view.getScale());
+		circle.setCenterX(x * view.getScale());
 		circle.setCenterY(y * view.getScale());
 	}
 
-    private static int un_ou_moins_un(){
-	Random r = new Random();
-	int n = r.nextInt(2);
-	if(n==0){return -1;}
-	return 1;
-    }
-
+	private static int un_ou_moins_un(){
+		Random r = new Random();
+		int n = r.nextInt(2);
+		if (n==0) { return -1; }
+		return 1;
+	}
 
 	public void reset(Court c) {
-	        Random r = new Random();
+		Random r = new Random();
 		vx = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
 		vy = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
-
 		x = c.getWidth() / 2;
 		y = c.getHeight() / 2;
 	}

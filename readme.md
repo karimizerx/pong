@@ -9,22 +9,12 @@ Le principe est simple : un terrain (le "*court*") deux raquettes et une balle.
 Pour l'instant, seules les fonctionnalités basiques sont implémentées : 2 raquettes contrôlées par 2 paires de touches sur le clavier ; gestion basique des rebonds de la balle et détection de sortie du terrain par les côtés (but marqué).
 
 
-## Instructions
-
-<<<<<<< HEAD
-Dans les instructions ci-dessous, il faut remplacer `myteam` par
-- soit le nom de votre équipe dans gaufre, si le dépôt a été forké au nom de votre équipe,
-- soit le login du membre de votre equipe qui a forké le dépôt pour tout le monde,
-- soit `cproj2022`, si vous voulez cloner directement le dépôt de l'équipe enseignante.
-
-Notez que dans le dernier cas, vous pourrez compiler et exécuter le projet, mais pas faire de `git push`.
-
 ### Télécharger Pong
 
 Le plus pratique pour télécharger Pong afin de participer à son developpement, c'est de cloner le dépôt. Depuis la console :
 
 ```bash
-$ git clone https://gaufre.informatique.univ-paris-diderot.fr/myteam/pong
+$ git clone https://gaufre.informatique.univ-paris-diderot.fr/mi-zer/pong
 ```
 
 #### Depuis une machine de TP de la Halle aux Farines
@@ -33,7 +23,7 @@ Il semble que l'installation de git sur les machines de TP refuse de reconnaîtr
 
 
 ```bash
-$ git clone -c http.sslVerify=false https://gaufre.informatique.univ-paris-diderot.fr/myteam/pong
+$ git clone -c http.sslVerify=false https://gaufre.informatique.univ-paris-diderot.fr/mi-zer/pong
 ```
 
 Ensuite, vous pouvez enregistrer de façon permanente votre choix d'ignorer la vérification pour ce dépôt :
@@ -119,14 +109,8 @@ Important : là aussi, il faut ensuite que toute votre équipe travaille avec la
 ## Jouer
 
 La raquette de gauche est contrôlée par les touches CONTROL et ALT, alors que celle de droite est contrôlée par les flèches HAUT et BAS.
-=======
-=======
->>>>>>> bf0763ac780c107ed036e54f8a580598b9fb53fc
+
 1. Télécharger le projet en le clonant via git: `git clone https://gaufre.informatique.univ-paris-diderot.fr/cproj2022/pong.git`.
 2. Compiler avec gradle. La commande est, dans le répertoire du projet, exécutez `./gradlew build`. Au besoin, cela téléchargera la bonne version de gradle.
 3. Exécuter avec `./gradlew run` (cela inclut `./gradlew build` si le projet n'est pas déjà compilé).
 4. Jouer ! La raquette de gauche est contrôlée par les touches CONTROL et ALT, alors que celle de droite est contrôlée par les flèches HAUT et BAS.
-<<<<<<< HEAD
->>>>>>> 995d930 (Readme qui se tient à un court descriptif du projet, sans les souhaits d'amélioration.)
-=======
->>>>>>> bf0763ac780c107ed036e54f8a580598b9fb53fc

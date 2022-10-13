@@ -39,17 +39,19 @@ public class Scoreboard{
 	}
 	
 	public boolean addPoint(int i){ // j'utilise un booleen pour signaler si une erreur s'est produite
-		if(i < 0 || i >= scores.length)
+		if (i < 0 || i >= scores.length) {
 			return false;
+		}
 		scores[i] += 1;
 		render();
 		return true;
 	}
 	
 	public boolean setScores(int[] s){
-		if(scores.length != s.length)
+		if (scores.length != s.length) {
 			return false;
-		for(int i = 0; i < s.length; i++){
+		}
+		for (int i = 0; i < s.length; i++){
 			scores[i] = s[i];
 		}
 		render();
