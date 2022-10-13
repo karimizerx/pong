@@ -35,7 +35,7 @@ public class GameView {
 		GameView view = this;
 		new AnimationTimer() {
 			long last = 0;
-            final double dt = 0.01; // update every 0.01s
+            final double dt = 0.003; // update every 0.01s
 
             double acc = 0.0;
 

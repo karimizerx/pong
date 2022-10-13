@@ -4,7 +4,7 @@ import javafx.scene.input.KeyCode;
 
 public class Acceleration implements Gamemode {
     double accel_ball = 1.1;
-    double accel_racket = 10;
+    double accel_racket = 1;
     int v = 1;
 
     public Acceleration() {

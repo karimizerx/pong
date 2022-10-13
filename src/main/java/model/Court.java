@@ -13,7 +13,7 @@ public class Court {
 	// instance parameters
 	private final Racket playerA, playerB;
 	private double width, height; // m
-	private double racketSpeed = 300.0; // m/s
+	private double racketSpeed = 150.0; // m/s
 	private final Ball ball;
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
@@ -107,6 +107,6 @@ public class Court {
 		this.playerA.reset(this);
 		this.playerB.reset(this);
 		this.ball.reset(this);
-		this.racketSpeed = 300.0;
+		this.racketSpeed = 150.0;
 	}
 }
