@@ -11,7 +11,6 @@ import gui.GameView;
 import game_objects.GameObject;
 
 public class Racket implements GameObject {
-	private Pane proot;
 	private KeyCode up_key;
 	private KeyCode down_key;
 	private int direction; // -1 is up, 1 is down, 0 is idle
@@ -21,17 +20,8 @@ public class Racket implements GameObject {
 	private double w;
 	private double h;
 	private Rectangle rectangle;
-	private double mode_de_jeu;
-	private double acceleration = 0;
-		/*mode de jeu :
-		0 := joueur
-		tier 1-3 :  si la balle est plus haute que la raquette, cette dernière monte, si elle est plus basse, elle descend.
-		1 := IA tier 1 : la raquette se déplace de 0.2
-		2 := IA tier 2 : la raquette se déplace de 0.25
-		3 := IA tier 3 : la raquette se déplace de 25
-		4 := IA tier 4 : associe la coordonnée en y de la raquette à celle de la balle */
 
-	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h, double mode_de_jeu) {
+	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h) {
 		this.up_key = up_key;
 		this.down_key = down_key;
 		direction = 0;
@@ -39,13 +29,14 @@ public class Racket implements GameObject {
 		this.y = y;
 		this.w = w;
 		this.h = h;
-		this.proot=root;
-		this.mode_de_jeu=mode_de_jeu;
+
 		rectangle = new Rectangle();
 		rectangle.setFill(Color.BLACK);
 		root.getChildren().add(rectangle);
 	}
-
+	public double get_width(){
+		return w;
+	}
 	public double get_left() {
 		return x;
 	}
@@ -57,6 +48,35 @@ public class Racket implements GameObject {
 	}
 	public double get_down() {
 		return y + h;
+	}
+
+	public double get_height(){
+		return h;
+	}
+
+	public void set_height(double h){
+		this.h = h;
+	}
+
+	public void add_height(double h){
+		this.h += h;
+	}
+	
+	public void add_y(double y){
+		this.y += y;
+	}
+
+	public Rectangle getRect(){
+		return rectangle;
+	}
+	public void setRect(Rectangle r){
+		rectangle=r;
+	}
+	public void setY(double y1){
+		y=y1;
+	}
+	public  void setWidth(double width){
+		w=width;
 	}
 
 	public void on_key_pressed(KeyCode key) {
@@ -75,48 +95,18 @@ public class Racket implements GameObject {
 		}
 	}
 
-public void update(Court court, double deltaT) {
-		if(mode_de_jeu ==1){
-			if(court.getBall().getY()>this.y)y+=0.20;
-			else y-=0.20;
-		}
-		if(mode_de_jeu==2){
-			if(court.getBall().getY()>this.y)y+=0.5;
-			else y-=0.5;
-		}
-		if(mode_de_jeu==3){
-			if(court.getBall().getY()>this.y)y+=2.5;
-			else y-=2.5;
-		}
-		if(mode_de_jeu==4){
-		    y=court.getBall().getY()-h/2;
-		}
-		else{
+	public void update(Court court, double deltaT) {
+		y += direction * deltaT * court.getRacketSpeed();
 		if (y < 0) {
 			y = 0;
 		}
 		if (y + h > court.getHeight()) {
 			y = court.getHeight() - h;
 		}
-		
-		else{
-		    y += direction * deltaT * court.getRacketSpeed() ;
-		    court.setRacketSpeed(court.getRacketSpeed() + acceleration);
-					if (y < 0) {
-			y = 0;
-		}
-		if (y + h > court.getHeight()) {
-			y = court.getHeight() - h;
-		}
-		}
-		}
-}
-
-	
+	}
 
 	public void reset(Court court) {
 		y = (court.getHeight() - h) / 2;
-		court.reSetRacketSpeed();
 	}
 
 	public void render(GameView view, Court court) {
