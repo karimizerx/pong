@@ -20,10 +20,7 @@ public class Ia implements Gamemode{
 
 
 
-	public void on_key_pressed(KeyCode key){
-		if(key == KeyCode.R)
-			reset();
-	}
+	public void on_key_pressed(KeyCode key){}
 
 	public void on_key_released(KeyCode key){}
 
