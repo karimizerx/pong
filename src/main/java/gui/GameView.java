@@ -50,7 +50,7 @@ public class GameView {
                 acc += frameTime;
                 
                 while(acc >= dt) {
-				    court.update(acc);
+				    court.update(dt);
                     acc -= dt;
                 }
 
