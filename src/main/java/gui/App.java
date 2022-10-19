@@ -14,10 +14,12 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		var root = new Pane();
 		var gameScene = new Scene(root);
-		var playerA = new Racket(root, KeyCode.CONTROL, KeyCode.ALT, 100, 200, 10, 100);
+		var playerA = new Racket(root, KeyCode.A, KeyCode.Q, 100, 200, 10, 100);
 		var playerB = new Racket(root, KeyCode.UP, KeyCode.DOWN, -110, 200, 10, 100);
 		var gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 		gamemodes.add(new gamemodes.Example());
+		// gamemodes.add(new gamemodes.RackWTF());
+		gamemodes.add(new gamemodes.RacketLength(2));
 		var court = new Court(root, playerA, playerB, 1000, 600, gamemodes);
 		var gameView = new GameView(court, root, 1.0);
 		gameScene.setOnKeyPressed(ev -> {
