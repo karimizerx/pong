@@ -46,15 +46,14 @@ public class GameView {
 					return;
 				}
 
-				double frameTime = (now - last) * 1.0e-9; // convert nanoseconds to seconds
-				acc += frameTime;
+				acc += (now - last) * 1.0e-9; // convert nanoseconds to seconds
+				last = now;
 
 				while(acc >= dt) {
 					court.update(dt);
 					acc -= dt;
 				}
 
-				last = now;
 				court.render(view);
 			}
 		}.start();
