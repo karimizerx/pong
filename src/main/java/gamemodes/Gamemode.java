@@ -9,4 +9,3 @@ public interface Gamemode {
 	public void update(model.Court court, double deltaT);
 	public void render(gui.GameView view, model.Court court);
 }
-	
