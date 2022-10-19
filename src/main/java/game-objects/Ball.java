@@ -45,15 +45,15 @@ public class Ball implements GameObject {
 	public void acc_y(double v) {
 		vy += v;
 	}
-    
-    public int get_vx(){
-	return vx;
-    }
 
-    public void accel_v(double v){
-	vx*=v;
-	vy*=v;
-    }
+	public int get_vx() {
+		return vx;
+	}
+
+	public void accel_v(double v) {
+		vx *= v;
+		vy *= v;
+	}
 
 	/**
 	 * @return true if a player lost

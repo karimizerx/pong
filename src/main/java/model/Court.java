@@ -57,9 +57,9 @@ public class Court {
 		return racketSpeed;
 	}
 
-    public void addRacketSpeed(double v){
-	racketSpeed += v;
-    }
+	public void addRacketSpeed(double v){
+		racketSpeed += v;
+	}
 	
 	public Scoreboard getScoreboard(){
 		return scoreboard;
