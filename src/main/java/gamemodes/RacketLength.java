@@ -32,9 +32,9 @@ public class RacketLength implements Gamemode{
 			speed_B *= -1;
 	
 		court.getPlayerA().add_height(speed_A);
-		court.getPlayerA().add_y(speed_A / 2);
+		court.getPlayerA().add_y(-speed_A / 2);
 		court.getPlayerB().add_height(speed_B);
-		court.getPlayerB().add_y(speed_B / 2);
+		court.getPlayerB().add_y(-speed_B / 2);
 	}
 
 	public void render(gui.GameView view, model.Court court){}
