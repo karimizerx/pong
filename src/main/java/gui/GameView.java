@@ -35,9 +35,9 @@ public class GameView {
 		GameView view = this;
 		new AnimationTimer() {
 			long last = 0;
-            final double dt = 0.01; // update every 0.01s
+			final double dt = 0.01; // update every 0.01s
 
-            double acc = 0.0;
+			double acc = 0.0;
 
 			@Override
 			public void handle(long now) {
@@ -46,13 +46,13 @@ public class GameView {
 					return;
 				}
 
-                double frameTime = (now - last) * 1.0e-9; // convert nanoseconds to seconds
-                acc += frameTime;
-                
-                while(acc >= dt) {
-				    court.update(dt);
-                    acc -= dt;
-                }
+				double frameTime = (now - last) * 1.0e-9; // convert nanoseconds to seconds
+				acc += frameTime;
+
+				while(acc >= dt) {
+					court.update(dt);
+					acc -= dt;
+				}
 
 				last = now;
 				court.render(view);
