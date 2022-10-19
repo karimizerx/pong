@@ -21,6 +21,7 @@ public class App extends Application {
 		gamemodes.add(new gamemodes.RacketLength(2));
 		gamemodes.add(new gamemodes.Ia(3,false));
 		gamemodes.add(new gamemodes.Ia(4,true));
+		gamemodes.add(new gamemodes.Acceleration());
 		var court = new Court(root, playerA, playerB, 1000, 600, gamemodes);
 		var gameView = new GameView(court, root, 1.0);
 		gameScene.setOnKeyPressed(ev -> {
