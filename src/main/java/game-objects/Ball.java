@@ -104,8 +104,8 @@ public class Ball implements GameObject {
 
 	public void reset(Court c) {
 		Random r = new Random();
-		vx = (100 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
-		vy = (100 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
+		vx = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
+		vy = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
 		x = c.getWidth() / 2;
 		y = c.getHeight() / 2;
 	}
