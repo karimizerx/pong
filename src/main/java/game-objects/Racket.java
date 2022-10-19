@@ -34,7 +34,9 @@ public class Racket implements GameObject {
 		rectangle.setFill(Color.BLACK);
 		root.getChildren().add(rectangle);
 	}
-
+	public double get_width() {
+		return w;
+	}
 	public double get_left() {
 		return x;
 	}
@@ -48,20 +50,31 @@ public class Racket implements GameObject {
 		return y + h;
 	}
 
-	public double get_height(){
+	public double get_height() {
 		return h;
 	}
-
-	public void set_height(double h){
+	public void set_height(double h) {
 		this.h = h;
 	}
-
-	public void add_height(double h){
+	public void add_height(double h) {
 		this.h += h;
 	}
-	
-	public void add_y(double y){
+
+	public void add_y(double y) {
 		this.y += y;
+	}
+
+	public Rectangle getRect() {
+		return rectangle;
+	}
+	public void setRect(Rectangle r) {
+		rectangle = r;
+	}
+	public void setY(double y1) {
+		y = y1;
+	}
+	public  void setWidth(double width) {
+		w = width;
 	}
 
 	public void on_key_pressed(KeyCode key) {

@@ -38,6 +38,9 @@ public class Ball implements GameObject {
 	public double get_down() {
 		return y + size;
 	}
+	public double getY() {
+		return y;
+	}
 
 	public void acc_x(double v) {
 		vx += v;
