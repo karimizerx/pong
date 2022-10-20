@@ -18,6 +18,7 @@ public class Ball implements GameObject {
 	private int vx;
 	private int vy;
 	private double size;
+	private int colorval = 1;
 
 	public Ball(Pane root) {
 		circle = new Circle();
@@ -26,15 +27,22 @@ public class Ball implements GameObject {
 		size = 10;
 	}
 
+	public int getColorVal() {
+		return this.colorval;
+	}
+
 	public double get_left() {
 		return x - size;
 	}
+
 	public double get_right() {
 		return x + size;
 	}
+
 	public double get_up() {
 		return y - size;
 	}
+
 	public double get_down() {
 		return y + size;
 	}
@@ -45,6 +53,7 @@ public class Ball implements GameObject {
 	public void acc_x(double v) {
 		vx += v;
 	}
+
 	public void acc_y(double v) {
 		vy += v;
 	}
@@ -80,10 +89,10 @@ public class Ball implements GameObject {
 			x = (c.getPlayerB().get_left() - size) - (x - (c.getPlayerB().get_left() - size));
 			vx = -Math.abs(vx);
 		} else if (x < 0 || x > c.getWidth()) {
-			if(x < 0) {
+			if (x < 0) {
 				c.getScoreboard().addPoint(1);
 			}
-			if(x > c.getWidth()) {
+			if (x > c.getWidth()) {
 				c.getScoreboard().addPoint(0);
 			}
 			return true;
@@ -91,24 +100,26 @@ public class Ball implements GameObject {
 		return false;
 	}
 
-	public void render(GameView view, Court court) {
+	public void render(GameView view, Court court, Color c) {
 		circle.setRadius(size);
-		circle.setFill(Color.BLACK);
+		circle.setFill(c);
 		circle.setCenterX(x * view.getScale());
 		circle.setCenterY(y * view.getScale());
 	}
 
-	private static int un_ou_moins_un(){
+	private static int un_ou_moins_un() {
 		Random r = new Random();
 		int n = r.nextInt(2);
-		if (n==0) { return -1; }
+		if (n == 0) {
+			return -1;
+		}
 		return 1;
 	}
 
 	public void reset(Court c) {
 		Random r = new Random();
-		vx = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
-		vy = (200 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un();
+		vx = (200 + (r.nextInt(30) * un_ou_moins_un())) * un_ou_moins_un();
+		vy = (200 + (r.nextInt(30) * un_ou_moins_un())) * un_ou_moins_un();
 		x = c.getWidth() / 2;
 		y = c.getHeight() / 2;
 	}

@@ -15,11 +15,15 @@ public class Court {
 	private double width, height; // m
 	private double racketSpeed = 150.0; // m/s
 	private final Ball ball;
+	private Color primaire;
+	private Color secondaire;
+
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
 	private Scoreboard scoreboard;
 
-	public Court(Pane root, Racket playerA, Racket playerB, double width, double height, java.util.LinkedList<gamemodes.Gamemode> gamemodes) {
+	public Court(Pane root, Racket playerA, Racket playerB, double width, double height,
+			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon) {
 		this.playerA = playerA;
 		this.playerB = playerB;
 		this.ball = new Ball(root);
@@ -27,15 +31,23 @@ public class Court {
 		this.height = height;
 		this.scoreboard = new Scoreboard(root, 2);
 		this.gamemodes = gamemodes;
+		this.primaire = prim;
+		this.secondaire = secon;
 		reset();
+	}
+
+	public Color getSecondaire() {
+		return this.secondaire;
 	}
 
 	public Racket getPlayerA() {
 		return playerA;
 	}
+
 	public Racket getPlayerB() {
 		return playerB;
 	}
+
 	public Ball getBall() {
 		return ball;
 	}
@@ -43,12 +55,15 @@ public class Court {
 	public double getWidth() {
 		return width;
 	}
+
 	public double getHeight() {
 		return height;
 	}
+
 	public void setWidth(double v) {
 		width = v;
 	}
+
 	public void setHeight(double v) {
 		height = v;
 	}
@@ -61,7 +76,7 @@ public class Court {
 		racketSpeed += v;
 	}
 	
-	public Scoreboard getScoreboard(){
+	public Scoreboard getScoreboard() {
 		return scoreboard;
 	}
 
@@ -72,6 +87,7 @@ public class Court {
 			gamemode.on_key_pressed(key);
 		}
 	}
+
 	public void on_key_released(KeyCode key) {
 		playerA.on_key_released(key);
 		playerB.on_key_released(key);
@@ -91,14 +107,22 @@ public class Court {
 		}
 	}
 
+	public Color getColor(int o) {
+		if (o == 1) {
+			return primaire;
+		} else
+			return secondaire;
+	}
+
 	public void render(GameView view) {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.render(view, this);
 		}
-		ball.render(view, this);
-		playerA.render(view, this);
-		playerB.render(view, this);
-		}
+		ball.render(view, this, getColor(ball.getColorVal()));
+		playerA.render(view, this, getColor(playerA.getColorVal()));
+		playerB.render(view, this, getColor(playerB.getColorVal()));
+		scoreboard.render(getColor(1));
+	}
 
 	void reset() {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
