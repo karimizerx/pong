@@ -19,7 +19,7 @@ public class Racket implements GameObject {
 	private double y;
 	private double w;
 	private double h;
-	private int colorval = 1;
+	private int color_val = 1;
 	private Rectangle rectangle;
 
 	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h) {
@@ -35,12 +35,28 @@ public class Racket implements GameObject {
 		root.getChildren().add(rectangle);
 	}
 
+	public int get_color_val() {
+		return this.color_val;
+	}
+
+	public double get_height() {
+		return h;
+	}
+	public void set_height(double h) {
+		this.h = h;
+	}
+	public void add_height(double h) {
+		this.h += h;
+	}
+
 	public double get_width() {
 		return w;
 	}
-
-	public int getColorVal() {
-		return this.colorval;
+	public void set_width(double w) {
+		this.w = w;
+	}
+	public void add_width(double w) {
+		this.w += w;
 	}
 
 	public double get_left() {
@@ -59,31 +75,24 @@ public class Racket implements GameObject {
 		return y + h;
 	}
 
-	public double get_height() {
-		return h;
+	public double get_middle_x() {
+		return x + w / 2;
 	}
-	public void set_height(double h) {
-		this.h = h;
+	public void set_x(double x) {
+		this.x = x;
 	}
-	public void add_height(double h) {
-		this.h += h;
+	public void add_x(double x) {
+		this.x += x;
 	}
 
+	public double get_middle_y() {
+		return y + h / 2;
+	}
+	public void set_y(double y) {
+		this.y = y;
+	}
 	public void add_y(double y) {
 		this.y += y;
-	}
-
-	public Rectangle getRect() {
-		return rectangle;
-	}
-	public void setRect(Rectangle r) {
-		rectangle = r;
-	}
-	public void setY(double y1) {
-		y = y1;
-	}
-	public  void setWidth(double width) {
-		w = width;
 	}
 
 	public void on_key_pressed(KeyCode key) {
@@ -102,27 +111,27 @@ public class Racket implements GameObject {
 		}
 	}
 
-	public void update(Court court, double deltaT) {
-		y += direction * deltaT * court.getRacketSpeed();
+	public void update(Court court, double dt) {
+		y += direction * dt * court.get_racket_speed();
 		if (y < 0) {
 			y = 0;
 		}
-		if (y + h > court.getHeight()) {
-			y = court.getHeight() - h;
+		if (y + h > court.get_height()) {
+			y = court.get_height() - h;
 		}
 	}
 
 	public void reset(Court court) {
-		y = (court.getHeight() - h) / 2;
+		y = (court.get_height() - h) / 2;
 	}
 
 	public void render(GameView view, Court court, Color c) {
-		rectangle.setHeight(h * view.getScale());
-		rectangle.setWidth(w * view.getScale());
+		rectangle.setHeight(h * view.get_scale());
+		rectangle.setWidth(w * view.get_scale());
 		rectangle.setFill(c);
 
-		x = rel_x >= 0 ? rel_x : court.getWidth() + rel_x;
-		rectangle.setX(x * view.getScale());
-		rectangle.setY(y * view.getScale());
+		x = rel_x >= 0 ? rel_x : court.get_width() + rel_x;
+		rectangle.setX(x * view.get_scale());
+		rectangle.setY(y * view.get_scale());
 	}
 }

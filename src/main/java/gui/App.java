@@ -15,15 +15,15 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		var root = new Pane();
 		var gameScene = new Scene(root);
-		var playerA = new Racket(root, KeyCode.A, KeyCode.Q, 100, 200, 10, 100);
-		var playerB = new Racket(root, KeyCode.UP, KeyCode.DOWN, -110, 200, 10, 100);
+		var player_a = new Racket(root, KeyCode.A,  KeyCode.Q,     100, 200, 10, 100);
+		var player_b = new Racket(root, KeyCode.UP, KeyCode.DOWN, -110, 200, 10, 100);
 		var gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 		// gamemodes.add(new gamemodes.RackWTF());
 		gamemodes.add(new gamemodes.RacketLength(2));
 		gamemodes.add(new gamemodes.Ia(3,false));
 		gamemodes.add(new gamemodes.Ia(4,true));
 		gamemodes.add(new gamemodes.Acceleration());
-		var court = new Court(root, playerA, playerB, 1000, 600, gamemodes, Color.RED, Color.BLACK);
+		var court = new Court(root, player_a, player_b, 1000, 600, gamemodes, Color.RED, Color.BLACK);
 		var gameView = new GameView(court, root, 1.0);
 		gameScene.setOnKeyPressed(ev -> {
 			court.on_key_pressed(ev.getCode());
@@ -32,12 +32,12 @@ public class App extends Application {
 			court.on_key_released(ev.getCode());
 		});
 		gameScene.widthProperty().addListener((obs, oldVal, newVal) -> {
-			court.setWidth((double) newVal);
+			court.set_width((double)newVal);
 		});
 		gameScene.heightProperty().addListener((obs, oldVal, newVal) -> {
-			court.setHeight((double) newVal);
+			court.set_height((double)newVal);
 		});
-		gameScene.setFill(court.getSecondaire());
+		gameScene.setFill(court.get_secondaire());
 		primaryStage.setScene(gameScene);
 		primaryStage.show();
 		gameView.animate();

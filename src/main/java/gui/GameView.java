@@ -11,7 +11,7 @@ import model.Scoreboard;
 public class GameView {
 	// class parameters
 	private final Court court;
-	private final Pane gameRoot; // main node of the game
+	private final Pane game_root; // main node of the game
 	private final double scale;
 
 	/**
@@ -24,14 +24,14 @@ public class GameView {
 	 */
 	public GameView(Court court, Pane root, double scale) {
 		this.court = court;
-		this.gameRoot = root;
+		this.game_root = root;
 		this.scale = scale;
 
-		root.setMinWidth(court.getWidth() * scale);
-		root.setMinHeight(court.getHeight() * scale);
+		root.setMinWidth(court.get_width() * scale);
+		root.setMinHeight(court.get_height() * scale);
 	}
 
-	public double getScale() {
+	public double get_scale() {
 		return scale;
 	}
 
@@ -40,12 +40,11 @@ public class GameView {
 		new AnimationTimer() {
 			long last = 0;
 			final double dt = 0.01; // update every 0.01s
-
 			double acc = 0.0;
 
 			@Override
 			public void handle(long now) {
-				if (last == 0) { // ignore the first tick, just compute the first deltaT
+				if (last == 0) { // ignore the first tick, just compute the first dt
 					last = now;
 					return;
 				}

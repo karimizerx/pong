@@ -11,9 +11,9 @@ import gui.GameView;
 
 public class Court {
 	// instance parameters
-	private final Racket playerA, playerB;
+	private final Racket player_a, player_b;
 	private double width, height; // m
-	private double racketSpeed = 150.0; // m/s
+	private double racket_speed = 150.0; // m/s
 	private final Ball ball;
 	private Color primaire;
 	private Color secondaire;
@@ -22,10 +22,10 @@ public class Court {
 
 	private Scoreboard scoreboard;
 
-	public Court(Pane root, Racket playerA, Racket playerB, double width, double height,
+	public Court(Pane root, Racket player_a, Racket player_b, double width, double height,
 			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon) {
-		this.playerA = playerA;
-		this.playerB = playerB;
+		this.player_a = player_a;
+		this.player_b = player_b;
 		this.ball = new Ball(root);
 		this.width = width;
 		this.height = height;
@@ -36,73 +36,72 @@ public class Court {
 		reset();
 	}
 
-	public Color getSecondaire() {
+	public Color get_primaire() {
+		return this.primaire;
+	}
+	public Color get_secondaire() {
 		return this.secondaire;
 	}
 
-	public Racket getPlayerA() {
-		return playerA;
+	public Racket get_player_a() {
+		return player_a;
 	}
-
-	public Racket getPlayerB() {
-		return playerB;
+	public Racket get_player_b() {
+		return player_b;
 	}
-
-	public Ball getBall() {
+	public Ball get_ball() {
 		return ball;
 	}
 
-	public double getWidth() {
+	public double get_width() {
 		return width;
 	}
 
-	public double getHeight() {
+	public double get_height() {
 		return height;
 	}
-
-	public void setWidth(double v) {
+	public void set_width(double v) {
 		width = v;
 	}
-
-	public void setHeight(double v) {
+	public void set_height(double v) {
 		height = v;
 	}
 
-	public double getRacketSpeed() {
-		return racketSpeed;
+	public double get_racket_speed() {
+		return racket_speed;
 	}
 
-	public void addRacketSpeed(double v){
-		racketSpeed += v;
+	public void add_racket_speed(double v) {
+		racket_speed += v;
 	}
 	
-	public Scoreboard getScoreboard() {
+	public Scoreboard get_scoreboard() {
 		return scoreboard;
 	}
 
 	public void on_key_pressed(KeyCode key) {
-		playerA.on_key_pressed(key);
-		playerB.on_key_pressed(key);
+		player_a.on_key_pressed(key);
+		player_b.on_key_pressed(key);
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.on_key_pressed(key);
 		}
 	}
 
 	public void on_key_released(KeyCode key) {
-		playerA.on_key_released(key);
-		playerB.on_key_released(key);
+		player_a.on_key_released(key);
+		player_b.on_key_released(key);
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.on_key_released(key);
 		}
 	}
 
-	public void update(double deltaT) {
+	public void update(double dt) {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
-			gamemode.update(this, deltaT);
+			gamemode.update(this, dt);
 		}
-		playerA.update(this, deltaT);
-		playerB.update(this, deltaT);
-		if (ball.update(this, deltaT)) {
+		player_a.update(this, dt);
+		player_b.update(this, dt);
+		if (ball.update(this, dt)) {
 			reset();
 		}
 	}
@@ -118,19 +117,19 @@ public class Court {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.render(view, this);
 		}
-		ball.render(view, this, getColor(ball.getColorVal()));
-		playerA.render(view, this, getColor(playerA.getColorVal()));
-		playerB.render(view, this, getColor(playerB.getColorVal()));
-		scoreboard.render(getColor(1));
+		ball.render(view, this, getColor(ball.get_color_val()));
+		player_a.render(view, this, getColor(ball.get_color_val()));
+		player_b.render(view, this, getColor(ball.get_color_val()));
+		scoreboard.render(getColor(scoreboard.get_color_val()));
 	}
 
 	void reset() {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.reset();
 		}
-		this.playerA.reset(this);
-		this.playerB.reset(this);
+		this.player_a.reset(this);
+		this.player_b.reset(this);
 		this.ball.reset(this);
-		this.racketSpeed = 150.0;
+		this.racket_speed = 150.0;
 	}
 }

@@ -7,48 +7,45 @@ public class RackWTF implements Gamemode {
 	static float max_length = 250;
 	static int wtf = 50;
 
-	public void reset(){}
+	public void reset() {}
 
-	public void on_key_pressed(KeyCode key){
-		if(key == KeyCode.R)
+	public void on_key_pressed(KeyCode key) {
+		if (key == KeyCode.R) {
 			reset();
+		}
 	}
 
-	public void on_key_released(KeyCode key){}
+	public void on_key_released(KeyCode key) {}
 	
-	private double random(double min, double max){
-		return Math.random()*(max-min+1)+min;
+	private double random(double min, double max) {
+		return Math.random() * (max - min + 1) + min;
 	}
 
-	public void update(model.Court court, double deltaT){
-		double add_length_A;
-		double add_length_B;
+	public void update(model.Court court, double dt) {
+		double add_length_a;
+		double add_length_b;
 
-		if(court.getPlayerA().get_height() > min_length && court.getPlayerA().get_height() < max_length){
-			add_length_A = random(-wtf, wtf);
-		}else if (court.getPlayerA().get_height() < min_length){
-			add_length_A = random(0, wtf);
-		}else{
-			add_length_A = random(-wtf, 0);
+		if (court.get_player_a().get_height() > min_length && court.get_player_a().get_height() < max_length) {
+			add_length_a = random(-wtf, wtf);
+		} else if (court.get_player_a().get_height() < min_length) {
+			add_length_a = random(0, wtf);
+		} else {
+			add_length_a = random(-wtf, 0);
 		}
 
-		if(court.getPlayerB().get_height() > min_length && court.getPlayerB().get_height() < max_length){
-			add_length_B = random(-wtf, wtf);
-		}else if (court.getPlayerB().get_height() < min_length){
-			add_length_B = random(0, wtf);
-		}else{
-			add_length_B = random(-wtf, 0);
+		if (court.get_player_b().get_height() > min_length && court.get_player_b().get_height() < max_length) {
+			add_length_b = random(-wtf, wtf);
+		} else if (court.get_player_b().get_height() < min_length) {
+			add_length_b = random(0, wtf);
+		} else {
+			add_length_b = random(-wtf, 0);
 		}
 
-		court.getPlayerA().add_height(add_length_A);
-		court.getPlayerA().add_y(add_length_A / 2);
-		court.getPlayerB().add_height(add_length_B);
-		court.getPlayerB().add_y(add_length_B / 2);
-
-
-
+		court.get_player_a().add_height(add_length_a);
+		court.get_player_a().add_y(add_length_a / 2);
+		court.get_player_b().add_height(add_length_b);
+		court.get_player_b().add_y(add_length_b / 2);
 	}
 
-	public void render(gui.GameView view, model.Court court){}
-
+	public void render(gui.GameView view, model.Court court) {}
 }
