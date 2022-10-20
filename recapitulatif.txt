@@ -1,0 +1,17 @@
+Ce qui a été fait du 6/10 au 20/10:
+	
+	Interface des gamemodes					(Amelia)
+	Fréquence de rafraichissement constante (0.01s)		(Marwan)
+	Mode de jeu raquette variable				(Victor, Amelia)
+	Implémentation de Bot avec des niveaux différents	(Eliot, Ilian, Amelia)
+	Acceleration de la balle				(Ilian, Amelia)
+
+Objectifs pour le prochain sprint:
+
+	Menu pour choisir les gamemodes/ mettre pause/ quitter
+	Design et skins
+	Bonus/Malus 
+	Casse-brique 
+	Angle de la balle en fonction de l'impact avec la raquette
+	effets sonores
+	
