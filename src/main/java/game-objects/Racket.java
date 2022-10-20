@@ -19,6 +19,7 @@ public class Racket implements GameObject {
 	private double y;
 	private double w;
 	private double h;
+	private int colorval = 1;
 	private Rectangle rectangle;
 
 	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h) {
@@ -31,21 +32,29 @@ public class Racket implements GameObject {
 		this.h = h;
 
 		rectangle = new Rectangle();
-		rectangle.setFill(Color.BLACK);
 		root.getChildren().add(rectangle);
 	}
+
 	public double get_width() {
 		return w;
 	}
+
+	public int getColorVal() {
+		return this.colorval;
+	}
+
 	public double get_left() {
 		return x;
 	}
+
 	public double get_right() {
 		return x + w;
 	}
+
 	public double get_up() {
 		return y;
 	}
+
 	public double get_down() {
 		return y + h;
 	}
@@ -107,9 +116,10 @@ public class Racket implements GameObject {
 		y = (court.getHeight() - h) / 2;
 	}
 
-	public void render(GameView view, Court court) {
+	public void render(GameView view, Court court, Color c) {
 		rectangle.setHeight(h * view.getScale());
 		rectangle.setWidth(w * view.getScale());
+		rectangle.setFill(c);
 
 		x = rel_x >= 0 ? rel_x : court.getWidth() + rel_x;
 		rectangle.setX(x * view.getScale());

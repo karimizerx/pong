@@ -1,12 +1,13 @@
 package gui;
 
-
 import javafx.application.Application;
 import javafx.scene.input.KeyCode;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Court;
+
 import game_objects.Racket;
 
 public class App extends Application {
@@ -22,7 +23,7 @@ public class App extends Application {
 		gamemodes.add(new gamemodes.Ia(3,false));
 		gamemodes.add(new gamemodes.Ia(4,true));
 		gamemodes.add(new gamemodes.Acceleration());
-		var court = new Court(root, playerA, playerB, 1000, 600, gamemodes);
+		var court = new Court(root, playerA, playerB, 1000, 600, gamemodes, Color.RED, Color.BLACK);
 		var gameView = new GameView(court, root, 1.0);
 		gameScene.setOnKeyPressed(ev -> {
 			court.on_key_pressed(ev.getCode());
@@ -31,11 +32,12 @@ public class App extends Application {
 			court.on_key_released(ev.getCode());
 		});
 		gameScene.widthProperty().addListener((obs, oldVal, newVal) -> {
-			court.setWidth((double)newVal);
+			court.setWidth((double) newVal);
 		});
 		gameScene.heightProperty().addListener((obs, oldVal, newVal) -> {
-			court.setHeight((double)newVal);
+			court.setHeight((double) newVal);
 		});
+		gameScene.setFill(court.getSecondaire());
 		primaryStage.setScene(gameScene);
 		primaryStage.show();
 		gameView.animate();

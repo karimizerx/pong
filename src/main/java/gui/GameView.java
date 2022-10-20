@@ -1,4 +1,5 @@
 package gui;
+
 import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
@@ -14,9 +15,12 @@ public class GameView {
 	private final double scale;
 
 	/**
-	 * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
-	 * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera affiché
-	 * @param scale le facteur d'échelle entre les distances du modèle et le nombre de pixels correspondants dans la vue
+	 * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout
+	 *              ce qu'il y a dessus)
+	 * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera
+	 *              affiché
+	 * @param scale le facteur d'échelle entre les distances du modèle et le nombre
+	 *              de pixels correspondants dans la vue
 	 */
 	public GameView(Court court, Pane root, double scale) {
 		this.court = court;
