@@ -19,13 +19,7 @@ public class App extends Application {
 		var gameScene = new Scene(root);
 		var player_a = new Racket(root, settings.left_up,  settings.left_down,     100, 200, 10, 100);
 		var player_b = new Racket(root, settings.right_up, settings.right_down, -110, 200, 10, 100);
-		var gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
-		// gamemodes.add(new gamemodes.RackWTF());
-		//gamemodes.add(new gamemodes.RacketLength(2));
-		//gamemodes.add(new gamemodes.Ia(3,false));
-		//gamemodes.add(new gamemodes.Ia(4,true));
-		gamemodes.add(new gamemodes.Acceleration());
-		var court = new Court(root, player_a, player_b, 1000, 600, gamemodes, Color.RED, Color.BLACK);
+		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.forground_color, settings.background_color);
 		var gameView = new GameView(court, root, 1.0);
 		gameScene.setOnKeyPressed(ev -> {
 			court.on_key_pressed(ev.getCode());
