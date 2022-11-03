@@ -13,7 +13,7 @@ import game_objects.GameObject;
 public class Racket extends GameObject {
 	private KeyCode up_key;
 	private KeyCode down_key;
-	private int direction; // -1 is up, 1 is down, 0 is idle
+	private double direction; // -1 is up, 1 is down, 0 is idle, can be multiplied by x to indicate a speed factor.
 	private double rel_x;
 	private int color_val = 1;
 	private Rectangle rectangle;
@@ -34,6 +34,9 @@ public class Racket extends GameObject {
 		return this.color_val;
 	}
 
+	public void set_direction(double v) {
+		direction = v;
+	}
 	public void on_key_pressed(KeyCode key) {
 		if (key == up_key) {
 			direction = -1;
@@ -41,11 +44,10 @@ public class Racket extends GameObject {
 			direction = 1;
 		}
 	}
-
 	public void on_key_released(KeyCode key) {
-		if (key == up_key && direction == -1) {
+		if (key == up_key && direction < 0) {
 			direction = 0;
-		} else if (key == down_key && direction == 1) {
+		} else if (key == down_key && direction > 0) {
 			direction = 0;
 		}
 	}
