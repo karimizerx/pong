@@ -15,8 +15,8 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		var root = new Pane();
 		var gameScene = new Scene(root);
-		var player_a = new Racket(root, KeyCode.A,  KeyCode.Q,     100, 200, 10, 100);
-		var player_b = new Racket(root, KeyCode.UP, KeyCode.DOWN, -110, 200, 10, 100);
+		var player_a = new Racket(root, KeyCode.A,  KeyCode.Q,     105, 200, 10, 100);
+		var player_b = new Racket(root, KeyCode.UP, KeyCode.DOWN, -105, 200, 10, 100);
 		var gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 		// gamemodes.add(new gamemodes.RackWTF());
 		gamemodes.add(new gamemodes.RacketLength(2));
