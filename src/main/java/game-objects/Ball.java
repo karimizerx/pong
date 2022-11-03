@@ -44,10 +44,10 @@ public class Ball extends GameObject {
 			if (get_dy() > 0) { scale_vel(1, -1); }
 			change_y(2 * (c.get_height() - get_down()));
 		}
-		if (this.collides(c.get_player_a())) {
+		if (this.collides(c.get_player_a(), dt)) {
 			if (get_dx() < 0) { scale_vel(-1, 1); }
 			change_x(2 * (c.get_player_a().get_right() - get_left()));
-		} else if (this.collides(c.get_player_b())) {
+		} else if (this.collides(c.get_player_b(), dt)) {
 			if (get_dx() > 0) { scale_vel(-1, 1); }
 			change_x(2 * (c.get_player_b().get_left() - get_right()));
 		} else if (get_right() < 0 || get_left() > c.get_width()) {
