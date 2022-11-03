@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Court;
+import model.Settings;
 
 import game_objects.Racket;
 
@@ -14,16 +15,11 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		var root = new Pane();
+		var settings = new Settings();
 		var gameScene = new Scene(root);
-		var player_a = new Racket(root, KeyCode.A,  KeyCode.Q,     105, 200, 10, 100);
-		var player_b = new Racket(root, KeyCode.UP, KeyCode.DOWN, -105, 200, 10, 100);
-		var gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
-		// gamemodes.add(new gamemodes.RackWTF());
-		gamemodes.add(new gamemodes.RacketLength(2));
-		gamemodes.add(new gamemodes.Ia(3,false));
-		gamemodes.add(new gamemodes.Ia(4,true));
-		gamemodes.add(new gamemodes.Acceleration());
-		var court = new Court(root, player_a, player_b, 1000, 600, gamemodes, Color.RED, Color.BLACK);
+		var player_a = new Racket(root, settings.left_up,  settings.left_down,   105, 200, 10, 100);
+		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 10, 100);
+		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.forground_color, settings.background_color);
 		var gameView = new GameView(court, root, 1.0);
 		gameScene.setOnKeyPressed(ev -> {
 			court.on_key_pressed(ev.getCode());
