@@ -4,12 +4,15 @@ import java.util.Random;
 import javafx.scene.shape.Circle;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.media.AudioClip;
 
 import model.Court;
 import gui.GameView;
 import game_objects.GameObject;
 
 public class Ball implements GameObject {
+    private static final AudioClip goalSound = new AudioClip("https://cdn.freesound.org/previews/4/4388_4948-lq.mp3");
+
 	private Circle circle;
 
 	private double x;
@@ -93,10 +96,10 @@ public class Ball implements GameObject {
 		} else if (x < 0 || x > c.get_width()) {
 			if(x < 0) {
 				c.get_scoreboard().add_point(1);
-			}
-			if(x > c.get_width()) {
+			} else {
 				c.get_scoreboard().add_point(0);
 			}
+            goalSound.play();
 			return true;
 		}
 		return false;
