@@ -9,92 +9,48 @@ import model.Court;
 import gui.GameView;
 import game_objects.GameObject;
 
-public class Ball implements GameObject {
+public class Ball extends GameObject {
 	private Circle circle;
 
-	private double x;
-	private double y;
-	private int vx;
-	private int vy;
-	private double size;
 	private int colorval = 1;
 
 	public Ball(Pane root) {
+		super(0, 0, 10, 10);
 		circle = new Circle();
 		root.getChildren().add(circle);
-
-		size = 10;
 	}
 
 	public int get_color_val() {
 		return this.colorval;
 	}
 
-	public double get_left() {
-		return x - size;
-	}
-
-	public double get_right() {
-		return x + size;
-	}
-
-	public double get_up() {
-		return y - size;
-	}
-
-	public double get_down() {
-		return y + size;
-	}
-	public double get_middle_x() {
-		return x;
-	}
-	public double get_middle_y() {
-		return y;
-	}
-
-	public void apply_force(double x, double y) {
-		vx += x;
-		vy += y;
-	}
-
-	public void scale_vel(double v) {
-		vx *= v;
-		vy *= v;
-	}
-
-	public int get_vx() {
-		return vx;
-	}
-	public int get_vy() {
-		return vy;
-	}
+	// Can't resize the ball. (For now ?)
+	public void set_width(double v) { }
+	public void set_height(double v) { }
 
 	/**
 	 * @return true if a player lost
 	 */
 	public boolean update(Court c, double dt) {
-		x += vx * dt;
-		y += vy * dt;
-		if (y < 0) {
-			y = -y;
-			vy = Math.abs(vy);
-		} else if (y > c.get_height()) {
-			y = c.get_height() - (y - c.get_height());
-			vy = -Math.abs(vy);
+		super.update(c, dt);
+		if (get_up() < 0) {
+			if (get_dy() < 0) { scale_vel(1, -1); }
+			change_y(2 * (0 - get_up()));
+		} else if (get_down() > c.get_height()) {
+			if (get_dy() > 0) { scale_vel(1, -1); }
+			change_y(2 * (c.get_height() - get_down()));
 		}
-		if (this.collides(c.get_player_a())) {
-			// This formula mirrors x compared to the point where x would touch the bar.
-			x = (c.get_player_a().get_right() + size) - (x - (c.get_player_a().get_right() + size));
-			vx = Math.abs(vx);
-		} else if (this.collides(c.get_player_b())) {
-			// Likewise.
-			x = (c.get_player_b().get_left() - size) - (x - (c.get_player_b().get_left() - size));
-			vx = -Math.abs(vx);
-		} else if (x < 0 || x > c.get_width()) {
-			if(x < 0) {
+		if (this.collides(c.get_player_a(), dt)) {
+			if (get_dx() < 0) { scale_vel(-1, 1); }
+			change_x(2 * (c.get_player_a().get_right() - get_left()));
+		} else if (this.collides(c.get_player_b(), dt)) {
+			if (get_dx() > 0) { scale_vel(-1, 1); }
+			change_x(2 * (c.get_player_b().get_left() - get_right()));
+		} else if (get_right() < 0 || get_left() > c.get_width()) {
+			if(get_right() < 0) {
 				c.get_scoreboard().add_point(1);
 			}
-			if(x > c.get_width()) {
+			if(get_left() > c.get_width()) {
 				c.get_scoreboard().add_point(0);
 			}
 			return true;
@@ -103,10 +59,10 @@ public class Ball implements GameObject {
 	}
 
 	public void render(GameView view, Court court, Color c) {
-		circle.setRadius(size);
+		circle.setRadius(get_width()); // Should be equal to get_height.
 		circle.setFill(c);
-		circle.setCenterX(x * view.get_scale());
-		circle.setCenterY(y * view.get_scale());
+		circle.setCenterX(get_middle_x() * view.get_scale());
+		circle.setCenterY(get_middle_y() * view.get_scale());
 	}
 
 	private static int un_ou_moins_un() {
@@ -116,9 +72,11 @@ public class Ball implements GameObject {
 
 	public void reset(Court c) {
 		Random r = new Random();
-		vx = (200 + (r.nextInt(30) * un_ou_moins_un())) * un_ou_moins_un();
-		vy = (200 + (r.nextInt(30) * un_ou_moins_un())) * un_ou_moins_un();
-		x = c.get_width() / 2;
-		y = c.get_height() / 2;
+
+		double vx = (200 + (r.nextInt(30) * un_ou_moins_un())) * un_ou_moins_un();
+		double vy = (200 + (r.nextInt(30) * un_ou_moins_un())) * un_ou_moins_un();
+		set_vel(vx, vy);
+		set_x(c.get_width() / 2);
+		set_y(c.get_height() / 2);
 	}
 }

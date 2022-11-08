@@ -25,53 +25,53 @@ public class Ia implements Gamemode {
 	public void update(model.Court court, double dt) {
 		if (gauche) {
 			if (difficulty == 1) {
-				if (court.get_ball().get_middle_y() > court.get_player_a().get_up()) {
-					court.get_player_a().add_y(+0.2);
+				if (court.get_ball().get_middle_y() > court.get_player_a().get_middle_y()) {
+					court.get_player_a().set_direction(+0.5);
 				} else {
-					court.get_player_a().add_y(-0.2);
+					court.get_player_a().set_direction(-0.5);
 				}
 			}
 			if (difficulty == 2) {
-				if (court.get_ball().get_middle_y() > court.get_player_a().get_up()) {
-					court.get_player_a().add_y(+0.5);
+				if (court.get_ball().get_middle_y() > court.get_player_a().get_middle_y()) {
+					court.get_player_a().set_direction(+0.75);
 				} else {
-					court.get_player_a().add_y(-0.5);
+					court.get_player_a().set_direction(-0.75);
 				}
 			}
 			if (difficulty == 3) {
-				if (court.get_ball().get_middle_y() > court.get_player_a().get_up()) {
-					court.get_player_a().add_y(+2.5);
+				if (court.get_ball().get_middle_y() > court.get_player_a().get_middle_y()) {
+					court.get_player_a().set_direction(+1.0);
 				} else {
-					court.get_player_a().add_y(-2.5);
+					court.get_player_a().set_direction(-1.0);
 				}
 			}
 			if (difficulty == 4) {
-				court.get_player_a().set_y(court.get_ball().get_middle_y() - court.get_player_a().get_height() / 2);
+				court.get_player_a().set_direction((court.get_ball().get_middle_y() - court.get_player_a().get_middle_y()) / court.get_racket_speed() / 0.01);
 			}
 		} else {
 			if (difficulty == 1) {
-				if (court.get_ball().get_middle_y() > court.get_player_b().get_up()) {
-					court.get_player_b().add_y(+0.2);
+				if (court.get_ball().get_middle_y() > court.get_player_b().get_middle_y()) {
+					court.get_player_b().set_direction(+0.5);
 				} else {
-					court.get_player_b().add_y(-0.2);
+					court.get_player_b().set_direction(-0.5);
 				}
 			}
 			if (difficulty == 2) {
-				if (court.get_ball().get_middle_y() > court.get_player_b().get_up()) {
-					court.get_player_b().add_y(+0.5);
+				if (court.get_ball().get_middle_y() > court.get_player_b().get_middle_y()) {
+					court.get_player_b().set_direction(+0.75);
 				} else {
-					court.get_player_b().add_y(-0.5);
+					court.get_player_b().set_direction(-0.75);
 				}
 			}
 			if (difficulty == 3) {
-				if (court.get_ball().get_middle_y() > court.get_player_b().get_up()) {
-					court.get_player_b().add_y(+2.5);
+				if (court.get_ball().get_middle_y() > court.get_player_b().get_middle_y()) {
+					court.get_player_b().set_direction(+1.0);
 				} else {
-					court.get_player_b().add_y(-2.5);
+					court.get_player_b().set_direction(-1.0);
 				}
 			}
 			if (difficulty == 4) {
-				court.get_player_b().set_y(court.get_ball().get_middle_y() - court.get_player_b().get_height() / 2);
+				court.get_player_b().set_direction((court.get_ball().get_middle_y() - court.get_player_b().get_middle_y()) / court.get_racket_speed() / 0.01);
 			}
 		}
 		this.court1 = court;
@@ -80,7 +80,7 @@ public class Ia implements Gamemode {
 
 	public void reset() {
 		if (this.court1 != null) {
-			court1.get_player_a().set_y((this.court1.get_height() - court1.get_player_a().get_height()) / 2);
+			court1.get_player_a().set_y(this.court1.get_height() / 2);
 		}
 	}
 

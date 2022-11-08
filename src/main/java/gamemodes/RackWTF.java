@@ -41,10 +41,8 @@ public class RackWTF implements Gamemode {
 			add_length_b = random(-wtf, 0);
 		}
 
-		court.get_player_a().add_height(add_length_a);
-		court.get_player_a().add_y(add_length_a / 2);
-		court.get_player_b().add_height(add_length_b);
-		court.get_player_b().add_y(add_length_b / 2);
+		court.get_player_a().set_height(court.get_player_a().get_height() + add_length_a);
+		court.get_player_b().set_height(court.get_player_b().get_height() + add_length_b);
 	}
 
 	public void render(gui.GameView view, model.Court court) {}
