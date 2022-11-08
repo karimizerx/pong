@@ -45,9 +45,11 @@ public class Ball implements GameObject {
 	public double get_down() {
 		return y + size;
 	}
+
 	public double get_middle_x() {
 		return x;
 	}
+
 	public double get_middle_y() {
 		return y;
 	}
@@ -65,8 +67,13 @@ public class Ball implements GameObject {
 	public int get_vx() {
 		return vx;
 	}
+
 	public int get_vy() {
 		return vy;
+	}
+
+	public void set_vx(int vx) {
+		this.vx = vx;
 	}
 
 	/**
@@ -87,15 +94,15 @@ public class Ball implements GameObject {
 			x = (c.get_player_a().get_right() + size) - (x - (c.get_player_a().get_right() + size));
 			vx = Math.abs(vx);
 			if (y < c.get_player_b().get_up() + 10) {
-                                vy = -Math.abs(vy);
-                        } else if (y > c.get_player_b().get_down() - 10) {
-                                vy = Math.abs(vy);
-                        }
+				vy = -Math.abs(vy);
+			} else if (y > c.get_player_b().get_down() - 10) {
+				vy = Math.abs(vy);
+			}
 
 		} else if (this.collides(c.get_player_b())) {
 			// Likewise.
 			x = (c.get_player_b().get_left() - size) - (x - (c.get_player_b().get_left() - size));
-			//la balle a un rebond en fonction de l'endroit ou elle touche la raquette
+			// la balle a un rebond en fonction de l'endroit ou elle touche la raquette
 			vx = -Math.abs(vx);
 			if (y < c.get_player_b().get_up() + 10) {
 				vy = -Math.abs(vy);
@@ -103,10 +110,10 @@ public class Ball implements GameObject {
 				vy = Math.abs(vy);
 			}
 		} else if (x < 0 || x > c.get_width()) {
-			if(x < 0) {
+			if (x < 0) {
 				c.get_scoreboard().add_point(1);
 			}
-			if(x > c.get_width()) {
+			if (x > c.get_width()) {
 				c.get_scoreboard().add_point(0);
 			}
 			return true;
