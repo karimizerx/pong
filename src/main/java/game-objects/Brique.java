@@ -9,22 +9,30 @@ import model.Court;
 import gui.GameView;
 import game_objects.GameObject;
 
-public class Brique implements GameObject {
-
+public class Brique extends GameObject {
+    public Rectangle brique;
     Pane Root;
 
     public Brique(Court court, double x_pos, double y_pos, Pane root) {
-        super();
-        Rectangle brique = new Rectangle(x_pos, y_pos, 10, 50);
+        super(x_pos, y_pos, 10, 50);
+        brique = new Rectangle(get_left(), get_up(), get_width(), get_height());
+        int x = (int) (Math.random() * 256);
+        int y = (int) (Math.random() * 256);
+        int z = (int) (Math.random() * 256);
+
+        brique.setFill(Color.rgb(x, y, z));
         Root = root;
         Root.getChildren().add(brique);
+        
     }
 
-    public void update(Court court, double dt) {
-        if (this.collides(court.get_ball())) {
-            court.get_ball().set_vx(-court.get_ball().get_vx());
-            Root.getChildren().remove(this);
+    public boolean update(Court court, double dt) {
+        if (this.collides(court.get_ball(), dt)) {
+            court.get_ball().set_vel(-court.get_ball().get_dx(), court.get_ball().get_dy());
+            brique.setVisible(false);
+            return true;
         }
+        return false;
     }
 
 }

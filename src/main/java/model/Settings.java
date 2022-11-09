@@ -33,8 +33,10 @@ public class Settings {
 		Root = root;
 
 		gamemodes = new LinkedList<>();
-		gamemodes.add(new gamemodes.Ia(3, true));
-		gamemodes.add(new gamemodes.Acceleration());
+		gamemodes.add(new gamemodes.Ia(4, true));
+		gamemodes.add(new gamemodes.Ia(4, false));
+		gamemodes.add(new Acceleration());
+		
 		gamemodes.add(new gamemodes.CasseBrique(Root));
 
 	}

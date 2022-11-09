@@ -28,10 +28,6 @@ public class Ball extends GameObject {
 	public void set_width(double v) { }
 	public void set_height(double v) { }
 
-	public void set_vx(int vx) {
-		this.vx = vx;
-	}
-
 	/**
 	 * @return true if a player lost
 	 */
