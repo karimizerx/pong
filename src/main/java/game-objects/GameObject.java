@@ -21,6 +21,10 @@ public abstract class GameObject {
 	public GameObject(double x, double y, double w, double h) {
 		this(x, y, w, h, 0, 0);
 	}
+	
+	public GameObject(){
+		this(0, 0, 0, 0, 0, 0);
+	}
 
 	public final double get_width() {
 		return w;

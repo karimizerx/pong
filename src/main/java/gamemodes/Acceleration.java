@@ -14,12 +14,13 @@ public class Acceleration implements Gamemode {
 	public void on_key_pressed(KeyCode key) {}
 	public void on_key_released(KeyCode key) {}
 
-	public void update(model.Court court, double dt) {
+	public boolean update(model.Court court, double dt) {
 		if (v * court.get_ball().get_dx() < 0) {
 			court.get_ball().scale_vel(accel_ball, accel_ball);
 			court.add_racket_speed(accel_racket);
 			v = court.get_ball().get_dx();
 		}
+		return false;
 	}
 
 	public void render(gui.GameView view, model.Court court) {}

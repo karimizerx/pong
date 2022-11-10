@@ -22,7 +22,7 @@ public class RacketLength implements Gamemode {
 	public void on_key_pressed(KeyCode key) {}
 	public void on_key_released(KeyCode key) {}
 
-	public void update(model.Court court, double dt) {
+	public boolean update(model.Court court, double dt) {
 		if (court.get_player_a().get_height() > max_length || court.get_player_a().get_height() < min_length) {
 			speed_a *= -1;
 		}
@@ -32,6 +32,7 @@ public class RacketLength implements Gamemode {
 	
 		court.get_player_a().set_height(court.get_player_a().get_height() + speed_a);
 		court.get_player_b().set_height(court.get_player_b().get_height() + speed_b);
+		return false;
 	}
 
 	public void render(gui.GameView view, model.Court court) {}

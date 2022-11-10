@@ -21,7 +21,7 @@ public class RackWTF implements Gamemode {
 		return Math.random() * (max - min + 1) + min;
 	}
 
-	public void update(model.Court court, double dt) {
+	public boolean update(model.Court court, double dt) {
 		double add_length_a;
 		double add_length_b;
 
@@ -43,6 +43,7 @@ public class RackWTF implements Gamemode {
 
 		court.get_player_a().set_height(court.get_player_a().get_height() + add_length_a);
 		court.get_player_b().set_height(court.get_player_b().get_height() + add_length_b);
+		return false;
 	}
 
 	public void render(gui.GameView view, model.Court court) {}
