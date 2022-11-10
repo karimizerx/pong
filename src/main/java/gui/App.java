@@ -15,7 +15,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		var root = new Pane();
-		var settings = new Settings();
+		var settings = new Settings(root);
 		var gameScene = new Scene(root);
 		var player_a = new Racket(root, settings.left_up,  settings.left_down,   105, 200, 10, 100);
 		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 10, 100);

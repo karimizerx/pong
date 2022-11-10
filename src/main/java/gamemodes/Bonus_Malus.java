@@ -20,30 +20,35 @@ public class Bonus_Malus extends GameObject implements Gamemode{
     private boolean est_apparu;
     private LinkedList<gamemodes.Gamemode> list;
     private LinkedList<gamemodes.Gamemode> active_gamemodes;
-    private int decompte = 3000;
+    private int decompte;
     private boolean finito = false;
 
 
     public Bonus_Malus(Pane root, LinkedList<gamemodes.Gamemode> gamemode_list){
-	super();
+	super(0,0,0,0);
+	
 	list = gamemode_list;
 	active_gamemodes = new LinkedList<gamemodes.Gamemode>();
         
 	circle = new Circle();
 	root.getChildren().add(circle);
-	
+	reset();
+
+	decompte = 200;
 	size = 7;
+
     }
 
 
 
     public void reset() {
-	set_x(-size);
-	set_y(-size);
+	super.set_x(1);
+	super.set_y(1);
 	finito = false;
 	est_apparu = false;
 	decompte = 3000;
 	active_gamemodes.clear();
+	size = 0;
     }
     
     public void on_key_pressed(KeyCode key) {
@@ -68,21 +73,27 @@ public class Bonus_Malus extends GameObject implements Gamemode{
     }
 
     public boolean update(model.Court c, double deltaT) {
+
+	decompte --;
+
+	
 	//if(finito){return;}
 	//if(list.size() == active_gamemodes.size()){finito = true; x = -size;y = -size;return;}
-	super.update(c,0);
 	for (gamemodes.Gamemode gamemode : active_gamemodes) {
 	    gamemode.update(c, deltaT);
 	}
 	
 	Random r = new Random();
-	decompte --;
+	
 	if(!est_apparu && decompte<0){
+	    
 	    est_apparu = true;
+	    size = 7;
 	    super.set_vel((50 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un(),-50 + r.nextInt(30));
 	    super.set_x(c.get_width() / 2);
-	    super.set_y(0);	    
+	    super.set_y(0);
 	}
+	if(!est_apparu){return false;}
 	if(est_apparu){
 	    super.change_x(super.get_dx() * deltaT);
 	    super.change_y(super.get_dy() * deltaT);
@@ -104,10 +115,9 @@ public class Bonus_Malus extends GameObject implements Gamemode{
 	}
 	if (super.collides(c.get_player_a(),0) || super.collides(c.get_player_b(),0)) {
 	    add_gamemode();
-	    super.set_x(-size);
-	    super.set_y(-size);
+	    size = 0;
 	    est_apparu = false;
-	    decompte = 1000+r.nextInt(5000);
+	    decompte = 200+r.nextInt(50);
 	} 
 	return false;
     }
