@@ -21,6 +21,8 @@ public class RacketLength implements Gamemode {
 
 	public void on_key_pressed(KeyCode key) {}
 	public void on_key_released(KeyCode key) {}
+	public void on_ball_touched_racket(model.Court court, boolean left) {}
+	public void on_ball_left_terrain(model.Court court, boolean left) {}
 
 	public void update(model.Court court, double dt) {
 		if (court.get_player_a().get_height() > max_length || court.get_player_a().get_height() < min_length) {
