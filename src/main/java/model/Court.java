@@ -20,8 +20,6 @@ public class Court {
 
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
-	private Scoreboard scoreboard;
-
 	public Court(Pane root, Racket player_a, Racket player_b, double width, double height,
 			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon) {
 		this.player_a = player_a;
@@ -29,7 +27,6 @@ public class Court {
 		this.ball = new Ball(root);
 		this.width = width;
 		this.height = height;
-		this.scoreboard = new Scoreboard(root, 2);
 		this.gamemodes = gamemodes;
 		this.primaire = prim;
 		this.secondaire = secon;
@@ -75,10 +72,6 @@ public class Court {
 		racket_speed += v;
 	}
 	
-	public Scoreboard get_scoreboard() {
-		return scoreboard;
-	}
-
 	public void on_key_pressed(KeyCode key) {
 		player_a.on_key_pressed(key);
 		player_b.on_key_pressed(key);
@@ -130,7 +123,6 @@ public class Court {
 		ball.render(view, this, getColor(ball.get_color_val()));
 		player_a.render(view, this, getColor(ball.get_color_val()));
 		player_b.render(view, this, getColor(ball.get_color_val()));
-		scoreboard.render(getColor(scoreboard.get_color_val()));
 	}
 
 	void reset() {

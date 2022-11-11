@@ -48,11 +48,9 @@ public class Ball extends GameObject {
 		} else if (get_right() < 0 || get_left() > c.get_width()) {
 			if(get_right() < 0) {
 				c.on_ball_left_terrain(true);
-				c.get_scoreboard().add_point(1);
 			}
 			if(get_left() > c.get_width()) {
 				c.on_ball_left_terrain(false);
-				c.get_scoreboard().add_point(0);
 			}
 		}
 	}
