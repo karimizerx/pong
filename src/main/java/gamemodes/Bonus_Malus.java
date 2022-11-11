@@ -16,7 +16,6 @@ public class Bonus_Malus extends GameObject implements Gamemode{
     
     private Circle circle;
 
-    private double size;
     private boolean est_apparu;
     private LinkedList<gamemodes.Gamemode> list;
     private LinkedList<gamemodes.Gamemode> active_gamemodes;
@@ -25,7 +24,7 @@ public class Bonus_Malus extends GameObject implements Gamemode{
 
 
     public Bonus_Malus(Pane root, LinkedList<gamemodes.Gamemode> gamemode_list){
-	super(0,0,0,0);
+	super(0,0,7,7);
 	
 	list = gamemode_list;
 	active_gamemodes = new LinkedList<gamemodes.Gamemode>();
@@ -35,7 +34,6 @@ public class Bonus_Malus extends GameObject implements Gamemode{
 	reset();
 
 	decompte = 200;
-	size = 7;
 
     }
 
@@ -48,7 +46,7 @@ public class Bonus_Malus extends GameObject implements Gamemode{
 	est_apparu = false;
 	decompte = 3000;
 	active_gamemodes.clear();
-	size = 0;
+	super.set_width(0);
     }
     
     public void on_key_pressed(KeyCode key) {
@@ -88,7 +86,7 @@ public class Bonus_Malus extends GameObject implements Gamemode{
 	if(!est_apparu && decompte<0){
 	    
 	    est_apparu = true;
-	    size = 7;
+	    super.set_width(7);
 	    super.set_vel((50 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un(),-50 + r.nextInt(30));
 	    super.set_x(c.get_width() / 2);
 	    super.set_y(0);
@@ -115,7 +113,7 @@ public class Bonus_Malus extends GameObject implements Gamemode{
 	}
 	if (super.collides(c.get_player_a(),0) || super.collides(c.get_player_b(),0)) {
 	    add_gamemode();
-	    size = 0;
+	    super.set_width(0);
 	    est_apparu = false;
 	    decompte = 200+r.nextInt(50);
 	} 
@@ -124,7 +122,7 @@ public class Bonus_Malus extends GameObject implements Gamemode{
     
     
     public void render(gui.GameView view, model.Court court) {
-	circle.setRadius(size);
+	circle.setRadius(super.get_width());
 	circle.setFill(Color.BLACK);
 	circle.setCenterX(super.get_middle_x() * view.get_scale());
 	circle.setCenterY(super.get_middle_y() * view.get_scale());
