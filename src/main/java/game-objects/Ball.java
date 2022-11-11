@@ -28,10 +28,7 @@ public class Ball extends GameObject {
 	public void set_width(double v) { }
 	public void set_height(double v) { }
 
-	/**
-	 * @return true if a player lost
-	 */
-	public boolean update(Court c, double dt) {
+	public void update(Court c, double dt) {
 		super.update(c, dt);
 		if (get_up() < 0) {
 			if (get_dy() < 0) { scale_vel(1, -1); }
@@ -43,19 +40,21 @@ public class Ball extends GameObject {
 		if (this.collides(c.get_player_a(), dt)) {
 			if (get_dx() < 0) { scale_vel(-1, 1); }
 			change_x(2 * (c.get_player_a().get_right() - get_left()));
+			c.on_ball_touched_racket(true);
 		} else if (this.collides(c.get_player_b(), dt)) {
 			if (get_dx() > 0) { scale_vel(-1, 1); }
 			change_x(2 * (c.get_player_b().get_left() - get_right()));
+			c.on_ball_touched_racket(false);
 		} else if (get_right() < 0 || get_left() > c.get_width()) {
 			if(get_right() < 0) {
+				c.on_ball_left_terrain(true);
 				c.get_scoreboard().add_point(1);
 			}
 			if(get_left() > c.get_width()) {
+				c.on_ball_left_terrain(false);
 				c.get_scoreboard().add_point(0);
 			}
-			return true;
 		}
-		return false;
 	}
 
 	public void render(GameView view, Court court, Color c) {

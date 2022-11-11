@@ -95,15 +95,25 @@ public class Court {
 		}
 	}
 
+	public void on_ball_touched_racket(boolean left) {
+		for (gamemodes.Gamemode gamemode : gamemodes) {
+			gamemode.on_ball_touched_racket(this, left);
+		}
+	}
+	public void on_ball_left_terrain(boolean left) {
+		for (gamemodes.Gamemode gamemode : gamemodes) {
+			gamemode.on_ball_left_terrain(this, left);
+		}
+		reset();
+	}
+
 	public void update(double dt) {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.update(this, dt);
 		}
 		player_a.update(this, dt);
 		player_b.update(this, dt);
-		if (ball.update(this, dt)) {
-			reset();
-		}
+		ball.update(this, dt);
 	}
 
 	public Color getColor(int o) {

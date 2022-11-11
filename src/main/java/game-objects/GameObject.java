@@ -74,10 +74,9 @@ public abstract class GameObject {
 	public void set_height(double v) {
 		h = v;
 	}
-	public boolean update(Court court, double dt) {
+	public void update(Court court, double dt) {
 		x += dx * dt;
 		y += dy * dt;
-		return false;
 	}
 	public void scale_vel(double x, double y) {
 		dx *= x;
