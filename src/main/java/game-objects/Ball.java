@@ -2,26 +2,40 @@ package game_objects;
 
 import java.util.Random;
 import javafx.scene.shape.Circle;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-
+import javafx.scene.paint.ImagePattern;
 import model.Court;
 import gui.GameView;
 import game_objects.GameObject;
 
 public class Ball extends GameObject {
 	private Circle circle;
+	private Image skin; 
 
 	private int colorval = 1;
+	
+	
+	
 
 	public Ball(Pane root) {
 		super(0, 0, 10, 10);
 		circle = new Circle();
+		Image skin = new Image("file:tux.png");
+		circle.setFill(new ImagePattern(skin));
+		
 		root.getChildren().add(circle);
+		
 	}
 
 	public int get_color_val() {
 		return this.colorval;
+	}
+
+	public void skin(Image img){
+		circle.setFill(new ImagePattern(img));
 	}
 
 	// Can't resize the ball. (For now ?)

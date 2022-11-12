@@ -32,7 +32,7 @@ public class Settings{
 		background_color = Color.WHITE;
 		
 		gamemodes = new LinkedList<>();
-		gamemodes.add(new RacketLength());
+		
 		gamemodes.add(new gamemodes.Ia(3,false));
 		gamemodes.add(new gamemodes.Ia(4,true));
 		gamemodes.add(new gamemodes.Acceleration());

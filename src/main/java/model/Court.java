@@ -3,9 +3,13 @@ package model;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 import game_objects.Racket;
+
+import javax.swing.ImageIcon;
+
 import game_objects.Ball;
 import gui.GameView;
 
