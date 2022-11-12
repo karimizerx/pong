@@ -36,7 +36,6 @@ public class Settings {
 		gamemodes.add(new gamemodes.Ia(4, true));
 		gamemodes.add(new gamemodes.Ia(4, false));
 		gamemodes.add(new Acceleration());
-		
 		gamemodes.add(new gamemodes.CasseBrique(Root));
 
 	}

@@ -4,10 +4,12 @@ import java.util.LinkedList;
 
 import game_objects.Brique;
 import gui.GameView;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import model.Court;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 
 public class CasseBrique implements Gamemode {
     double v = 1;
@@ -17,6 +19,8 @@ public class CasseBrique implements Gamemode {
     public CasseBrique(Pane root) {
         Root = root;
         list = new LinkedList<Brique>();
+        
+        
     }
 
     @Override
@@ -61,10 +65,12 @@ public class CasseBrique implements Gamemode {
                 list.remove(b);
             }
         }
-    }
 
+    }
+    
     @Override
     public void render(GameView view, Court court) {
+        
     }
 
 }

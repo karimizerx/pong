@@ -2,9 +2,10 @@ package game_objects;
 
 import java.util.Random;
 import javafx.scene.shape.Circle;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-
+import javafx.scene.paint.ImagePattern;
 import model.Court;
 import gui.GameView;
 import game_objects.GameObject;

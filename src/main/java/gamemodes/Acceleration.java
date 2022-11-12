@@ -15,11 +15,13 @@ public class Acceleration implements Gamemode {
 	public void on_key_released(KeyCode key) {}
 
 	public void update(model.Court court, double dt) {
-		if (v * court.get_ball().get_dx() < 0) {
+		if (court.get_ball().collides(court.get_player_a(), dt) 
+		||  court.get_ball().collides(court.get_player_b(), dt)) {
 			court.get_ball().scale_vel(accel_ball, accel_ball);
 			court.add_racket_speed(accel_racket);
 			v = court.get_ball().get_dx();
 		}
+		System.out.println(v);
 	}
 
 	public void render(gui.GameView view, model.Court court) {}
