@@ -32,8 +32,7 @@ public class Settings{
 		background_color = Color.WHITE;
 
 		
-		gamemodes = new LinkedList<>();
-		
+		gamemodes = new LinkedList<>();		
 
 		LinkedList<Gamemode> list_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 
@@ -43,9 +42,7 @@ public class Settings{
 		
 		gamemodes.add(new gamemodes.Bonus_Malus(root,list_gamemodes));
 		gamemodes.add(new gamemodes.Scoreboard_versus(root));
-		//gamemodes.add(new RacketLength());
-		//gamemodes.add(new gamemodes.Ia(3,false));
-		//gamemodes.add(new gamemodes.Ia(4,true));
-		//gamemodes.add(new gamemodes.Acceleration());
+
+
 	}
 }

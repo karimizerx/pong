@@ -16,9 +16,8 @@ public class RackWTF implements Gamemode {
 	}
 
 	public void on_key_released(KeyCode key) {}
-        public void on_ball_touched_racket(model.Court court, boolean left) {}
+	public void on_ball_touched_racket(model.Court court, boolean left) {}
 	public void on_ball_left_terrain(model.Court court, boolean left) {}
-
 	
 	private double random(double min, double max) {
 		return Math.random() * (max - min + 1) + min;
