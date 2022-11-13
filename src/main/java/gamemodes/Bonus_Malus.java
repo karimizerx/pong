@@ -17,6 +17,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 	private boolean est_apparu;
 	private LinkedList<gamemodes.Gamemode> list;
 	private LinkedList<gamemodes.Gamemode> active_gamemodes;
+	private LinkedList<Integer> active_gamemodes_id;
 	private int decompte;
 	private boolean finito = false;
 
@@ -25,6 +26,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		super(0,0,7,7);
 		list = gamemode_list;
 		active_gamemodes = new LinkedList<gamemodes.Gamemode>();
+		active_gamemodes_id = new LinkedList<Integer>();
 		circle = new Circle();
 		root.getChildren().add(circle);
 		reset();
@@ -38,7 +40,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		super.set_y(1);
 		finito = false;
 		est_apparu = false;
-		decompte = 3000;
+		decompte = 2000;
 		active_gamemodes.clear();
 		super.set_width(0);
 	}
@@ -55,24 +57,30 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		return 1;
 	}
 
-	public void add_gamemode() {
+	public void add_gamemode() {	    
 		Random r = new Random();
 		if(list.size()==0){return;}
 		int n = r.nextInt(list.size());
-		System.out.println(n);
+		while(active_gamemodes_id.contains(n)){
+		    n = r.nextInt(list.size());
+		}
 		active_gamemodes.add(list.get(n));
+		active_gamemodes_id.add(n);
 	}
 
 	public void update(model.Court c, double deltaT) {
-		decompte--;
+	    System.out.println(decompte);
+	    if(decompte>=0)decompte--;
 
 		for (gamemodes.Gamemode gamemode : active_gamemodes) {
 			gamemode.update(c, deltaT);
 		}
 
+		if(active_gamemodes.size()==list.size()){ return; }
+ 
 		Random r = new Random();
 
-		if (!est_apparu && decompte<0) {
+		if (!est_apparu && decompte==0) {
 			est_apparu = true;
 			super.set_width(7);
 			super.set_vel((50 + (r.nextInt(30)*un_ou_moins_un()))*un_ou_moins_un(),-50 + r.nextInt(30));
@@ -101,9 +109,10 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		}
 		if (super.collides(c.get_player_a(),deltaT) || super.collides(c.get_player_b(),0)) {
 			add_gamemode();
+			decompte = 200+r.nextInt(50);
 			super.set_width(0);
 			est_apparu = false;
-			decompte = 200+r.nextInt(50);
+			
 		}
 	}
 
