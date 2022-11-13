@@ -31,18 +31,12 @@ public class Settings{
 		forground_color = Color.BLACK;
 		background_color = Color.WHITE;
 
+		LinkedList<Gamemode> bonus_malus_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
+		bonus_malus_gamemodes.add(new gamemodes.RacketLength(2));
+		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
 		
-		gamemodes = new LinkedList<>();		
-
-		LinkedList<Gamemode> list_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
-
-		list_gamemodes.add(new gamemodes.RacketLength(2));
-		list_gamemodes.add(new gamemodes.RackWTF());
-		
-		
-		gamemodes.add(new gamemodes.Bonus_Malus(root,list_gamemodes));
+		gamemodes = new LinkedList<>();
+		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
 		gamemodes.add(new gamemodes.Scoreboard_versus(root));
-
-
 	}
 }
