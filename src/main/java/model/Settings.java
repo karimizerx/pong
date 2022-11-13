@@ -38,7 +38,7 @@ public class Settings {
 		gamemodes.add(new gamemodes.Ia(4,false));
 		gamemodes.add(new gamemodes.Ia(4,true));
 		gamemodes.add(new gamemodes.Acceleration());
-		//gamemodes.add(new gamemodes.Scoreboard_versus(root));
+		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		gamemodes.add(new CasseBrique(root));
 	}
 }
