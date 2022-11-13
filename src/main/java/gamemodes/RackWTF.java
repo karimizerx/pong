@@ -16,12 +16,15 @@ public class RackWTF implements Gamemode {
 	}
 
 	public void on_key_released(KeyCode key) {}
+        public void on_ball_touched_racket(model.Court court, boolean left) {}
+	public void on_ball_left_terrain(model.Court court, boolean left) {}
+
 	
 	private double random(double min, double max) {
 		return Math.random() * (max - min + 1) + min;
 	}
 
-	public boolean update(model.Court court, double dt) {
+	public void update(model.Court court, double dt) {
 		double add_length_a;
 		double add_length_b;
 
@@ -43,7 +46,7 @@ public class RackWTF implements Gamemode {
 
 		court.get_player_a().set_height(court.get_player_a().get_height() + add_length_a);
 		court.get_player_b().set_height(court.get_player_b().get_height() + add_length_b);
-		return false;
+		return;
 	}
 
 	public void render(gui.GameView view, model.Court court) {}

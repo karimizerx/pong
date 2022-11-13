@@ -20,7 +20,7 @@ public class Settings{
 	public LinkedList<Gamemode> gamemodes;
 
 
-	public Settings(Pane root){
+	public Settings(Pane root) {
 		left_up = KeyCode.A;
 		left_down = KeyCode.Q;
 		right_up = KeyCode.UP;
@@ -30,6 +30,7 @@ public class Settings{
 		
 		forground_color = Color.BLACK;
 		background_color = Color.WHITE;
+
 		
 		gamemodes = new LinkedList<>();
 		

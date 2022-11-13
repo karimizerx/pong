@@ -55,6 +55,13 @@ public class Bonus_Malus extends GameObject implements Gamemode{
     public void on_key_released(KeyCode key) {
     }
 
+    public void on_ball_touched_racket(model.Court court, boolean left) {
+    }
+    
+    public void on_ball_left_terrain(model.Court court, boolean left) {
+    }
+
+    
     private static int un_ou_moins_un(){
 	Random r = new Random();
 	int n = r.nextInt(2);
@@ -70,7 +77,7 @@ public class Bonus_Malus extends GameObject implements Gamemode{
 	active_gamemodes.add(list.get(n));
     }
 
-    public boolean update(model.Court c, double deltaT) {
+    public void update(model.Court c, double deltaT) {
 
 	decompte --;
 
@@ -91,7 +98,7 @@ public class Bonus_Malus extends GameObject implements Gamemode{
 	    super.set_x(c.get_width() / 2);
 	    super.set_y(0);
 	}
-	if(!est_apparu){return false;}
+	if(!est_apparu){return;}
 	if(est_apparu){
 	    super.change_x(super.get_dx() * deltaT);
 	    super.change_y(super.get_dy() * deltaT);
@@ -117,7 +124,7 @@ public class Bonus_Malus extends GameObject implements Gamemode{
 	    est_apparu = false;
 	    decompte = 200+r.nextInt(50);
 	} 
-	return false;
+	return;
     }
     
     

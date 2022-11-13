@@ -21,8 +21,11 @@ public class RacketLength implements Gamemode {
 
 	public void on_key_pressed(KeyCode key) {}
 	public void on_key_released(KeyCode key) {}
+        public void on_ball_touched_racket(model.Court court, boolean left) {}
+	public void on_ball_left_terrain(model.Court court, boolean left) {}
 
-	public boolean update(model.Court court, double dt) {
+
+	public void update(model.Court court, double dt) {
 	        if(court.get_player_a().get_height() > max_length  || court.get_player_a().get_height() < min_length){
 	    if(!((court.get_player_a().get_height() > max_length + speed_a && speed_a < 0)||(court.get_player_a().get_height() < min_length + speed_a && speed_a > 0))){
 		speed_a *= -1;
@@ -38,7 +41,7 @@ public class RacketLength implements Gamemode {
 	court.get_player_a().change_y(-speed_a / 2);
 	court.get_player_b().set_height(court.get_player_b().get_height() +speed_b);
 	court.get_player_b().change_y(-speed_b / 2);
-		return false;
+		return;
 	}
 
 	public void render(gui.GameView view, model.Court court) {}

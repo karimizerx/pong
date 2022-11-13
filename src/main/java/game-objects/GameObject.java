@@ -21,7 +21,6 @@ public abstract class GameObject {
 	public GameObject(double x, double y, double w, double h) {
 		this(x, y, w, h, 0, 0);
 	}
-	
 
 	public final double get_width() {
 		return w;
@@ -75,10 +74,9 @@ public abstract class GameObject {
 	public void set_height(double v) {
 		h = v;
 	}
-	public boolean update(Court court, double dt) {
+	public void update(Court court, double dt) {
 		x += dx * dt;
 		y += dy * dt;
-		return false;
 	}
 	public void scale_vel(double x, double y) {
 		dx *= x;

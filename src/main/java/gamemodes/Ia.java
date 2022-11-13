@@ -21,8 +21,10 @@ public class Ia implements Gamemode {
 
 	public void on_key_pressed(KeyCode key) {}
 	public void on_key_released(KeyCode key) {}
+	public void on_ball_touched_racket(model.Court court, boolean left) {}
+	public void on_ball_left_terrain(model.Court court, boolean left) {}
 
-	public boolean update(model.Court court, double dt) {
+	public void update(model.Court court, double dt) {
 		if (gauche) {
 			if (difficulty == 1) {
 				if (court.get_ball().get_middle_y() > court.get_player_a().get_middle_y()) {
@@ -75,7 +77,6 @@ public class Ia implements Gamemode {
 			}
 		}
 		this.court1 = court;
-		return false;
 	}
 
 
