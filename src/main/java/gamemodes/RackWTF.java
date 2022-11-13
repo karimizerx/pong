@@ -45,7 +45,6 @@ public class RackWTF implements Gamemode {
 
 		court.get_player_a().set_height(court.get_player_a().get_height() + add_length_a);
 		court.get_player_b().set_height(court.get_player_b().get_height() + add_length_b);
-		return;
 	}
 
 	public void render(gui.GameView view, model.Court court) {}
