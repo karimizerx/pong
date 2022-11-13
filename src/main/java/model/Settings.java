@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.layout.Pane;
 
 import gamemodes.*;
 
@@ -33,11 +34,10 @@ public class Settings {
 		Root = root;
 
 		gamemodes = new LinkedList<>();
-		gamemodes.add(new gamemodes.Ia(4, true));
-		gamemodes.add(new gamemodes.Ia(4, false));
-		gamemodes.add(new Acceleration());
-		
-		gamemodes.add(new gamemodes.CasseBrique(Root));
-
+		gamemodes.add(new RacketLength());
+		gamemodes.add(new gamemodes.Ia(3,false));
+		gamemodes.add(new gamemodes.Ia(4,true));
+		gamemodes.add(new gamemodes.Acceleration());
+		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 	}
 }

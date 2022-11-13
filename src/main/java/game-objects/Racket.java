@@ -52,7 +52,7 @@ public class Racket extends GameObject {
 		}
 	}
 
-	public boolean update(Court court, double dt) {
+	public void update(Court court, double dt) {
 		set_vel(0, direction * court.get_racket_speed());
 		super.update(court, dt);
 		if (get_up() < 0) {
