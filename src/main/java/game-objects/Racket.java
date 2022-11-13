@@ -61,7 +61,6 @@ public class Racket extends GameObject {
 		if (get_down() > court.get_height()) {
 			change_y(court.get_height() - get_down());
 		}
-		return false;
 	}
 
 	public void reset(Court court) {

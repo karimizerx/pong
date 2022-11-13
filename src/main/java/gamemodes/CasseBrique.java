@@ -37,6 +37,9 @@ public class CasseBrique implements Gamemode {
     @Override
     public void on_key_released(KeyCode key) {
     }
+    public void on_ball_touched_racket(model.Court court, boolean left){}
+
+    public void on_ball_left_terrain(model.Court court, boolean left){}
 
     @Override
     public void update(Court court, double dt) {
@@ -57,11 +60,12 @@ public class CasseBrique implements Gamemode {
         
         for(Brique b : list){
             
-            if(b.update(court, dt)){
-                list.remove(b);
+            b.update(court, dt);
+            if(b.getCasse()) list.remove(b);
+             
             }
         }
-    }
+    
 
     @Override
     public void render(GameView view, Court court) {
