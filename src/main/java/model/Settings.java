@@ -42,6 +42,7 @@ public class Settings{
 		
 		
 		gamemodes.add(new gamemodes.Bonus_Malus(root,list_gamemodes));
+		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		//gamemodes.add(new RacketLength());
 		//gamemodes.add(new gamemodes.Ia(3,false));
 		//gamemodes.add(new gamemodes.Ia(4,true));
