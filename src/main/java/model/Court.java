@@ -28,7 +28,7 @@ public class Court {
 			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon) {
 		this.player_a = player_a;
 		this.player_b = player_b;
-		this.ball = new Ball(root);
+		this.ball = new Ball(root, new Image("file:Tux.png"));
 		this.width = width;
 		this.height = height;
 		this.gamemodes = gamemodes;
@@ -40,6 +40,7 @@ public class Court {
 	public Color get_primaire() {
 		return this.primaire;
 	}
+
 	public Color get_secondaire() {
 		return this.secondaire;
 	}
@@ -47,9 +48,11 @@ public class Court {
 	public Racket get_player_a() {
 		return player_a;
 	}
+
 	public Racket get_player_b() {
 		return player_b;
 	}
+
 	public Ball get_ball() {
 		return ball;
 	}
@@ -61,9 +64,11 @@ public class Court {
 	public double get_height() {
 		return height;
 	}
+
 	public void set_width(double v) {
 		width = v;
 	}
+
 	public void set_height(double v) {
 		height = v;
 	}
@@ -75,7 +80,7 @@ public class Court {
 	public void add_racket_speed(double v) {
 		racket_speed += v;
 	}
-	
+
 	public void on_key_pressed(KeyCode key) {
 		player_a.on_key_pressed(key);
 		player_b.on_key_pressed(key);
@@ -97,6 +102,7 @@ public class Court {
 			gamemode.on_ball_touched_racket(this, left);
 		}
 	}
+
 	public void on_ball_left_terrain(boolean left) {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.on_ball_left_terrain(this, left);

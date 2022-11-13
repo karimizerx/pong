@@ -13,57 +13,59 @@ import game_objects.GameObject;
 
 public class Ball extends GameObject {
 	private Circle circle;
-	private Image skin; 
+	private Image skin;
 
 	private int colorval = 1;
-	
-	
-	
 
-	public Ball(Pane root) {
-		super(0, 0, 10, 10);
+	public Ball(Pane root, Image skin) {
+		super(0, 0, 10, 10, skin);
 		circle = new Circle();
-		Image skin = new Image("file:tux.png");
 		circle.setFill(new ImagePattern(skin));
-		
 		root.getChildren().add(circle);
-		
+
 	}
 
 	public int get_color_val() {
 		return this.colorval;
 	}
 
-	public void skin(Image img){
-		circle.setFill(new ImagePattern(img));
+	// Can't resize the ball. (For now ?)
+	public void set_width(double v) {
 	}
 
-	// Can't resize the ball. (For now ?)
-	public void set_width(double v) { }
-	public void set_height(double v) { }
+	public void set_height(double v) {
+	}
 
 	public void update(Court c, double dt) {
 		super.update(c, dt);
 		if (get_up() < 0) {
-			if (get_dy() < 0) { scale_vel(1, -1); }
+			if (get_dy() < 0) {
+				scale_vel(1, -1);
+			}
 			change_y(2 * (0 - get_up()));
 		} else if (get_down() > c.get_height()) {
-			if (get_dy() > 0) { scale_vel(1, -1); }
+			if (get_dy() > 0) {
+				scale_vel(1, -1);
+			}
 			change_y(2 * (c.get_height() - get_down()));
 		}
 		if (this.collides(c.get_player_a(), dt)) {
-			if (get_dx() < 0) { scale_vel(-1, 1); }
+			if (get_dx() < 0) {
+				scale_vel(-1, 1);
+			}
 			change_x(2 * (c.get_player_a().get_right() - get_left()));
 			c.on_ball_touched_racket(true);
 		} else if (this.collides(c.get_player_b(), dt)) {
-			if (get_dx() > 0) { scale_vel(-1, 1); }
+			if (get_dx() > 0) {
+				scale_vel(-1, 1);
+			}
 			change_x(2 * (c.get_player_b().get_left() - get_right()));
 			c.on_ball_touched_racket(false);
 		} else if (get_right() < 0 || get_left() > c.get_width()) {
-			if(get_right() < 0) {
+			if (get_right() < 0) {
 				c.on_ball_left_terrain(true);
 			}
-			if(get_left() > c.get_width()) {
+			if (get_left() > c.get_width()) {
 				c.on_ball_left_terrain(false);
 			}
 		}
@@ -71,7 +73,6 @@ public class Ball extends GameObject {
 
 	public void render(GameView view, Court court, Color c) {
 		circle.setRadius(get_width()); // Should be equal to get_height.
-		circle.setFill(c);
 		circle.setCenterX(get_middle_x() * view.get_scale());
 		circle.setCenterY(get_middle_y() * view.get_scale());
 	}

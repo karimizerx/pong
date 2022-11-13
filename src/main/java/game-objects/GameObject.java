@@ -1,5 +1,6 @@
 package game_objects;
 
+import javafx.scene.image.Image;
 import model.Court;
 
 public abstract class GameObject {
@@ -9,22 +10,26 @@ public abstract class GameObject {
 	private double dy;
 	private double w;
 	private double h;
+	private Image skin;
 
-	public GameObject(double x, double y, double w, double h, double dx, double dy) {
+	public GameObject(double x, double y, double w, double h, double dx, double dy, Image skin) {
 		this.x = x;
 		this.y = y;
 		this.dx = dx;
 		this.dy = dy;
 		this.w = w;
 		this.h = h;
+		this.skin = skin;
 	}
-	public GameObject(double x, double y, double w, double h) {
-		this(x, y, w, h, 0, 0);
+
+	public GameObject(double x, double y, double w, double h, Image skin) {
+		this(x, y, w, h, 0, 0, skin);
 	}
 
 	public final double get_width() {
 		return w;
 	}
+
 	public final double get_height() {
 		return h;
 	}
@@ -32,6 +37,7 @@ public abstract class GameObject {
 	public final double get_middle_x() {
 		return x;
 	}
+
 	public final double get_middle_y() {
 		return y;
 	}
@@ -39,6 +45,7 @@ public abstract class GameObject {
 	public final double get_dx() {
 		return dx;
 	}
+
 	public final double get_dy() {
 		return dy;
 	}
@@ -46,12 +53,15 @@ public abstract class GameObject {
 	public final double get_left() {
 		return x - w / 2;
 	}
+
 	public final double get_right() {
 		return x + w / 2;
 	}
+
 	public final double get_up() {
 		return y - h / 2;
 	}
+
 	public final double get_down() {
 		return y + h / 2;
 	}
@@ -59,45 +69,56 @@ public abstract class GameObject {
 	public void set_x(double v) {
 		x = v;
 	}
+
 	public void set_y(double v) {
 		y = v;
 	}
+
 	public void change_x(double v) {
 		x += v;
 	}
+
 	public void change_y(double v) {
 		y += v;
 	}
+
 	public void set_width(double v) {
 		w = v;
 	}
+
 	public void set_height(double v) {
 		h = v;
 	}
+
 	public void update(Court court, double dt) {
 		x += dx * dt;
 		y += dy * dt;
 	}
+
 	public void scale_vel(double x, double y) {
 		dx *= x;
 		dy *= y;
 	}
+
 	public void set_vel(double x, double y) {
 		dx = x;
 		dy = y;
 	}
+
 	public void apply_force(double x, double y) {
 		dx += x;
 		dy += y;
 	}
-	/* Math for the collisions:
+
+	/*
+	 * Math for the collisions:
 	 * u = up, d = down, l = left, r = right, x = dx, y = dy
 	 * collision when: l1 + x1t < r2 + x2t ∧ l2 + x2t < r1 + x1t
-	 *               ∧ u1 + y1t < d2 + y2t ∧ u2 + y2t < d1 + y1t
-	 *             <=> l1 - r2 < (x2 - x1)t < r1 - l2
-	 *               ∧ u1 - d2 < (y2 - y1)t < d1 - u2
-	 *                 on nomme nos variables pour plus de clarté
-	 *             <=> a < bt < c ∧ d < et < f
+	 * ∧ u1 + y1t < d2 + y2t ∧ u2 + y2t < d1 + y1t
+	 * <=> l1 - r2 < (x2 - x1)t < r1 - l2
+	 * ∧ u1 - d2 < (y2 - y1)t < d1 - u2
+	 * on nomme nos variables pour plus de clarté
+	 * <=> a < bt < c ∧ d < et < f
 	 *
 	 */
 	public final boolean collides(GameObject o, double dt) {
@@ -127,7 +148,7 @@ public abstract class GameObject {
 				return false;
 			}
 			min_t = -100000;
-			max_t =  100000;
+			max_t = 100000;
 		}
 		if (e < -epsilon) {
 			if (d / e < f / e) {
