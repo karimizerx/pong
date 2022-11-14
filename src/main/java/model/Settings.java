@@ -36,6 +36,7 @@ public class Settings{
 		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
 		
 		gamemodes = new LinkedList<>();
+		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
 		gamemodes.add(new gamemodes.Vent());
 		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		gamemodes.add(new gamemodes.Ia(4,true));
