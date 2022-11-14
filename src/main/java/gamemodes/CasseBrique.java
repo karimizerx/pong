@@ -19,21 +19,16 @@ public class CasseBrique implements Gamemode {
 		list = new LinkedList<Brique>();
 	}
 
-    @Override
+	@Override
+	public void reset() {
+		for (Brique b : list) {
+			b.brique.setVisible(false);
+		}
+		list.clear();
+	}
 
-    public void reset() {
-        for(Brique b : list){
-            b.brique.setVisible(false);    
-            }
-
-            list.clear();
-        }
-
-    
-
-    @Override
-    public void on_key_pressed(KeyCode key) {
-    }
+	@Override
+	public void on_key_pressed(KeyCode key) {}
 
 	@Override
 	public void on_key_released(KeyCode key) {}
@@ -47,9 +42,13 @@ public class CasseBrique implements Gamemode {
 
 	@Override
 	public void update(Court court, double dt) {
+		var to_remove = new java.util.LinkedList<Brique>();
 		for(Brique b : list) {
 			b.update(court, dt);
-			if (b.getCasse()) { list.remove(b); }
+			if (b.getCasse()) { to_remove.add(b); }
+		}
+		for (Brique b : to_remove) {
+			list.remove(b);
 		}
 	}
 
