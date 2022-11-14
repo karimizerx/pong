@@ -36,7 +36,6 @@ public class Court {
 	public Color get_primaire() {
 		return this.primaire;
 	}
-
 	public Color get_secondaire() {
 		return this.secondaire;
 	}
@@ -44,11 +43,9 @@ public class Court {
 	public Racket get_player_a() {
 		return player_a;
 	}
-
 	public Racket get_player_b() {
 		return player_b;
 	}
-
 	public Ball get_ball() {
 		return ball;
 	}
@@ -56,15 +53,12 @@ public class Court {
 	public double get_width() {
 		return width;
 	}
-
 	public double get_height() {
 		return height;
 	}
-
 	public void set_width(double v) {
 		width = v;
 	}
-
 	public void set_height(double v) {
 		height = v;
 	}
@@ -139,5 +133,4 @@ public class Court {
 		this.ball.reset(this);
 		this.racket_speed = 150.0;
 	}
-
 }

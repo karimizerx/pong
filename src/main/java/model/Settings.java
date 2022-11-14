@@ -19,7 +19,6 @@ public class Settings {
 	public Color forground_color;
 	public Color background_color;
 	public LinkedList<Gamemode> gamemodes;
-	public Pane Root;
 
 	public Settings(Pane root) {
 		left_up = KeyCode.A;
@@ -31,7 +30,6 @@ public class Settings {
 
 		forground_color = Color.BLACK;
 		background_color = Color.WHITE;
-		Root = root;
 
 		gamemodes = new LinkedList<>();
 		gamemodes.add(new RacketLength());

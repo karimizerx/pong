@@ -28,10 +28,10 @@ public class App extends Application {
 			court.on_key_released(ev.getCode());
 		});
 		gameScene.widthProperty().addListener((obs, oldVal, newVal) -> {
-			court.set_width((double) newVal);
+			court.set_width((double)newVal);
 		});
 		gameScene.heightProperty().addListener((obs, oldVal, newVal) -> {
-			court.set_height((double) newVal);
+			court.set_height((double)newVal);
 		});
 		gameScene.setFill(court.get_secondaire());
 		primaryStage.setScene(gameScene);
