@@ -24,8 +24,9 @@ public class CasseBrique implements Gamemode {
     public void reset() {
         for(Brique b : list){
             b.brique.setVisible(false);    
-            list.remove(b);
             }
+
+            list.clear();
         }
 
     
