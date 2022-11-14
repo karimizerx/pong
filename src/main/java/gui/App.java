@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,7 +29,7 @@ public class App extends Application {
 		
 		box.setSpacing(20);
 		// PLAY BUTTON
-		var play_button = new Button("Play");
+		var play_button = new Button();
 		play_button.setOnAction(
 			new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
@@ -35,7 +37,10 @@ public class App extends Application {
 				}
 			}
 		);
-		play_button.setPrefSize(200, 60);
+		play_button.setPrefSize(180, 40);
+		Image play_image = new Image("file:ressources/play.png");
+		ImageView play_view = new ImageView(play_image);
+		play_button.setGraphic(play_view);
 
 		// SETTINGS BUTTON
 		var settings_button = new Button("Settings");
