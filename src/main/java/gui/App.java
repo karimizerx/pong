@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -8,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Court;
 import model.Settings;
@@ -18,12 +21,13 @@ public class App extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		var root = new Pane();
+		var root = new BorderPane();
+		var box = new VBox();
 		var settings = new Settings(root);
-
-		var play_button = new Button("Jouer");
-		play_button.setLayoutX(200);
-		play_button.setLayoutY(200);
+		
+		box.setSpacing(20);
+		// PLAY BUTTON
+		var play_button = new Button("Play");
 		play_button.setOnAction(
 			new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
@@ -31,8 +35,16 @@ public class App extends Application {
 				}
 			}
 		);
+		play_button.setPrefSize(200, 60);
 
-		root.getChildren().add(play_button);
+		// SETTINGS BUTTON
+		var settings_button = new Button("Settings");
+
+
+		box.getChildren().addAll(play_button, settings_button);
+		
+		root.setCenter(box);
+		box.setAlignment(Pos.CENTER);
 
 		var menuScene = new Scene(root);
 		primaryStage.setScene(menuScene);
