@@ -37,6 +37,5 @@ public class Settings{
 		
 		gamemodes = new LinkedList<>();
 		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
-		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 	}
 }
