@@ -39,5 +39,6 @@ public class Settings {
 		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
 		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		gamemodes.add(new CasseBrique(root));
+		gamemodes.add(new Acceleration());
 	}
 }
