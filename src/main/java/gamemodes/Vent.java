@@ -53,7 +53,7 @@ public class Vent implements Gamemode {
 
 	public void update(model.Court court, double dt) {
 		game_objects.Ball b = court.get_ball();
-		final double θ   = noise.eval(t + 0000, b.get_middle_x() / 500, b.get_middle_y() / 500) * Math.PI; // (∈ [-π; π])
+		final double θ   = noise.eval(t + 0000, b.get_middle_x() / 500, b.get_middle_y() / 500) * Math.PI * 4; // (∈ [-4π; 4π])
 		final double mag = noise.eval(t + 9999, b.get_middle_x() / 500, b.get_middle_y() / 500) + 0.75; // (∈ [0.25; 1.25])
 		final double x = mag * Math.cos(θ);
 		final double y = mag * Math.sin(θ);
@@ -67,7 +67,7 @@ public class Vent implements Gamemode {
 				p.x = random.nextDouble() * court.get_width();
 				p.y = random.nextDouble() * court.get_height();
 			}
-			final double p_θ   = noise.eval(t + 0000, p.x / 500, p.y / 500) * Math.PI * 2; // (∈ [-π; π])
+			final double p_θ   = noise.eval(t + 0000, p.x / 500, p.y / 500) * Math.PI * 4; // (∈ [-4π; 4π])
 			final double p_mag = noise.eval(t + 9999, p.x / 500, p.y / 500) + 0.75; // (∈ [0.25; 1.25])
 			final double p_x = p_mag * Math.cos(p_θ);
 			final double p_y = p_mag * Math.sin(p_θ);
