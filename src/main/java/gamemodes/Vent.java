@@ -64,8 +64,8 @@ public class Vent implements Gamemode {
 			if (p.x < 0 || p.y < 0 || p.x >= court.get_width() || p.y >= court.get_height() || random.nextInt(100) < 1) {
 				p.dx = 0;
 				p.dy = 0;
-				p.x = random.nextDouble(court.get_width());
-				p.y = random.nextDouble(court.get_height());
+				p.x = random.nextDouble() * court.get_width();
+				p.y = random.nextDouble() * court.get_height();
 			}
 			final double p_θ   = noise.eval(t + 0000, p.x / 500, p.y / 500) * Math.PI * 2; // (∈ [-π; π])
 			final double p_mag = noise.eval(t + 9999, p.x / 500, p.y / 500) + 0.75; // (∈ [0.25; 1.25])
