@@ -54,10 +54,10 @@ public class Vent implements Gamemode {
 	public void update(model.Court court, double dt) {
 		game_objects.Ball b = court.get_ball();
 		final double θ   = noise.eval(t + 0000, b.get_middle_x() / 500, b.get_middle_y() / 500) * Math.PI; // (∈ [-π; π])
-		final double mag = noise.eval(t + 9999, b.get_middle_x() / 500, b.get_middle_y() / 500) + 0.5; // (∈ [0; 1])
+		final double mag = noise.eval(t + 9999, b.get_middle_x() / 500, b.get_middle_y() / 500) + 0.75; // (∈ [0.25; 1.25])
 		final double x = mag * Math.cos(θ);
 		final double y = mag * Math.sin(θ);
-		b.apply_force(x, y);
+		b.apply_force(x * 2, y);
 		t += 0.003;
 		for (Particle p : particles) {
 			// Every particle has a 1/100 chance of being reset.
@@ -68,10 +68,10 @@ public class Vent implements Gamemode {
 				p.y = random.nextDouble(court.get_height());
 			}
 			final double p_θ   = noise.eval(t + 0000, p.x / 500, p.y / 500) * Math.PI * 2; // (∈ [-π; π])
-			final double p_mag = noise.eval(t + 9999, p.x / 500, p.y / 500) + 0.5; // (∈ [0; 1])
+			final double p_mag = noise.eval(t + 9999, p.x / 500, p.y / 500) + 0.75; // (∈ [0.25; 1.25])
 			final double p_x = p_mag * Math.cos(p_θ);
 			final double p_y = p_mag * Math.sin(p_θ);
-			p.dx += p_x / 10;
+			p.dx += p_x / 5;
 			p.dy += p_y / 10;
 			p.x += p.dx;
 			p.y += p.dy;
