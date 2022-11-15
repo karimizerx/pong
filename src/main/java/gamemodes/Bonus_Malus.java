@@ -49,7 +49,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		}
 	    }
 	}
-    
+
 	public void on_key_released(KeyCode key) {
 	    for(int i=0;i<active_gamemodes_id.length;i++){
 		if(active_gamemodes_id[i]){
@@ -95,7 +95,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 
 		for(int i=0;i<active_gamemodes_id.length;i++){
 		    if(active_gamemodes_id[i]){
-			list.get(i).update(c, deltaT);			
+			list.get(i).update(c, deltaT);
 		    }
 		}
 
