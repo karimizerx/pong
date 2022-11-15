@@ -34,17 +34,43 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		super.set_x(1);
 		super.set_y(1);
 		est_apparu = false;
-		decompte = 2000;
+		decompte = 100;
 	        for(int i = 0;i<active_gamemodes_id.length;i++){
 		    active_gamemodes_id[i]=false;
+		    list.get(i).reset();
 		}
 		super.set_width(0);
 	}
 
-	public void on_key_pressed(KeyCode key) {}
-	public void on_key_released(KeyCode key) {}
-	public void on_ball_touched_racket(model.Court court, boolean left) {}
-	public void on_ball_left_terrain(model.Court court, boolean left) {}
+	public void on_key_pressed(KeyCode key) {
+	    for(int i=0;i<active_gamemodes_id.length;i++){
+		if(active_gamemodes_id[i]){
+		    list.get(i).on_key_pressed(key);
+		}
+	    }
+	}
+    
+	public void on_key_released(KeyCode key) {
+	    for(int i=0;i<active_gamemodes_id.length;i++){
+		if(active_gamemodes_id[i]){
+		    list.get(i).on_key_released(key);
+		}
+	    }
+	}
+	public void on_ball_touched_racket(model.Court court, boolean left) {
+	    for(int i=0;i<active_gamemodes_id.length;i++){
+		if(active_gamemodes_id[i]){
+		    list.get(i).on_ball_touched_racket(court,left);
+		}
+	    }
+	}
+	public void on_ball_left_terrain(model.Court court, boolean left) {
+	    for(int i=0;i<active_gamemodes_id.length;i++){
+		if(active_gamemodes_id[i]){
+		    list.get(i).on_ball_left_terrain(court,left);
+		}
+	    }
+	}
 
 	private static int un_ou_moins_un() {
 		Random r = new Random();
@@ -58,6 +84,9 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		if (list.size() == 0) { return; }
 		int n = r.nextInt(list.size());
 		System.out.println(n);
+		if(active_gamemodes_id[n]){
+		    list.get(n).reset();
+		}
 		active_gamemodes_id[n] = !active_gamemodes_id[n];
 	}
 
@@ -66,7 +95,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 
 		for(int i=0;i<active_gamemodes_id.length;i++){
 		    if(active_gamemodes_id[i]){
-			list.get(i).update(c, deltaT);
+			list.get(i).update(c, deltaT);			
 		    }
 		}
 
