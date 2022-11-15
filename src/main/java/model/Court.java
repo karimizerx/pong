@@ -53,7 +53,6 @@ public class Court {
 	public double get_width() {
 		return width;
 	}
-
 	public double get_height() {
 		return height;
 	}
