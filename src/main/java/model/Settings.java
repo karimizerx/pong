@@ -34,6 +34,7 @@ public class Settings {
 		LinkedList<Gamemode> bonus_malus_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 		bonus_malus_gamemodes.add(new gamemodes.RacketLength(2));
 		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
+		bonus_malus_gamemodes.add(new gamemodes.Vent(root));
 		
 		gamemodes = new LinkedList<>();
 		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
