@@ -7,6 +7,10 @@ public class RackWTF implements Gamemode {
 	static float max_length = 250;
 	static int wtf = 50;
 
+	public String getName() {
+		return "RackWTF";
+	}
+
 	public void reset() {}
 
 	public void on_key_pressed(KeyCode key) {

@@ -31,6 +31,9 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		decompte = 200;
 	}
 
+	public String getName() {
+		return "Bonus-Malus";
+	}
 
 	public void reset() {
 		super.set_x(1);

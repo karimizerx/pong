@@ -17,6 +17,10 @@ public class RacketLength implements Gamemode {
 		this.speed_b = speed;
 	}
 
+	public String getName() {
+		return "RackWTF";
+	}
+
 	public void reset() {}
 
 	public void on_key_pressed(KeyCode key) {}

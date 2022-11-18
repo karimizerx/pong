@@ -10,6 +10,10 @@ public class Scoreboard_versus implements Gamemode {
 		internal_scoreboard = new model.Scoreboard(root, 2);
 	}
 
+	public String getName() {
+		return "Scoreboard versus";
+	}
+
 	public void reset() {}
 
 	public void on_key_pressed(KeyCode key) {}
