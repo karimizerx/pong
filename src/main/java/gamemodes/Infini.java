@@ -4,7 +4,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import model.Court;
 
-public class Infini implements Gamemode{
+public class Infini implements Gamemode {
 	private int cntpasses = 0;
 	private int paslvl;
 	private model.Scoreboard internal_scoreboard;
