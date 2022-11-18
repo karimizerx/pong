@@ -18,7 +18,7 @@ public class Settings{
 	public Color forground_color;
 	public Color background_color;
 	public LinkedList<Gamemode> gamemodes;
-
+	public LinkedList<Gamemode> possible_gamemodes;
 
 	public Settings(Pane root) {
 		left_up = KeyCode.A;
@@ -34,8 +34,16 @@ public class Settings{
 		LinkedList<Gamemode> bonus_malus_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 		bonus_malus_gamemodes.add(new gamemodes.RacketLength(2));
 		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
+
+		LinkedList<Gamemode> possible_gamemodes = new LinkedList<gamemodes.Gamemode>();
+		possible_gamemodes.add(new gamemodes.RacketLength(2));
+		possible_gamemodes.add(new gamemodes.RackWTF());
+		possible_gamemodes.add(new gamemodes.Scoreboard_versus(root));
+		possible_gamemodes.add(new gamemodes.Acceleration());
+		possible_gamemodes.add(new gamemodes.Ia(1, true));
+		possible_gamemodes.add(new gamemodes.Ia(1, false));
+		possible_gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
 		
 		gamemodes = new LinkedList<>();
-		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
 	}
 }
