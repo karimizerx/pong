@@ -3,12 +3,13 @@ package model;
 import java.util.LinkedList;
 
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
 
 import gamemodes.*;
 
-public class Settings{
+public class Settings {
 	public KeyCode left_up;
 	public KeyCode left_down;
 	public KeyCode right_up;
@@ -18,7 +19,10 @@ public class Settings{
 	public Color forground_color;
 	public Color background_color;
 	public LinkedList<Gamemode> gamemodes;
+<<<<<<< HEAD
 	public LinkedList<Gamemode> possible_gamemodes;
+=======
+>>>>>>> master
 
 	public Settings(Pane root) {
 		left_up = KeyCode.A;
@@ -34,6 +38,7 @@ public class Settings{
 		LinkedList<Gamemode> bonus_malus_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 		bonus_malus_gamemodes.add(new gamemodes.RacketLength(2));
 		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
+<<<<<<< HEAD
 
 		possible_gamemodes = new LinkedList<Gamemode>();
 		possible_gamemodes.add(new gamemodes.RacketLength(2));
@@ -45,5 +50,13 @@ public class Settings{
 		possible_gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
 
 		gamemodes = new LinkedList<>();
+=======
+		bonus_malus_gamemodes.add(new gamemodes.Vent(root));
+		
+		gamemodes = new LinkedList<>();
+		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
+		gamemodes.add(new gamemodes.Scoreboard_versus(root));
+		gamemodes.add(new CasseBrique(root));
+>>>>>>> master
 	}
 }
