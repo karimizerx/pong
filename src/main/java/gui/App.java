@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
@@ -18,22 +19,25 @@ import model.Court;
 import model.Settings;
 
 import game_objects.Racket;
+import gamemodes.*;
 
 public class App extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
+		var gameRoot = new Pane();
+
 		var root = new BorderPane();
 		var box = new VBox();
-		var settings = new Settings(root);
-		
+		var settings = new Settings(gameRoot);
+
 		box.setSpacing(20);
 		// PLAY BUTTON
 		var play_button = new Button();
 		play_button.setOnAction(
 			new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
-					startGame(primaryStage, settings);
+					startGame(primaryStage, gameRoot, settings);
 				}
 			}
 		);
@@ -44,6 +48,12 @@ public class App extends Application {
 
 		// SETTINGS BUTTON
 		var settings_button = new Button("Settings");
+		settings_button.setOnAction(
+				new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						new SettingsView(primaryStage, settings);
+					}
+				});
 
 
 		box.getChildren().addAll(play_button, settings_button);
@@ -57,9 +67,8 @@ public class App extends Application {
 		
 	}
 
-	public void startGame(Stage primaryStage, Settings settings) {
-		
-		var root = new Pane();
+	public void startGame(Stage primaryStage, Pane root, Settings settings) {
+
 		var gameScene = new Scene(root);
 		var player_a = new Racket(root, settings.left_up,  settings.left_down,   105, 200, 10, 100);
 		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 10, 100);
