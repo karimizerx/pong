@@ -18,7 +18,7 @@ public class RacketLength implements Gamemode {
 	}
 
 	public String getName() {
-		return "RackWTF";
+		return "Racket Length";
 	}
 
 	public void reset() {}
