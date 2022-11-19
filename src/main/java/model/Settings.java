@@ -27,7 +27,7 @@ public class Settings{
 		right_down = KeyCode.DOWN;
 		stop = KeyCode.ESCAPE;
 		turbo = KeyCode.SPACE;
-		
+
 		forground_color = Color.BLACK;
 		background_color = Color.WHITE;
 
@@ -35,7 +35,7 @@ public class Settings{
 		bonus_malus_gamemodes.add(new gamemodes.RacketLength(2));
 		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
 
-		LinkedList<Gamemode> possible_gamemodes = new LinkedList<gamemodes.Gamemode>();
+		possible_gamemodes = new LinkedList<Gamemode>();
 		possible_gamemodes.add(new gamemodes.RacketLength(2));
 		possible_gamemodes.add(new gamemodes.RackWTF());
 		possible_gamemodes.add(new gamemodes.Scoreboard_versus(root));
@@ -43,7 +43,7 @@ public class Settings{
 		possible_gamemodes.add(new gamemodes.Ia(1, true));
 		possible_gamemodes.add(new gamemodes.Ia(1, false));
 		possible_gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
-		
+
 		gamemodes = new LinkedList<>();
 	}
 }
