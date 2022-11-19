@@ -19,7 +19,9 @@ public class Settings {
 	public Color forground_color;
 	public Color background_color;
 	public LinkedList<Gamemode> gamemodes;
+	public LinkedList<Gamemode> bm_gamemodes;
 	public LinkedList<Gamemode> possible_gamemodes;
+	public LinkedList<Gamemode> possible_bm_gamemodes;
 
 	public Settings(Pane root) {
 		left_up = KeyCode.A;
@@ -32,9 +34,11 @@ public class Settings {
 		forground_color = Color.BLACK;
 		background_color = Color.WHITE;
 
-		LinkedList<Gamemode> bonus_malus_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
-		bonus_malus_gamemodes.add(new gamemodes.RacketLength(2));
-		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
+		bm_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
+
+		possible_bm_gamemodes = new LinkedList<Gamemode>();
+		possible_bm_gamemodes.add(new gamemodes.RacketLength(2));
+		possible_bm_gamemodes.add(new gamemodes.RackWTF());
 
 		possible_gamemodes = new LinkedList<Gamemode>();
 		possible_gamemodes.add(new gamemodes.RacketLength(2));
@@ -43,10 +47,14 @@ public class Settings {
 		possible_gamemodes.add(new gamemodes.Acceleration());
 		possible_gamemodes.add(new gamemodes.Ia(1, true));
 		possible_gamemodes.add(new gamemodes.Ia(1, false));
-		possible_gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
+		possible_gamemodes.add(new gamemodes.Bonus_Malus(root, bm_gamemodes));
 		possible_gamemodes.add(new gamemodes.Vent(root));
 		possible_gamemodes.add(new gamemodes.CasseBrique(root));
 
 		gamemodes = new LinkedList<>();
+	}
+
+	public void reset_bonus_malus() {
+		bm_gamemodes = new LinkedList<Gamemode>();
 	}
 }
