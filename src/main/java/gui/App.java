@@ -26,12 +26,21 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		var gameRoot = new Pane();
+		startMenu(primaryStage, gameRoot, new Settings(gameRoot));
+	}
 
+	public void startMenu(Stage primaryStage, Pane gameRoot, Settings settings) {
 		var root = new BorderPane();
 		var box = new VBox();
-		var settings = new Settings(gameRoot);
 
 		box.setSpacing(20);
+
+		var retour = new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				startMenu(primaryStage, gameRoot, settings);
+			}
+		};
+
 		// PLAY BUTTON
 		var play_button = new Button();
 		play_button.setOnAction(
@@ -51,7 +60,7 @@ public class App extends Application {
 		settings_button.setOnAction(
 				new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
-						new SettingsView(primaryStage, settings);
+						new SettingsView(primaryStage, settings, retour);
 					}
 				});
 

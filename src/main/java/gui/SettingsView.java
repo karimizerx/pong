@@ -20,7 +20,7 @@ import gamemodes.*;
 public class SettingsView {
 	private Settings settings;
 
-	public SettingsView(Stage  primaryStage, Settings s) {
+	public SettingsView(Stage  primaryStage, Settings s, EventHandler<ActionEvent> retour) {
 		settings = s;
 
 		var root = new BorderPane();
@@ -44,6 +44,10 @@ public class SettingsView {
 
 			box.getChildren().add(mode_checkbox);
 		}
+
+		var retour_button = new Button("OK");
+		retour_button.setOnAction(retour);
+		box.getChildren().add(retour_button);
 
 		root.setCenter(box);
 		box.setAlignment(Pos.CENTER);
