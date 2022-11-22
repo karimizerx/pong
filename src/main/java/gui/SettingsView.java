@@ -46,6 +46,7 @@ public class SettingsView {
 					} else {
 						settings.bm_gamemodes.remove(bm_gamemode);
 					}
+					settings.gamemode_bonus_malus.update_list(settings.bm_gamemodes);
 				}
 			});
 

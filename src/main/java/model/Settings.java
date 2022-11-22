@@ -22,6 +22,7 @@ public class Settings {
 	public LinkedList<Gamemode> bm_gamemodes;
 	public LinkedList<Gamemode> possible_gamemodes;
 	public LinkedList<Gamemode> possible_bm_gamemodes;
+	public gamemodes.Bonus_Malus gamemode_bonus_malus;
 
 	public Settings(Pane root) {
 		left_up = KeyCode.A;
@@ -47,7 +48,8 @@ public class Settings {
 		possible_gamemodes.add(new gamemodes.Acceleration());
 		possible_gamemodes.add(new gamemodes.Ia(1, true));
 		possible_gamemodes.add(new gamemodes.Ia(1, false));
-		possible_gamemodes.add(new gamemodes.Bonus_Malus(root, bm_gamemodes));
+		gamemode_bonus_malus = new gamemodes.Bonus_Malus(root, bm_gamemodes);
+		possible_gamemodes.add(gamemode_bonus_malus);
 		possible_gamemodes.add(new gamemodes.Vent(root));
 		possible_gamemodes.add(new gamemodes.CasseBrique(root));
 

@@ -33,6 +33,11 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		return "Bonus-Malus";
 	}
 
+	public void update_list(LinkedList<gamemodes.Gamemode> new_list){
+		list = new_list;
+		active_gamemodes_id = new boolean[list.size()];
+	}
+
 	public void reset() {
 		super.set_x(1);
 		super.set_y(1);
@@ -148,4 +153,5 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		circle.setCenterX(super.get_middle_x() * view.get_scale());
 		circle.setCenterY(super.get_middle_y() * view.get_scale());
 	}
+
 }
