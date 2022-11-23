@@ -1,0 +1,31 @@
+Fait:
+
+Bouger les trucs paramétrables (gamemodes, contrôles) dans une classe
+	à part, en préparation du menu de paramètres:
+	- Victor
+Collisions un peu plus correctes:
+	- Amélia
+Des nouveaux events pour rendre le code plus clair:
+	- Amélia
+Un mode de jeu qui active et désactive d'autres modes de jeu au fur et à mesure de la partie,
+	pour permettre de la variété:
+	- Ilian
+Un mode de jeu qui rajoute des briques à casser sur le terrain, qui apparaissent
+	quand la balle touche une raquette:
+	- Ayman
+Un meilleur rebond de la balle sur les raquettes:
+	-Ayman
+Un mode de jeu qui permet de faire subir l'effet du vent à la balle
+	(avec un joli effet de particules):
+	- Eliot et Amélia
+
+À faire:
+
+Régler un problème d'affichage des modes de jeu.
+Changer la vitesse horizontale de la balle en fonction de la taille de la fenêtre, pour
+	faire un jeu équilibré peu importe la taille du terrain.
+Changer légèrement le gamemode accélération, pour rendre le jeu plus agréable.
+Ajouter du son.
+Mode de jeu sans fin (façon alternative de compter les points) (presque implémenté).
+Skins (presque implémenté).
+Écran d'accueil (menu et paramètres).
