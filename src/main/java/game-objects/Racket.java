@@ -31,7 +31,7 @@ public class Racket extends GameObject {
 	}
 
 	public void set_height(double v) {
-		if(v>5){super.set_height(v);}
+		if (v > 5) { super.set_height(v); }
 	}
 
 
