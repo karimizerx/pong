@@ -29,10 +29,9 @@ public class AccelRacket implements Gamemode {
 	}
 
 	public void reset() {
-			if(court1==null)return;
+		if(court1==null)return;
 			court1.add_racket_speed(-vitesse_nv);
 			desactive=false;
-		
 	}
 	public void render(gui.GameView view, model.Court court) {}
 }
