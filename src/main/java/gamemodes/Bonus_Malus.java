@@ -141,7 +141,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 
 	public void render(gui.GameView view, model.Court court) {
 		circle.setRadius(super.get_width());
-		circle.setFill(Color.BLACK);
+		circle.setFill(court.get_primaire());
 		circle.setCenterX(super.get_middle_x() * view.get_scale());
 		circle.setCenterY(super.get_middle_y() * view.get_scale());
 	}
