@@ -3,8 +3,8 @@ package gamemodes;
 import javafx.scene.input.KeyCode;
 
 public class RackWTF implements Gamemode {
-	static float min_length = 1;
-	static float max_length = 250;
+	static float min_length = 5;
+	static float max_length = 200;
 	static int wtf = 50;
 
 	public void reset() {}

@@ -34,6 +34,11 @@ public class Racket extends GameObject {
 		root.getChildren().add(rectangle);
 	}
 
+	public void set_height(double v) {
+		if (v > 5) { super.set_height(v); }
+	}
+
+
 	public int get_color_val() {
 		return this.color_val;
 	}

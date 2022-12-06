@@ -17,7 +17,7 @@ public class Court {
 	// instance parameters
 	private final Racket player_a, player_b;
 	private double width, height; // m
-	private double racket_speed = 150.0; // m/s
+	private double racket_speed; // m/s
 	private final Ball ball;
 	private Color primaire;
 	private Color secondaire;
@@ -60,7 +60,6 @@ public class Court {
 	public double get_width() {
 		return width;
 	}
-
 	public double get_height() {
 		return height;
 	}
@@ -142,6 +141,6 @@ public class Court {
 		this.player_a.reset(this);
 		this.player_b.reset(this);
 		this.ball.reset(this);
-		this.racket_speed = 150.0;
+		this.racket_speed = 250.0;
 	}
 }
