@@ -16,6 +16,7 @@ public class Settings {
 	public KeyCode right_down;
 	public KeyCode stop;
 	public KeyCode turbo;
+	public KeyCode pauseKey;
 	public Color forground_color;
 	public Color background_color;
 	public LinkedList<Gamemode> gamemodes;
@@ -27,6 +28,7 @@ public class Settings {
 		right_down = KeyCode.DOWN;
 		stop = KeyCode.ESCAPE;
 		turbo = KeyCode.SPACE;
+		pauseKey = KeyCode.P;
 
 		forground_color = Color.BLACK;
 		background_color = Color.WHITE;
@@ -34,12 +36,15 @@ public class Settings {
 		LinkedList<Gamemode> bonus_malus_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 		bonus_malus_gamemodes.add(new gamemodes.RacketLength(2));
 		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
-		bonus_malus_gamemodes.add(new gamemodes.Vent(root));
+		//bonus_malus_gamemodes.add(new gamemodes.Vent(root));
 		
 		gamemodes = new LinkedList<>();
 		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
 		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		gamemodes.add(new CasseBrique(root));
-		gamemodes.add(new Acceleration());
+		//gamemodes.add(new Acceleration());
+		gamemodes.add(new Ia(3, true));
+		//gamemodes.add(new Ia(2, false));
+		gamemodes.add(new gamemodes.Vent(root));
 	}
 }

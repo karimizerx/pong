@@ -19,7 +19,7 @@ public class App extends Application {
 		var gameScene = new Scene(root);
 		var player_a = new Racket(root, settings.left_up,  settings.left_down,   105, 200, 10, 100);
 		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 10, 100);
-		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.forground_color, settings.background_color);
+		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.forground_color, settings.background_color, settings.pauseKey);
 		var gameView = new GameView(court, root, 1.0);
 		gameScene.setOnKeyPressed(ev -> {
 			court.on_key_pressed(ev.getCode());
