@@ -41,5 +41,9 @@ public class Settings {
 		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		gamemodes.add(new CasseBrique(root));
 		gamemodes.add(new Acceleration());
+
+		for (Gamemode g : gamemodes) {
+			g.render();
+		}
 	}
 }

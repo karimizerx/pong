@@ -42,7 +42,13 @@ public class Scoreboard {
 		return this.text;
 	}
 	
-	public void render(Color c) {
+	public void render() {
+		this.text.setVisible(true);
+	}
+	public void no_render() {
+		this.text.setVisible(false);
+	}
+	public void update_render(Color c) {
 		this.text.setText(make_scoreboard(scores));
 		this.text.setFill(c);
 	}

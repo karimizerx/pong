@@ -84,8 +84,11 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		if (list.size() == 0) { return; }
 		int n = r.nextInt(list.size());
 		System.out.println(n);
-		if(active_gamemodes_id[n]){
+		if (active_gamemodes_id[n]) {
 		    list.get(n).reset();
+		    list.get(n).no_render();
+		} else {
+		    list.get(n).render();
 		}
 		active_gamemodes_id[n] = !active_gamemodes_id[n];
 	}
@@ -139,10 +142,34 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		}
 	}
 
-	public void render(gui.GameView view, model.Court court) {
+	public void render() {
+		circle.setVisible(true);
+
+		for(int i=0;i<active_gamemodes_id.length;i++){
+			if(active_gamemodes_id[i]){
+				list.get(i).render();
+			}
+		}
+	}
+	public void no_render() {
+		circle.setVisible(false);
+
+		for(int i=0;i<active_gamemodes_id.length;i++){
+			if(active_gamemodes_id[i]){
+				list.get(i).no_render();
+			}
+		}
+	}
+	public void update_render(gui.GameView view, model.Court court) {
 		circle.setRadius(super.get_width());
 		circle.setFill(Color.BLACK);
 		circle.setCenterX(super.get_middle_x() * view.get_scale());
 		circle.setCenterY(super.get_middle_y() * view.get_scale());
+
+		for(int i=0;i<active_gamemodes_id.length;i++){
+			if(active_gamemodes_id[i]){
+				list.get(i).update_render(view, court);
+			}
+		}
 	}
 }
