@@ -18,7 +18,7 @@ public class Ball extends GameObject {
 	private int colorval = 1;
 
 	public Ball(Pane root, Image skin) {
-		super(0, 0, 10, 10, skin);
+		super(0, 0, 20, 20, skin);
 		circle = new Circle();
 		circle.setFill(new ImagePattern(skin));
 		root.getChildren().add(circle);

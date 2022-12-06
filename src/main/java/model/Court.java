@@ -28,7 +28,7 @@ public class Court {
 			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon) {
 		this.player_a = player_a;
 		this.player_b = player_b;
-		this.ball = new Ball(root, new Image("file:Tux.png"));
+		this.ball = new Ball(root, new Image("file:ressources/zidane.png"));
 		this.width = width;
 		this.height = height;
 		this.gamemodes = gamemodes;

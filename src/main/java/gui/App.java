@@ -18,9 +18,9 @@ public class App extends Application {
 		var root = new Pane();
 		var settings = new Settings(root);
 		var gameScene = new Scene(root);
-		var player_a = new Racket(root, settings.left_up, settings.left_down, 105, 200, 10, 100,
-				new Image("file:France.png"));
-		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 10, 100, null);
+		var player_a = new Racket(root, settings.left_up, settings.left_down, 105, 200, 10, 100, 
+				new Image("file:ressources/France.png"));
+		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 10, 100,new Image("file:ressources/allemagne.png"));
 		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.forground_color,
 				settings.background_color);
 		var gameView = new GameView(court, root, 1.0);

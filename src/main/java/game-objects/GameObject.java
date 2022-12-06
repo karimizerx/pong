@@ -25,6 +25,9 @@ public abstract class GameObject {
 	public GameObject(double x, double y, double w, double h, Image skin) {
 		this(x, y, w, h, 0, 0, skin);
 	}
+	public GameObject(double x, double y, double w, double h) {
+		this(x, y, w, h, 0, 0, null);
+	}
 
 	public final double get_width() {
 		return w;
