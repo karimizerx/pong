@@ -150,7 +150,7 @@ public class Court {
 		this.player_a.reset(this);
 		this.player_b.reset(this);
 		this.ball.reset(this);
-		this.racket_speed = 250 * get_height() / 600; 
-		this.ball.set_vel(ball.get_dx()*get_width()/1000,ball.get_dy()*get_width()/1000);
+		this.racket_speed = 250 * get_width() / 600; 
+		this.ball.scale_vel(get_width()/1000,get_width()/1000);
 	}
 }
