@@ -22,6 +22,8 @@ public class Court {
 	private Color primaire;
 	private Color secondaire;
 
+	private double last_width;
+
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
 	public Court(Pane root, Racket player_a, Racket player_b, double width, double height,
@@ -30,6 +32,7 @@ public class Court {
 		this.player_b = player_b;
 		this.ball = new Ball(root, new Image("file:ressources/zidane.png"));
 		this.width = width;
+		this.last_width = width;
 		this.height = height;
 		this.gamemodes = gamemodes;
 		this.primaire = prim;
@@ -113,6 +116,13 @@ public class Court {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.update(this, dt);
 		}
+
+		double mult = get_width()/last_width;
+		last_width = get_width();
+		ball.scale_vel(mult,mult);
+		player_a.scale_vel(1,mult);
+		player_b.scale_vel(1,mult);
+
 		player_a.update(this, dt);
 		player_b.update(this, dt);
 		ball.update(this, dt);
@@ -144,3 +154,4 @@ public class Court {
 		this.racket_speed = 250.0;
 	}
 }
+
