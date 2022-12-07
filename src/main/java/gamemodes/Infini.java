@@ -24,7 +24,13 @@ public class Infini implements Gamemode {
 	public void on_ball_touched_racket(model.Court court, boolean left) {
 		internal_scoreboard.add_point(0);
 	}
-	public void render(gui.GameView view, model.Court court) {
-		internal_scoreboard.render(court.getColor(internal_scoreboard.get_color_val()));
+	public void render() {
+		internal_scoreboard.render();
+	}
+	public void no_render() {
+		internal_scoreboard.no_render();
+	}
+	public void update_render(gui.GameView view, model.Court court) {
+		internal_scoreboard.update_render(court.getColor(internal_scoreboard.get_color_val()));
 	}
 }
