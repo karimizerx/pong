@@ -3,8 +3,8 @@ package gamemodes;
 import javafx.scene.input.KeyCode;
 
 public class RackWTF implements Gamemode {
-	static float min_length = 1;
-	static float max_length = 250;
+	static float min_length = 5;
+	static float max_length = 200;
 	static int wtf = 50;
 
 	public String getName() {
@@ -51,5 +51,7 @@ public class RackWTF implements Gamemode {
 		court.get_player_b().set_height(court.get_player_b().get_height() + add_length_b);
 	}
 
-	public void render(gui.GameView view, model.Court court) {}
+	public void render() {}
+	public void no_render() {}
+	public void update_render(gui.GameView view, model.Court court) {}
 }

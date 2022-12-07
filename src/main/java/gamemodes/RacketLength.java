@@ -40,5 +40,7 @@ public class RacketLength implements Gamemode {
 		court.get_player_b().set_height(court.get_player_b().get_height() + speed_b);
 	}
 
-	public void render(gui.GameView view, model.Court court) {}
+	public void render() {}
+	public void no_render() {}
+	public void update_render(gui.GameView view, model.Court court) {}
 }

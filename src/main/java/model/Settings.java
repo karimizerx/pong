@@ -52,8 +52,15 @@ public class Settings {
 		possible_gamemodes.add(gamemode_bonus_malus);
 		possible_gamemodes.add(new gamemodes.Vent(root));
 		possible_gamemodes.add(new gamemodes.CasseBrique(root));
+		possible_gamemodes.add(new gamemodes.Infini(root));
 
 		gamemodes = new LinkedList<>();
+		for (Gamemode g : possible_gamemodes) {
+			g.no_render();
+		}
+		for (Gamemode g : possible_bm_gamemodes) {
+			g.no_render();
+		}
 	}
 
 	public void reset_bonus_malus() {

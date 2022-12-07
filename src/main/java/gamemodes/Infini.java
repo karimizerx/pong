@@ -2,16 +2,17 @@ package gamemodes;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import model.Court;
 
-public class Scoreboard_versus implements Gamemode {
+public class Infini implements Gamemode {
 	private model.Scoreboard internal_scoreboard;
 
-	public Scoreboard_versus(Pane root) {
-		internal_scoreboard = new model.Scoreboard(root, 2);
+	public String getName() {
+		return "Infini";
 	}
 
-	public String getName() {
-		return "Scoreboard versus";
+	public Infini(Pane root) {
+		internal_scoreboard = new model.Scoreboard(root, 1);
 	}
 
 	public void reset() {}
@@ -19,12 +20,14 @@ public class Scoreboard_versus implements Gamemode {
 	public void on_key_pressed(KeyCode key) {}
 	public void on_key_released(KeyCode key) {}
 	public void on_ball_left_terrain(model.Court court, boolean left) {
-		internal_scoreboard.add_point(left ? 1 : 0);
+		int[] x = {0};
+		internal_scoreboard.set_scores(x);
 	}
 	public void update(model.Court court, double dt) {}
 
-	public void on_ball_touched_racket(model.Court court, boolean left) {}
-
+	public void on_ball_touched_racket(model.Court court, boolean left) {
+		internal_scoreboard.add_point(0);
+	}
 	public void render() {
 		internal_scoreboard.render();
 	}
