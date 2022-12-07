@@ -80,5 +80,15 @@ public class Vent implements Gamemode {
 		}
 	}
 
-	public void render(gui.GameView view, model.Court court) {}
+	public void render() {
+		for (Particle p : particles) {
+			p.circle.setVisible(true);
+		}
+	}
+	public void no_render() {
+		for (Particle p : particles) {
+			p.circle.setVisible(false);
+		}
+	}
+	public void update_render(gui.GameView view, model.Court court) {}
 }

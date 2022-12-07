@@ -86,5 +86,7 @@ public class Ia implements Gamemode {
 		}
 	}
 
-	public void render(gui.GameView view, Court court) {}
+	public void render() {}
+	public void no_render() {}
+	public void update_render(gui.GameView view, Court court) {}
 }
