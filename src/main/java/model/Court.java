@@ -127,7 +127,7 @@ public class Court {
 
 	public void render(GameView view) {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
-			gamemode.render(view, this);
+			gamemode.update_render(view, this);
 		}
 		ball.render(view, this, getColor(ball.get_color_val()));
 		player_a.render(view, this, getColor(ball.get_color_val()));

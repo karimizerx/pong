@@ -20,5 +20,7 @@ public class Acceleration implements Gamemode {
 		court.add_racket_speed(accel_racket);
 	}
 
-	public void render(gui.GameView view, model.Court court) {}
+	public void render() {}
+	public void no_render() {}
+	public void update_render(gui.GameView view, model.Court court) {}
 }

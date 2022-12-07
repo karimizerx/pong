@@ -48,10 +48,21 @@ public class CasseBrique implements Gamemode {
 			if (b.getCasse()) { to_remove.add(b); }
 		}
 		for (Brique b : to_remove) {
+			b.brique.setVisible(false);
 			list.remove(b);
 		}
 	}
 
+	public void render() {
+		for (Brique b : list) {
+			b.brique.setVisible(true);
+		}
+	}
+	public void no_render() {
+		for (Brique b : list) {
+			b.brique.setVisible(false);
+		}
+	}
 	@Override
-	public void render(GameView view, Court court) {}
+	public void update_render(gui.GameView view, model.Court court) {}
 }
