@@ -17,12 +17,15 @@ public class Court {
 	// instance parameters
 	private final Racket player_a, player_b;
 	private double width, height; // m
-	private double racket_speed; // m/s
+	private double racket_speed = 250; // m/s
 	private final Ball ball;
 	private Color primaire;
 	private Color secondaire;
 
 	private double last_width;
+	private double last_dx_ball;
+	private double last_dy_ball;
+	private double last_racket_speed = racket_speed;
 
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
@@ -120,8 +123,11 @@ public class Court {
 		double mult = get_width()/last_width;
 		last_width = get_width();
 		ball.scale_vel(mult,mult);
-		player_a.scale_vel(1,mult);
-		player_b.scale_vel(1,mult);
+		racket_speed*=mult;
+
+		last_dx_ball = ball.get_dx();
+		last_dy_ball = ball.get_dy();
+		last_racket_speed = racket_speed;
 
 		player_a.update(this, dt);
 		player_b.update(this, dt);
@@ -151,7 +157,16 @@ public class Court {
 		this.player_a.reset(this);
 		this.player_b.reset(this);
 		this.ball.reset(this);
-		this.racket_speed = 250.0;
+		this.racket_speed = last_racket_speed;
+		if(last_dx_ball > 0){
+			this.ball.set_vel(last_dx_ball,last_dy_ball);
+		}
+		else{
+			last_dx_ball = ball.get_dx();
+			last_dy_ball = ball.get_dy();
+		}
+
+
 	}
 }
 
