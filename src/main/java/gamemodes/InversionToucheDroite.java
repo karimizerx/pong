@@ -33,6 +33,8 @@ public class InversionToucheDroite implements Gamemode {
 		deja_reset = true;
 		desactive = false;
 	}
-	public void render(gui.GameView view, model.Court court) {}
+	public void no_render() {}
+	public void update_render(gui.GameView view, model.Court court){}
+	public void render() {}
 }
 

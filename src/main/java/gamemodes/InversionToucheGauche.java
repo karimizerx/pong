@@ -35,5 +35,7 @@ public class InversionToucheGauche implements Gamemode {
 
 		//desactive=!desactive;
 	}
-	public void render(gui.GameView view, model.Court court) {}
+	public void no_render() {}
+	public void update_render(gui.GameView view, model.Court court){}
+	public void render() {}
 }

@@ -1,10 +1,11 @@
 package game_objects;
 
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-
+import javafx.scene.paint.ImagePattern;
 import model.Court;
 import game_objects.Ball;
 import gui.GameView;
@@ -13,13 +14,14 @@ import game_objects.GameObject;
 public class Racket extends GameObject {
 	private KeyCode up_key;
 	private KeyCode down_key;
-	private double direction; // -1 is up, 1 is down, 0 is idle, can be multiplied by x to indicate a speed factor.
+	private double direction; // -1 is up, 1 is down, 0 is idle, can be multiplied by x to indicate a speed
+								// factor.
 	private double rel_x;
 	private int color_val = 1;
 	private Rectangle rectangle;
 
-	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h) {
-		super(x, y, w, h); // This initial x might be inaccurate, we'll see.
+	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h, Image skin) {
+		super(x, y, w, h, skin); // This initial x might be inaccurate, we'll see.
 		this.rel_x = x;
 		direction = 0;
 
@@ -27,15 +29,16 @@ public class Racket extends GameObject {
 		this.down_key = down_key;
 
 		rectangle = new Rectangle();
+		if (skin != null)
+			rectangle.setFill(new ImagePattern(skin));
 		root.getChildren().add(rectangle);
 	}
 
+	public void set_height(double v) {
+		if (v > 5) { super.set_height(v); }
+	}
 	public int get_color_val() {
 		return this.color_val;
-	}
-
-	public void set_height(double v){
-		if(v > 0) super.set_height(v);
 	}
 
 	public void set_down_key(KeyCode k){
@@ -55,6 +58,7 @@ public class Racket extends GameObject {
 	public void set_direction(double v) {
 		direction = v;
 	}
+
 	public void on_key_pressed(KeyCode key) {
 		if (key == up_key) {
 			direction = -1;
@@ -62,6 +66,7 @@ public class Racket extends GameObject {
 			direction = 1;
 		}
 	}
+
 	public void on_key_released(KeyCode key) {
 		if (key == up_key && direction < 0) {
 			direction = 0;
@@ -94,6 +99,5 @@ public class Racket extends GameObject {
 		rectangle.setHeight(get_height() * view.get_scale());
 		rectangle.setWidth(get_width() * view.get_scale());
 
-		rectangle.setFill(c);
 	}
 }

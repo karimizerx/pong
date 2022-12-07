@@ -37,9 +37,17 @@ public class Settings {
 		bonus_malus_gamemodes.add(new gamemodes.Vent(root));
 		
 		gamemodes = new LinkedList<>();
+		
+		gamemodes.add(new gamemodes.Ia(3,false));
+		
 		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
 		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		gamemodes.add(new CasseBrique(root));
+		gamemodes.add(new Acceleration());
+
+		for (Gamemode g : gamemodes) {
+			g.render();
+		}
 		gamemodes.add(new Acceleration());
 	}
 }
