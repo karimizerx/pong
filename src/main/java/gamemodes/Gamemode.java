@@ -3,6 +3,7 @@ package gamemodes;
 import javafx.scene.input.KeyCode;
 
 public interface Gamemode {
+	public String getName();
 	public void reset();
 	public void on_key_pressed(KeyCode key);
 	public void on_key_released(KeyCode key);

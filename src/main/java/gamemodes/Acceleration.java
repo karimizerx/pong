@@ -8,6 +8,10 @@ public class Acceleration implements Gamemode {
 
 	public Acceleration() {}
 
+	public String getName() {
+		return "Acceleration";
+	}
+
 	public void reset() {}
 
 	public void on_key_pressed(KeyCode key) {}

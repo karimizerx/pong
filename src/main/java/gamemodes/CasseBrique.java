@@ -19,6 +19,10 @@ public class CasseBrique implements Gamemode {
 		list = new LinkedList<Brique>();
 	}
 
+	public String getName() {
+		return "Casse-Brique";
+	}
+
 	@Override
 	public void reset() {
 		for (Brique b : list) {

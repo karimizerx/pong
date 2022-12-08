@@ -7,6 +7,10 @@ import model.Court;
 public class Infini implements Gamemode {
 	private model.Scoreboard internal_scoreboard;
 
+	public String getName() {
+		return "Scoreboard - Infini";
+	}
+
 	public Infini(Pane root) {
 		internal_scoreboard = new model.Scoreboard(root, 1);
 	}
