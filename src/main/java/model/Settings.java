@@ -46,8 +46,8 @@ public class Settings {
 		possible_gamemodes.add(new gamemodes.RackWTF());
 		possible_gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		possible_gamemodes.add(new gamemodes.Acceleration());
-		possible_gamemodes.add(new gamemodes.Ia(1, true));
-		possible_gamemodes.add(new gamemodes.Ia(1, false));
+		possible_gamemodes.add(new gamemodes.Ia(3, true));
+		possible_gamemodes.add(new gamemodes.Ia(3, false));
 		gamemode_bonus_malus = new gamemodes.Bonus_Malus(root, bm_gamemodes);
 		possible_gamemodes.add(gamemode_bonus_malus);
 		possible_gamemodes.add(new gamemodes.Vent(root));
