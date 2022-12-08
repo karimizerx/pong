@@ -36,7 +36,7 @@ public class Settings {
 		LinkedList<Gamemode> bonus_malus_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 		bonus_malus_gamemodes.add(new gamemodes.RacketLength(2));
 		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
-		//bonus_malus_gamemodes.add(new gamemodes.Vent(root));
+		bonus_malus_gamemodes.add(new gamemodes.Vent(root));
 		
 		gamemodes = new LinkedList<>();
 		
@@ -45,9 +45,10 @@ public class Settings {
 		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
 		gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		gamemodes.add(new CasseBrique(root));
-		//gamemodes.add(new Acceleration());
-		gamemodes.add(new Ia(3, true));
-		//gamemodes.add(new Ia(2, false));
-		gamemodes.add(new gamemodes.Vent(root));
+		gamemodes.add(new Acceleration());
+
+		for (Gamemode g : gamemodes) {
+			g.render();
+		}
 	}
 }
