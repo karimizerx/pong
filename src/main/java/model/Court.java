@@ -17,12 +17,14 @@ public class Court {
 	// instance parameters
 	private final Racket player_a, player_b;
 	private double width, height; // m
-	private double racket_speed; // m/s
+	private double racket_speed = 250; // m/s
 	private final Ball ball;
 	private Color primaire;
 	private Color secondaire;
 	private KeyCode pauseKey;
 	private boolean paused = false;
+
+	private double last_width;
 
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
@@ -32,6 +34,7 @@ public class Court {
 		this.player_b = player_b;
 		this.ball = new Ball(root, new Image("file:ressources/zidane.png"));
 		this.width = width;
+		this.last_width = width;
 		this.height = height;
 		this.gamemodes = gamemodes;
 		this.primaire = prim;
@@ -119,6 +122,11 @@ public class Court {
 	}
 
 	public void update(double dt) {
+		double mult = get_width()/last_width;
+		last_width = get_width();
+		ball.scale_vel(mult,mult);
+		racket_speed*=mult;
+
 		if(!paused){
 			for (gamemodes.Gamemode gamemode : gamemodes) {
 				gamemode.update(this, dt);
@@ -152,6 +160,7 @@ public class Court {
 		this.player_a.reset(this);
 		this.player_b.reset(this);
 		this.ball.reset(this);
-		this.racket_speed = 250.0;
+		this.racket_speed = 250 * get_width() / 600; 
+		this.ball.scale_vel(get_width()/1000,get_width()/1000);
 	}
 }
