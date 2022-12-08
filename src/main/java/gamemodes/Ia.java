@@ -19,6 +19,10 @@ public class Ia implements Gamemode {
 		gauche = g;
 	}
 
+	public String getName() {
+		return "IA (" + (gauche ? "gauche" : "droite") + ")";
+	}
+
 	public void on_key_pressed(KeyCode key) {}
 	public void on_key_released(KeyCode key) {}
 	public void on_ball_touched_racket(model.Court court, boolean left) {}

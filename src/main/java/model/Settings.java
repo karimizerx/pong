@@ -20,6 +20,10 @@ public class Settings {
 	public Color forground_color;
 	public Color background_color;
 	public LinkedList<Gamemode> gamemodes;
+	public LinkedList<Gamemode> bm_gamemodes;
+	public LinkedList<Gamemode> possible_gamemodes;
+	public LinkedList<Gamemode> possible_bm_gamemodes;
+	public gamemodes.Bonus_Malus gamemode_bonus_malus;
 
 	public Settings(Pane root) {
 		left_up = KeyCode.A;
@@ -33,22 +37,35 @@ public class Settings {
 		forground_color = Color.BLACK;
 		background_color = Color.WHITE;
 
-		LinkedList<Gamemode> bonus_malus_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
-		bonus_malus_gamemodes.add(new gamemodes.RacketLength(2));
-		bonus_malus_gamemodes.add(new gamemodes.RackWTF());
-		bonus_malus_gamemodes.add(new gamemodes.Vent(root));
-		
-		gamemodes = new LinkedList<>();
-		
-		gamemodes.add(new gamemodes.Ia(3,false));
-		
-		gamemodes.add(new gamemodes.Bonus_Malus(root, bonus_malus_gamemodes));
-		gamemodes.add(new gamemodes.Scoreboard_versus(root));
-		gamemodes.add(new CasseBrique(root));
-		gamemodes.add(new Acceleration());
+		bm_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 
-		for (Gamemode g : gamemodes) {
-			g.render();
+		possible_bm_gamemodes = new LinkedList<Gamemode>();
+		possible_bm_gamemodes.add(new gamemodes.RacketLength(2));
+		possible_bm_gamemodes.add(new gamemodes.RackWTF());
+
+		possible_gamemodes = new LinkedList<Gamemode>();
+		possible_gamemodes.add(new gamemodes.Scoreboard_versus(root));
+		possible_gamemodes.add(new gamemodes.Infini(root));
+		possible_gamemodes.add(new gamemodes.RacketLength(2));
+		possible_gamemodes.add(new gamemodes.RackWTF());
+		possible_gamemodes.add(new gamemodes.Acceleration());
+		possible_gamemodes.add(new gamemodes.Ia(3, true));
+		possible_gamemodes.add(new gamemodes.Ia(3, false));
+		gamemode_bonus_malus = new gamemodes.Bonus_Malus(root, bm_gamemodes);
+		possible_gamemodes.add(gamemode_bonus_malus);
+		possible_gamemodes.add(new gamemodes.Vent(root));
+		possible_gamemodes.add(new gamemodes.CasseBrique(root));
+
+		gamemodes = new LinkedList<>();
+		for (Gamemode g : possible_gamemodes) {
+			g.no_render();
 		}
+		for (Gamemode g : possible_bm_gamemodes) {
+			g.no_render();
+		}
+	}
+
+	public void reset_bonus_malus() {
+		bm_gamemodes = new LinkedList<Gamemode>();
 	}
 }

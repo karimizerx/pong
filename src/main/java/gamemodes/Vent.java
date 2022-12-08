@@ -34,6 +34,10 @@ public class Vent implements Gamemode {
 		}
 	}
 
+	public String getName() {
+		return "Vent";
+	}
+
 	public void reset() {
 		t = random.nextInt(100000000);
 		for (Particle p : particles) {
