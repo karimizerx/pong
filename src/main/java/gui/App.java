@@ -80,12 +80,12 @@ public class App extends Application {
 	public void startGame(Stage primaryStage, Pane root, Settings settings) {
 
 		var gameScene = new Scene(root);
-		var player_a = new Racket(root, settings.left_up, settings.left_down, 105, 200, 10, 100, new Image("file:ressources/France.png"));
-		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 10, 100,new Image("file:ressources/allemagne.png"));
+		var player_a = new Racket(root, settings.left_up, settings.left_down, 105, 200, 50, 200, new Image("file:ressources/left_racket.png"));
+		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 50, 200,new Image("file:ressources/right_racket.png"));
 		for (Gamemode g : settings.gamemodes) {
 			g.render();
 		}
-		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.forground_color, settings.background_color, settings.pauseKey);
+		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.forground_color, settings.background, settings.pauseKey);
 		var gameView = new GameView(court, root, 1.0);
 		gameScene.setOnKeyPressed(ev -> {
 			court.on_key_pressed(ev.getCode());
@@ -99,9 +99,13 @@ public class App extends Application {
 		gameScene.heightProperty().addListener((obs, oldVal, newVal) -> {
 			court.set_height((double) newVal);
 		});
-		gameScene.setFill(court.get_secondaire());
+		gameScene.setFill(court.get_background());
 		primaryStage.setScene(gameScene);
 		primaryStage.show();
 		gameView.animate();
 	}
+
 }
+
+
+

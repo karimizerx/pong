@@ -3,6 +3,7 @@ package model;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
@@ -20,7 +21,7 @@ public class Court {
 	private double racket_speed = 250; // m/s
 	private final Ball ball;
 	private Color primaire;
-	private Color secondaire;
+	private ImagePattern background;
 	private KeyCode pauseKey;
 	private boolean paused = false;
 
@@ -29,16 +30,16 @@ public class Court {
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
 	public Court(Pane root, Racket player_a, Racket player_b, double width, double height,
-			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon, KeyCode pauseKey) {
+			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Image background, KeyCode pauseKey) {
 		this.player_a = player_a;
 		this.player_b = player_b;
-		this.ball = new Ball(root, new Image("file:ressources/zidane.png"));
+		this.ball = new Ball(root, new Image("file:ressources/ball.png"));
 		this.width = width;
 		this.last_width = width;
 		this.height = height;
 		this.gamemodes = gamemodes;
 		this.primaire = prim;
-		this.secondaire = secon;
+		this.background = new ImagePattern(background);
 		this.pauseKey = pauseKey;
 		reset();
 	}
@@ -47,8 +48,8 @@ public class Court {
 		return this.primaire;
 	}
 
-	public Color get_secondaire() {
-		return this.secondaire;
+	public ImagePattern get_background() {
+		return this.background;
 	}
 
 	public Racket get_player_a() {
@@ -137,20 +138,13 @@ public class Court {
 		}
 	}
 
-	public Color getColor(int o) {
-		if (o == 1) {
-			return primaire;
-		} else
-			return secondaire;
-	}
-
 	public void render(GameView view) {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.update_render(view, this);
 		}
-		ball.render(view, this, getColor(ball.get_color_val()));
-		player_a.render(view, this, getColor(ball.get_color_val()));
-		player_b.render(view, this, getColor(ball.get_color_val()));
+		ball.render(view, this, primaire);
+		player_a.render(view, this, primaire);
+		player_b.render(view, this, primaire);
 	}
 
 	void reset() {
@@ -164,3 +158,4 @@ public class Court {
 		this.ball.scale_vel(get_width()/1000,get_width()/1000);
 	}
 }
+

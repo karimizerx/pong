@@ -32,6 +32,7 @@ public class Scoreboard_versus implements Gamemode {
 		internal_scoreboard.no_render();
 	}
 	public void update_render(gui.GameView view, model.Court court) {
-		internal_scoreboard.update_render(court.getColor(internal_scoreboard.get_color_val()));
+		internal_scoreboard.update_render(court.get_primaire());
 	}
 }
+

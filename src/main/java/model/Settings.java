@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
 
 import gamemodes.*;
 
@@ -18,7 +19,7 @@ public class Settings {
 	public KeyCode turbo;
 	public KeyCode pauseKey;
 	public Color forground_color;
-	public Color background_color;
+	public Image background;
 	public LinkedList<Gamemode> gamemodes;
 	public LinkedList<Gamemode> bm_gamemodes;
 	public LinkedList<Gamemode> possible_gamemodes;
@@ -35,7 +36,7 @@ public class Settings {
 		pauseKey = KeyCode.P;
 
 		forground_color = Color.BLACK;
-		background_color = Color.WHITE;
+		background = new Image("file:ressources/background.jpg");
 
 		bm_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 
