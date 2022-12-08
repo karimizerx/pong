@@ -21,13 +21,15 @@ public class Court {
 	private final Ball ball;
 	private Color primaire;
 	private Color secondaire;
+	private KeyCode pauseKey;
+	private boolean paused = false;
 
 	private double last_width;
 
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
 	public Court(Pane root, Racket player_a, Racket player_b, double width, double height,
-			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon) {
+			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon, KeyCode pauseKey) {
 		this.player_a = player_a;
 		this.player_b = player_b;
 		this.ball = new Ball(root, new Image("file:ressources/zidane.png"));
@@ -37,6 +39,7 @@ public class Court {
 		this.gamemodes = gamemodes;
 		this.primaire = prim;
 		this.secondaire = secon;
+		this.pauseKey = pauseKey;
 		reset();
 	}
 
@@ -89,6 +92,12 @@ public class Court {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.on_key_pressed(key);
 		}
+		if(key == pauseKey)
+			togglePause();
+	}
+
+	public void togglePause(){
+		paused = !paused;
 	}
 
 	public void on_key_released(KeyCode key) {
@@ -113,18 +122,19 @@ public class Court {
 	}
 
 	public void update(double dt) {
-		for (gamemodes.Gamemode gamemode : gamemodes) {
-			gamemode.update(this, dt);
-		}
-
 		double mult = get_width()/last_width;
 		last_width = get_width();
 		ball.scale_vel(mult,mult);
 		racket_speed*=mult;
 
-		player_a.update(this, dt);
-		player_b.update(this, dt);
-		ball.update(this, dt);
+		if(!paused){
+			for (gamemodes.Gamemode gamemode : gamemodes) {
+				gamemode.update(this, dt);
+			}
+			player_a.update(this, dt);
+			player_b.update(this, dt);
+			ball.update(this, dt);
+		}
 	}
 
 	public Color getColor(int o) {

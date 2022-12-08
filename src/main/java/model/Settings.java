@@ -16,6 +16,7 @@ public class Settings {
 	public KeyCode right_down;
 	public KeyCode stop;
 	public KeyCode turbo;
+	public KeyCode pauseKey;
 	public Color forground_color;
 	public Color background_color;
 	public LinkedList<Gamemode> gamemodes;
@@ -31,6 +32,7 @@ public class Settings {
 		right_down = KeyCode.DOWN;
 		stop = KeyCode.ESCAPE;
 		turbo = KeyCode.SPACE;
+		pauseKey = KeyCode.P;
 
 		forground_color = Color.BLACK;
 		background_color = Color.WHITE;
