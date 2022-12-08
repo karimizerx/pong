@@ -11,7 +11,7 @@ public class Scoreboard_versus implements Gamemode {
 	}
 
 	public String getName() {
-		return "Scoreboard versus";
+		return "Scoreboard - Versus";
 	}
 
 	public void reset() {}

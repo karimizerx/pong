@@ -42,9 +42,10 @@ public class Settings {
 		possible_bm_gamemodes.add(new gamemodes.RackWTF());
 
 		possible_gamemodes = new LinkedList<Gamemode>();
+		possible_gamemodes.add(new gamemodes.Scoreboard_versus(root));
+		possible_gamemodes.add(new gamemodes.Infini(root));
 		possible_gamemodes.add(new gamemodes.RacketLength(2));
 		possible_gamemodes.add(new gamemodes.RackWTF());
-		possible_gamemodes.add(new gamemodes.Scoreboard_versus(root));
 		possible_gamemodes.add(new gamemodes.Acceleration());
 		possible_gamemodes.add(new gamemodes.Ia(3, true));
 		possible_gamemodes.add(new gamemodes.Ia(3, false));
@@ -52,7 +53,6 @@ public class Settings {
 		possible_gamemodes.add(gamemode_bonus_malus);
 		possible_gamemodes.add(new gamemodes.Vent(root));
 		possible_gamemodes.add(new gamemodes.CasseBrique(root));
-		possible_gamemodes.add(new gamemodes.Infini(root));
 
 		gamemodes = new LinkedList<>();
 		for (Gamemode g : possible_gamemodes) {

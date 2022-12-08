@@ -8,7 +8,7 @@ public class Infini implements Gamemode {
 	private model.Scoreboard internal_scoreboard;
 
 	public String getName() {
-		return "Infini";
+		return "Scoreboard - Infini";
 	}
 
 	public Infini(Pane root) {
