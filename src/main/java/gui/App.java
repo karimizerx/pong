@@ -71,7 +71,7 @@ public class App extends Application {
 		root.setCenter(box);
 		box.setAlignment(Pos.CENTER);
 
-		var menuScene = new Scene(root);
+		var menuScene = new Scene(root,1000,600);
 		primaryStage.setScene(menuScene);
 		primaryStage.show();
 		
