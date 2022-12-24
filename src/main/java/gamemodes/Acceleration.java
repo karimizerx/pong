@@ -3,7 +3,7 @@ package gamemodes;
 import javafx.scene.input.KeyCode;
 
 public class Acceleration implements Gamemode {
-	double accel_ball = 1.1;
+	double accel_ball = 1.05;
 	double accel_racket = 1;
 
 	public Acceleration() {}
@@ -20,8 +20,10 @@ public class Acceleration implements Gamemode {
 	public void update(model.Court court, double dt) {}
 
 	public void on_ball_touched_racket(model.Court court, boolean left) {
-		court.get_ball().scale_vel(accel_ball, accel_ball);
-		court.add_racket_speed(accel_racket);
+		if(court.get_ball().get_dx()<800){
+			court.get_ball().scale_vel(accel_ball, accel_ball);
+			court.add_racket_speed(accel_racket);
+		}
 	}
 
 	public void render() {}
