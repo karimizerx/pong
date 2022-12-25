@@ -14,6 +14,8 @@ import game_objects.GameObject;
 public class Ball extends GameObject {
 	private Circle circle;
 	private Image skin;
+	private double boost = 1200.0;
+	private boolean boosted;
 
 	private int colorval = 1;
 
@@ -22,7 +24,7 @@ public class Ball extends GameObject {
 		circle = new Circle();
 		circle.setFill(new ImagePattern(skin));
 		root.getChildren().add(circle);
-
+		boosted = false;
 	}
 
 	public int get_color_val() {
@@ -53,6 +55,13 @@ public class Ball extends GameObject {
 			if (get_dx() < 0) {
 				scale_vel(-1, 1);
 				c.on_ball_touched_racket(true);
+				if (boosted) {
+					boosted = false;
+					apply_force(-boost, 0);
+				} else if (Math.abs(get_middle_y()-c.get_player_a().get_middle_y()) < 5) {
+					boosted = true;
+					apply_force(boost, 0);
+				}
 			}
 			change_x(2 * (c.get_player_a().get_right() - get_left()));
 			set_vel(get_dx(), 10*(get_middle_y()-c.get_player_a().get_middle_y()));
@@ -60,6 +69,13 @@ public class Ball extends GameObject {
 			if (get_dx() > 0) {
 				scale_vel(-1, 1);
 				c.on_ball_touched_racket(false);
+				if (boosted) {
+					boosted = false;
+					apply_force(boost, 0);
+				} else if (Math.abs(get_middle_y()-c.get_player_b().get_middle_y()) < 5) {
+					boosted = true;
+					apply_force(-boost, 0);
+				}
 			}
 			change_x(2 * (c.get_player_b().get_left() - get_right()));
 			set_vel(get_dx(), 10*(get_middle_y()-c.get_player_b().get_middle_y()));
