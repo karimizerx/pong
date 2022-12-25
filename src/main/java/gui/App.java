@@ -20,6 +20,7 @@ import model.Court;
 import model.Settings;
 
 import game_objects.Racket;
+import model.Ressources;
 import gamemodes.*;
 
 public class App extends Application {
@@ -52,7 +53,7 @@ public class App extends Application {
 			}
 		);
 		play_button.setPrefSize(180, 40);
-		Image play_image = new Image("file:ressources/play.png");
+		Image play_image = Ressources.get_image("play");
 		ImageView play_view = new ImageView(play_image);
 		play_button.setGraphic(play_view);
 
@@ -80,8 +81,11 @@ public class App extends Application {
 	public void startGame(Stage primaryStage, Pane root, Settings settings) {
 
 		var gameScene = new Scene(root);
-		var player_a = new Racket(root, settings.left_up, settings.left_down, 105, 200, 10, 100, new Image("file:ressources/France.png"));
-		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 10, 100,new Image("file:ressources/allemagne.png"));
+		var player_a = new Racket(root, settings.left_up,  settings.left_down,
+			 105, 200, 10, 100, Ressources.get_image("racket_l"));
+		var player_b = new Racket(root, settings.right_up, settings.right_down,
+			-105, 200, 10, 100, Ressources.get_image("racket_r"));
+
 		for (Gamemode g : settings.gamemodes) {
 			g.render();
 		}
