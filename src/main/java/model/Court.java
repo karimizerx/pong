@@ -85,6 +85,7 @@ public class Court {
 		racket_speed += v;
 	}
 
+	
 	public void on_key_pressed(KeyCode key) {
 		player_a.on_key_pressed(key);
 		player_b.on_key_pressed(key);

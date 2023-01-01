@@ -37,11 +37,23 @@ public class Racket extends GameObject {
 	public void set_height(double v) {
 		if (v > 5) { super.set_height(v); }
 	}
-
-
 	public int get_color_val() {
 		return this.color_val;
 	}
+
+	public void set_down_key(KeyCode k){
+		down_key=k;
+	}
+	public void set_up_key(KeyCode k){
+		up_key=k;
+	}
+	public KeyCode get_up_key(){
+		return up_key;
+	}
+	public KeyCode get_down_key(){
+		return down_key;
+	}
+
 
 	public void set_direction(double v) {
 		direction = v;
