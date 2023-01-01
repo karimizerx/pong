@@ -7,8 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 import game_objects.Racket;
-
-import javax.swing.ImageIcon;
+import model.Ressources;
 
 import game_objects.Ball;
 import gui.GameView;
@@ -32,7 +31,7 @@ public class Court {
 			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon, KeyCode pauseKey) {
 		this.player_a = player_a;
 		this.player_b = player_b;
-		this.ball = new Ball(root, new Image("file:ressources/zidane.png"));
+		this.ball = new Ball(root, Ressources.get_image("ball"));
 		this.width = width;
 		this.last_width = width;
 		this.height = height;
