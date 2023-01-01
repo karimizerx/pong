@@ -12,6 +12,9 @@ public class AccelRacket implements Gamemode {
 		this.mult=x;
 	}
 
+	public String getName() {
+		return "Accelerate rackets";
+	}
 
 	public void on_key_pressed(KeyCode key) {}
 	public void on_key_released(KeyCode key) {}

@@ -42,6 +42,9 @@ public class Settings {
 		possible_bm_gamemodes = new LinkedList<Gamemode>();
 		possible_bm_gamemodes.add(new gamemodes.RacketLength(2));
 		possible_bm_gamemodes.add(new gamemodes.RackWTF());
+		possible_bm_gamemodes.add(new gamemodes.AccelRacket(1));
+		possible_bm_gamemodes.add(new gamemodes.InversionToucheGauche());
+		possible_bm_gamemodes.add(new gamemodes.InversionToucheDroite());
 
 		possible_gamemodes = new LinkedList<Gamemode>();
 		possible_gamemodes.add(new gamemodes.Scoreboard_versus(root));
