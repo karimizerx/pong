@@ -87,7 +87,7 @@ public class SettingsView {
 		root.setCenter(box);
 		box.setAlignment(Pos.CENTER);
 
-		var scene = new Scene(root);
+		var scene = new Scene(root,1000,600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
