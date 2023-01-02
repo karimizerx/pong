@@ -87,6 +87,7 @@ public class Racket extends GameObject {
 	public void reset(Court court) {
 		set_x(rel_x >= 0 ? rel_x : court.get_width() + rel_x);
 		set_y(court.get_height() / 2);
+		direction = 0;
 	}
 
 	public void render(GameView view, Court court, Color c) {
