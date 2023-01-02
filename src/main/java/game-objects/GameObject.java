@@ -1,6 +1,7 @@
 package game_objects;
 
 import javafx.scene.image.Image;
+
 import model.Court;
 
 public abstract class GameObject {

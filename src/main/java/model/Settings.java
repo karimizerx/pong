@@ -1,13 +1,11 @@
 package model;
 
 import java.util.LinkedList;
-
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.layout.Pane;
 
-import gamemodes.*;
+import gamemodes.Gamemode;
 
 public class Settings {
 	public KeyCode left_up;

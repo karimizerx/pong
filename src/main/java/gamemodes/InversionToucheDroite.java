@@ -1,11 +1,9 @@
 package gamemodes;
 
 import javafx.scene.input.KeyCode;
-import java.util.Random;
-import model.Court;
 
 public class InversionToucheDroite implements Gamemode {
-	private Court court1;
+	private model.Court court1;
 	private boolean inverted = false;
 
 	public InversionToucheDroite() {}

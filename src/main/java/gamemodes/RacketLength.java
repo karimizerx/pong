@@ -29,10 +29,10 @@ public class RacketLength implements Gamemode {
 	public void on_ball_left_terrain(model.Court court, boolean left) {}
 
 	public void update(model.Court court, double dt) {
-		if((court.get_player_a().get_height() > max_length && speed_a > 0)  || (court.get_player_a().get_height() < min_length && speed_a < 0)) {
+		if ((court.get_player_a().get_height() > max_length && speed_a > 0)  || (court.get_player_a().get_height() < min_length && speed_a < 0)) {
 			speed_a *= -1;
 		}
-		if((court.get_player_b().get_height() > max_length && speed_b > 0)  || (court.get_player_b().get_height() < min_length && speed_b < 0)) {
+		if ((court.get_player_b().get_height() > max_length && speed_b > 0)  || (court.get_player_b().get_height() < min_length && speed_b < 0)) {
 			speed_b *= -1;
 		}
 

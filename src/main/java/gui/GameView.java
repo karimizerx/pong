@@ -1,12 +1,9 @@
 package gui;
 
-import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
-import javafx.scene.paint.Color;
+
 import model.Court;
-import model.Scoreboard;
 
 public class GameView {
 	// class parameters

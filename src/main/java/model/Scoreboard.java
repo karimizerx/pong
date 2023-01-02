@@ -1,9 +1,9 @@
 package model;
 
-import javafx.scene.text.*;
-import javax.swing.text.AttributeSet.ColorAttribute;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class Scoreboard {
 	private Pane root;
@@ -15,10 +15,11 @@ public class Scoreboard {
 
 	public static String make_scoreboard(int[] s) {
 		String acc = "";
-		for (int i = 0; i < s.length; i++) {
-			if(i != 0)
-				acc += " : ";
-			acc += s[i];
+		if (s.length != 0) {
+			acc += s[0];
+			for (int i = 1; i < s.length; i++) {
+				acc += " : " + s[i];
+			}
 		}
 		return acc;
 	}

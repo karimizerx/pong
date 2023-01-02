@@ -1,21 +1,18 @@
 package gui;
 
-import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Court;
-import model.Settings;
 
-import game_objects.Racket;
-import gamemodes.*;
+import gamemodes.Gamemode;
+import gamemodes.Bonus_Malus;
+import model.Settings;
 
 public class SettingsView {
 	private Settings settings;
@@ -87,7 +84,7 @@ public class SettingsView {
 		root.setCenter(box);
 		box.setAlignment(Pos.CENTER);
 
-		var scene = new Scene(root,1000,600);
+		var scene = new Scene(root, 1000, 600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

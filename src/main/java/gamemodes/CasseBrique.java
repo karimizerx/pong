@@ -1,13 +1,11 @@
 package gamemodes;
 
 import java.util.LinkedList;
-
-import game_objects.Brique;
-import gui.GameView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+
+import game_objects.Brique;
 import model.Court;
-import javafx.scene.paint.Color;
 
 public class CasseBrique implements Gamemode {
 	double v = 1;

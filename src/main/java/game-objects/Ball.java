@@ -1,20 +1,19 @@
 package game_objects;
 
 import java.util.Random;
-import javafx.scene.shape.Circle;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import model.Court;
+import javafx.scene.shape.Circle;
+
 import gui.GameView;
-import game_objects.GameObject;
+import model.Court;
 
 public class Ball extends GameObject {
 	private Circle circle;
 	private Image skin;
-	private double boost = 1200.0;
+	private double boost;
 	private boolean boosted;
 
 	private int colorval = 1;
@@ -24,6 +23,7 @@ public class Ball extends GameObject {
 		circle = new Circle();
 		circle.setFill(new ImagePattern(skin));
 		root.getChildren().add(circle);
+		boost = 1200.0;
 		boosted = false;
 	}
 
@@ -31,12 +31,9 @@ public class Ball extends GameObject {
 		return this.colorval;
 	}
 
-	// Can't resize the ball. (For now ?)
-	public void set_width(double v) {
-	}
-
-	public void set_height(double v) {
-	}
+	// Can't resize the ball.
+	public void set_width(double v) {}
+	public void set_height(double v) {}
 
 	public void update(Court c, double dt) {
 		super.update(c, dt);
@@ -58,13 +55,13 @@ public class Ball extends GameObject {
 				if (boosted) {
 					boosted = false;
 					apply_force(-boost, 0);
-				} else if (Math.abs(get_middle_y()-c.get_player_a().get_middle_y()) < 5) {
+				} else if (Math.abs(get_middle_y() - c.get_player_a().get_middle_y()) < 5) {
 					boosted = true;
 					apply_force(boost, 0);
 				}
 			}
 			change_x(2 * (c.get_player_a().get_right() - get_left()));
-			set_vel(get_dx(), 10*(get_middle_y()-c.get_player_a().get_middle_y()));
+			set_vel(get_dx(), 10 * (get_middle_y() - c.get_player_a().get_middle_y()));
 		} else if (this.collides(c.get_player_b(), dt)) {
 			if (get_dx() > 0) {
 				scale_vel(-1, 1);
@@ -72,13 +69,13 @@ public class Ball extends GameObject {
 				if (boosted) {
 					boosted = false;
 					apply_force(boost, 0);
-				} else if (Math.abs(get_middle_y()-c.get_player_b().get_middle_y()) < 5) {
+				} else if (Math.abs(get_middle_y() - c.get_player_b().get_middle_y()) < 5) {
 					boosted = true;
 					apply_force(-boost, 0);
 				}
 			}
 			change_x(2 * (c.get_player_b().get_left() - get_right()));
-			set_vel(get_dx(), 10*(get_middle_y()-c.get_player_b().get_middle_y()));
+			set_vel(get_dx(), 10 * (get_middle_y() - c.get_player_b().get_middle_y()));
 		} else if (get_right() < 0 || get_left() > c.get_width()) {
 			if (get_right() < 0) {
 				c.on_ball_left_terrain(true);

@@ -1,12 +1,11 @@
 package gamemodes;
 
-import javafx.scene.input.KeyCode;
-import librairies.OpenSimplexNoise;
-import java.util.Random;
-import java.lang.Math;
 import java.util.ArrayList;
+import java.util.Random;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import librairies.OpenSimplexNoise;
 
 public class Vent implements Gamemode {
 	private static class Particle {

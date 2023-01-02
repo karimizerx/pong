@@ -1,13 +1,10 @@
 package game_objects;
 
-import javafx.scene.input.KeyCode;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import model.Court;
-import gui.GameView;
-import game_objects.GameObject;
 
 public class Brique extends GameObject {
 	public Rectangle brique;

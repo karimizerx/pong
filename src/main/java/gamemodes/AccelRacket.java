@@ -1,7 +1,6 @@
 package gamemodes;
 
 import javafx.scene.input.KeyCode;
-import java.util.Random;
 import model.Court;
 
 public class AccelRacket implements Gamemode {
@@ -9,7 +8,7 @@ public class AccelRacket implements Gamemode {
 	int mult;
 	double vitesse_nv;
 	public AccelRacket(int x) {
-		this.mult=x;
+		this.mult = x;
 	}
 
 	public String getName() {
@@ -23,20 +22,20 @@ public class AccelRacket implements Gamemode {
 
 	boolean desactive=false;
 	public void update(model.Court court, double dt) {
-		if(!desactive){
-			this.vitesse_nv=court.get_racket_speed()*mult;
-            court.add_racket_speed(vitesse_nv);
+		if (!desactive) {
+			this.vitesse_nv = court.get_racket_speed() * mult;
+			court.add_racket_speed(vitesse_nv);
 			desactive=!desactive;
 		}
 		court1=court;
 	}
 
 	public void reset() {
-		if(court1==null)return;
-			court1.add_racket_speed(-vitesse_nv);
-			desactive=false;
+		if (court1 == null) { return; }
+		court1.add_racket_speed(-vitesse_nv);
+		desactive=false;
 	}
 	public void no_render() {}
-	public void update_render(gui.GameView view, model.Court court){}
+	public void update_render(gui.GameView view, model.Court court) {}
 	public void render() {}
 }
