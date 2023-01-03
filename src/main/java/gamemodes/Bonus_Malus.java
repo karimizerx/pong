@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Random;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import game_objects.GameObject;
@@ -20,6 +21,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		list = gamemode_list;
 		active_gamemodes_id = new boolean[list.size()];
 		circle = new Circle();
+		circle.setFill(Color.BLACK);
 		root.getChildren().add(circle);
 		reset();
 		decompte = 200;
@@ -163,7 +165,6 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 	}
 	public void update_render(gui.GameView view, model.Court court) {
 		circle.setRadius(super.get_width());
-		circle.setFill(court.get_primaire());
 		circle.setCenterX(super.get_middle_x() * view.get_scale());
 		circle.setCenterY(super.get_middle_y() * view.get_scale());
 

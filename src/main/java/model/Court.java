@@ -2,7 +2,6 @@ package model;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 import game_objects.Ball;
 import game_objects.Racket;
@@ -14,8 +13,6 @@ public class Court {
 	private double width, height; // m
 	private double racket_speed = 250; // m/s
 	private final Ball ball;
-	private Color primaire;
-	private Color secondaire;
 	private KeyCode pauseKey;
 	private boolean paused = false;
 
@@ -24,7 +21,7 @@ public class Court {
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
 	public Court(Pane root, Racket player_a, Racket player_b, double width, double height,
-	             java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon, KeyCode pauseKey) {
+	             java.util.LinkedList<gamemodes.Gamemode> gamemodes, KeyCode pauseKey) {
 		this.player_a = player_a;
 		this.player_b = player_b;
 		this.ball = new Ball(root, Ressources.get_image("ball"));
@@ -32,18 +29,8 @@ public class Court {
 		this.last_width = width;
 		this.height = height;
 		this.gamemodes = gamemodes;
-		this.primaire = prim;
-		this.secondaire = secon;
 		this.pauseKey = pauseKey;
 		reset();
-	}
-
-	public Color get_primaire() {
-		return this.primaire;
-	}
-
-	public Color get_secondaire() {
-		return this.secondaire;
 	}
 
 	public Racket get_player_a() {
@@ -133,17 +120,13 @@ public class Court {
 		}
 	}
 
-	public Color getColor(int o) {
-		return o == 1 ? primaire : secondaire;
-	}
-
 	public void render(GameView view) {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.update_render(view, this);
 		}
-		ball.render(view, this, getColor(ball.get_color_val()));
-		player_a.render(view, this, getColor(ball.get_color_val()));
-		player_b.render(view, this, getColor(ball.get_color_val()));
+		ball.render(view, this);
+		player_a.render(view, this);
+		player_b.render(view, this);
 	}
 
 	void reset() {

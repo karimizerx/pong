@@ -3,7 +3,6 @@ package game_objects;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
@@ -15,7 +14,6 @@ public class Racket extends GameObject {
 	private KeyCode down_key;
 	private double direction; // -1 is up, 1 is down, 0 is idle, can be multiplied by x to indicate a speed factor.
 	private double rel_x;
-	private int color_val = 1;
 	private Rectangle rectangle;
 
 	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h, Image skin) {
@@ -33,9 +31,6 @@ public class Racket extends GameObject {
 
 	public void set_height(double v) {
 		if (v > 5) { super.set_height(v); }
-	}
-	public int get_color_val() {
-		return this.color_val;
 	}
 
 	public void set_down_key(KeyCode k) {
@@ -90,7 +85,7 @@ public class Racket extends GameObject {
 		direction = 0;
 	}
 
-	public void render(GameView view, Court court, Color c) {
+	public void render(GameView view, Court court) {
 		rectangle.setX(get_left() * view.get_scale());
 		rectangle.setY(get_up() * view.get_scale());
 		rectangle.setHeight(get_height() * view.get_scale());

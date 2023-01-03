@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -78,8 +79,7 @@ public class App extends Application {
 		for (Gamemode g : settings.gamemodes) {
 			g.render();
 		}
-		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.forground_color,
-			settings.background_color, settings.pauseKey);
+		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.pauseKey);
 		var gameView = new GameView(court, root, 1.0);
 		gameScene.setOnKeyPressed(ev -> {
 			court.on_key_pressed(ev.getCode());
@@ -93,7 +93,7 @@ public class App extends Application {
 		gameScene.heightProperty().addListener((obs, oldVal, newVal) -> {
 			court.set_height((double) newVal);
 		});
-		gameScene.setFill(court.get_secondaire());
+		gameScene.setFill(Color.WHITE);
 		primaryStage.setScene(gameScene);
 		primaryStage.show();
 		gameView.animate();

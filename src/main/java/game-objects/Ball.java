@@ -3,7 +3,6 @@ package game_objects;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
@@ -16,8 +15,6 @@ public class Ball extends GameObject {
 	private double boost;
 	private boolean boosted;
 
-	private int colorval = 1;
-
 	public Ball(Pane root, Image skin) {
 		super(0, 0, 20, 20, skin);
 		circle = new Circle();
@@ -25,10 +22,6 @@ public class Ball extends GameObject {
 		root.getChildren().add(circle);
 		boost = 1200.0;
 		boosted = false;
-	}
-
-	public int get_color_val() {
-		return this.colorval;
 	}
 
 	// Can't resize the ball.
@@ -86,7 +79,7 @@ public class Ball extends GameObject {
 		}
 	}
 
-	public void render(GameView view, Court court, Color c) {
+	public void render(GameView view, Court court) {
 		circle.setRadius(get_width()); // Should be equal to get_height.
 		circle.setCenterX(get_middle_x() * view.get_scale());
 		circle.setCenterY(get_middle_y() * view.get_scale());
