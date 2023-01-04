@@ -117,10 +117,10 @@ public abstract class GameObject {
 	}
 
 	public void render(gui.GameView view, model.Court court) {
-		graphics.setX(get_left() * view.get_scale());
-		graphics.setY(get_up() * view.get_scale());
-		graphics.setWidth(w * view.get_scale());
-		graphics.setHeight(h * view.get_scale());
+		graphics.setX(get_left());
+		graphics.setY(get_up());
+		graphics.setWidth(w);
+		graphics.setHeight(h);
 	}
 
 	public void hide(boolean hide) {

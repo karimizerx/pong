@@ -80,7 +80,7 @@ public class App extends Application {
 			g.render();
 		}
 		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.pauseKey);
-		var gameView = new GameView(court, root, 1.0);
+		var gameView = new GameView(court, root);
 		gameScene.setOnKeyPressed(ev -> {
 			court.on_key_pressed(ev.getCode());
 		});
