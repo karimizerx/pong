@@ -30,6 +30,13 @@ public class Court {
 		this.height = height;
 		this.gamemodes = gamemodes;
 		this.pauseKey = pauseKey;
+		root.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundImage(
+			new javafx.scene.image.Image("file:/home/amelia/Memes/CuTe.jpg"),
+			javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+			javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+			javafx.scene.layout.BackgroundPosition.CENTER,
+			javafx.scene.layout.BackgroundSize.DEFAULT
+		)));
 		reset();
 	}
 

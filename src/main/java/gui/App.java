@@ -93,7 +93,6 @@ public class App extends Application {
 		gameScene.heightProperty().addListener((obs, oldVal, newVal) -> {
 			court.set_height((double) newVal);
 		});
-		gameScene.setFill(Color.WHITE);
 		primaryStage.setScene(gameScene);
 		primaryStage.show();
 		gameView.animate();
