@@ -73,8 +73,8 @@ public class App extends Application {
 
 	public void startGame(Stage primaryStage, Pane root, Settings settings) {
 		var gameScene = new Scene(root);
-		var player_a = new Racket(root, settings.left_up,  settings.left_down,   105, 200, 10, 100, Ressources.get_image("racket_l"));
-		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 10, 100, Ressources.get_image("racket_r"));
+		var player_a = new Racket(root, settings.left_up,  settings.left_down,   105, 200, 30, 100);
+		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 30, 100);
 
 		for (Gamemode g : settings.gamemodes) {
 			g.render();

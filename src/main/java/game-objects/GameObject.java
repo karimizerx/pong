@@ -1,6 +1,10 @@
 package game_objects;
 
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 import model.Court;
 
@@ -11,23 +15,36 @@ public abstract class GameObject {
 	private double dy;
 	private double w;
 	private double h;
-	private Image skin;
+	private Rectangle graphics;
 
-	public GameObject(double x, double y, double w, double h, double dx, double dy, Image skin) {
+	public GameObject(double x, double y, double w, double h, double dx, double dy, Pane root, Image skin) {
 		this.x = x;
 		this.y = y;
 		this.dx = dx;
 		this.dy = dy;
 		this.w = w;
 		this.h = h;
-		this.skin = skin;
+		this.graphics = new Rectangle();
+		this.graphics.setFill(new ImagePattern(skin));
+		root.getChildren().add(this.graphics);
+	}
+	public GameObject(double x, double y, double w, double h, double dx, double dy, Pane root, Color c) {
+		this.x = x;
+		this.y = y;
+		this.dx = dx;
+		this.dy = dy;
+		this.w = w;
+		this.h = h;
+		this.graphics = new Rectangle();
+		this.graphics.setFill(c);
+		root.getChildren().add(this.graphics);
 	}
 
-	public GameObject(double x, double y, double w, double h, Image skin) {
-		this(x, y, w, h, 0, 0, skin);
+	public GameObject(double x, double y, double w, double h, Pane root, Image skin) {
+		this(x, y, w, h, 0, 0, root, skin);
 	}
-	public GameObject(double x, double y, double w, double h) {
-		this(x, y, w, h, 0, 0, null);
+	public GameObject(double x, double y, double w, double h, Pane root, Color c) {
+		this(x, y, w, h, 0, 0, root, c);
 	}
 
 	public final double get_width() {
@@ -99,6 +116,17 @@ public abstract class GameObject {
 		y += dy * dt;
 	}
 
+	public void render(gui.GameView view, model.Court court) {
+		graphics.setX(get_left() * view.get_scale());
+		graphics.setY(get_up() * view.get_scale());
+		graphics.setWidth(w * view.get_scale());
+		graphics.setHeight(h * view.get_scale());
+	}
+
+	public void hide(boolean hide) {
+		graphics.setVisible(!hide);
+	}
+
 	public void scale_vel(double x, double y) {
 		dx *= x;
 		dy *= y;
@@ -118,12 +146,11 @@ public abstract class GameObject {
 	 * Math for the collisions:
 	 * u = up, d = down, l = left, r = right, x = dx, y = dy
 	 * collision when: l1 + x1t < r2 + x2t ∧ l2 + x2t < r1 + x1t
-	 * ∧ u1 + y1t < d2 + y2t ∧ u2 + y2t < d1 + y1t
-	 * <=> l1 - r2 < (x2 - x1)t < r1 - l2
-	 * ∧ u1 - d2 < (y2 - y1)t < d1 - u2
-	 * on nomme nos variables pour plus de clarté
-	 * <=> a < bt < c ∧ d < et < f
-	 *
+	 *               ∧ u1 + y1t < d2 + y2t ∧ u2 + y2t < d1 + y1t
+	 *             <=> l1 - r2 < (x2 - x1)t < r1 - l2
+	 *               ∧ u1 - d2 < (y2 - y1)t < d1 - u2
+	 *                 on nomme nos variables pour plus de clarté
+	 *             <=> a < bt < c ∧ d < et < f
 	 */
 	public final boolean collides(GameObject o, double dt) {
 		final double epsilon = 0.0000001;

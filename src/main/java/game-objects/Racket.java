@@ -3,30 +3,24 @@ package game_objects;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 
 import gui.GameView;
 import model.Court;
+import model.Ressources;
 
 public class Racket extends GameObject {
 	private KeyCode up_key;
 	private KeyCode down_key;
 	private double direction; // -1 is up, 1 is down, 0 is idle, can be multiplied by x to indicate a speed factor.
 	private double rel_x;
-	private Rectangle rectangle;
 
-	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h, Image skin) {
-		super(x, y, w, h, skin); // This initial x might be inaccurate (if x < 0), that will be fixed on the first call to update.
+	public Racket(Pane root, KeyCode up_key, KeyCode down_key, double x, double y, double w, double h) {
+		super(x, y, w, h, root, Ressources.get_image("racket_" + (x >= 0 ? "l" : "r"))); // This initial x might be inaccurate (if x < 0), that will be fixed on the first call to update.
 		this.rel_x = x;
 		direction = 0;
 
 		this.up_key = up_key;
 		this.down_key = down_key;
-
-		rectangle = new Rectangle();
-		if (skin != null) { rectangle.setFill(new ImagePattern(skin)); }
-		root.getChildren().add(rectangle);
 	}
 
 	public void set_height(double v) {
@@ -83,12 +77,5 @@ public class Racket extends GameObject {
 		set_x(rel_x >= 0 ? rel_x : court.get_width() + rel_x);
 		set_y(court.get_height() / 2);
 		direction = 0;
-	}
-
-	public void render(GameView view, Court court) {
-		rectangle.setX(get_left() * view.get_scale());
-		rectangle.setY(get_up() * view.get_scale());
-		rectangle.setHeight(get_height() * view.get_scale());
-		rectangle.setWidth(get_width() * view.get_scale());
 	}
 }

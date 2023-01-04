@@ -5,24 +5,19 @@ import java.util.Random;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 import game_objects.GameObject;
 
 public class Bonus_Malus extends GameObject implements Gamemode {
-	private Circle circle;
 	private boolean est_apparu;
 	private LinkedList<gamemodes.Gamemode> list;
 	private boolean [] active_gamemodes_id;
 	private int decompte;
 
 	public Bonus_Malus(Pane root, LinkedList<gamemodes.Gamemode> gamemode_list) {
-		super(0,0,7,7);
+		super(0, 0, 7, 7, root, Color.BLACK);
 		list = gamemode_list;
 		active_gamemodes_id = new boolean[list.size()];
-		circle = new Circle();
-		circle.setFill(Color.BLACK);
-		root.getChildren().add(circle);
 		reset();
 		decompte = 200;
 	}
@@ -146,7 +141,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 	}
 
 	public void render() {
-		circle.setVisible(true);
+		hide(false);
 
 		for (int i = 0; i < active_gamemodes_id.length; i++) {
 			if (active_gamemodes_id[i]) {
@@ -155,7 +150,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		}
 	}
 	public void no_render() {
-		circle.setVisible(false);
+		hide(true);
 
 		for (int i = 0; i < active_gamemodes_id.length; i++) {
 			if (active_gamemodes_id[i]) {
@@ -164,9 +159,7 @@ public class Bonus_Malus extends GameObject implements Gamemode {
 		}
 	}
 	public void update_render(gui.GameView view, model.Court court) {
-		circle.setRadius(super.get_width());
-		circle.setCenterX(super.get_middle_x() * view.get_scale());
-		circle.setCenterY(super.get_middle_y() * view.get_scale());
+		super.render(view, court);
 
 		for (int i = 0; i < active_gamemodes_id.length; i++) {
 			if (active_gamemodes_id[i]) {

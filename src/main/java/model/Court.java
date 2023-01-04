@@ -24,18 +24,18 @@ public class Court {
 	             java.util.LinkedList<gamemodes.Gamemode> gamemodes, KeyCode pauseKey) {
 		this.player_a = player_a;
 		this.player_b = player_b;
-		this.ball = new Ball(root, Ressources.get_image("ball"));
+		this.ball = new Ball(root);
 		this.width = width;
 		this.last_width = width;
 		this.height = height;
 		this.gamemodes = gamemodes;
 		this.pauseKey = pauseKey;
 		root.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundImage(
-			new javafx.scene.image.Image("file:/home/amelia/Memes/CuTe.jpg"),
+			Ressources.get_image("background"),
 			javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
 			javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
 			javafx.scene.layout.BackgroundPosition.CENTER,
-			javafx.scene.layout.BackgroundSize.DEFAULT
+			new javafx.scene.layout.BackgroundSize(javafx.scene.layout.BackgroundSize.AUTO, 1, false, true, false, true)
 		)));
 		reset();
 	}

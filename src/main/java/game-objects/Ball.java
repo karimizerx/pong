@@ -3,23 +3,17 @@ package game_objects;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 
 import gui.GameView;
 import model.Court;
+import model.Ressources;
 
 public class Ball extends GameObject {
-	private Circle circle;
-	private Image skin;
 	private double boost;
 	private boolean boosted;
 
-	public Ball(Pane root, Image skin) {
-		super(0, 0, 20, 20, skin);
-		circle = new Circle();
-		circle.setFill(new ImagePattern(skin));
-		root.getChildren().add(circle);
+	public Ball(Pane root) {
+		super(0, 0, 40, 40, root, Ressources.get_image("ball"));
 		boost = 1200.0;
 		boosted = false;
 	}
@@ -77,12 +71,6 @@ public class Ball extends GameObject {
 				c.on_ball_left_terrain(false);
 			}
 		}
-	}
-
-	public void render(GameView view, Court court) {
-		circle.setRadius(get_width()); // Should be equal to get_height.
-		circle.setCenterX(get_middle_x() * view.get_scale());
-		circle.setCenterY(get_middle_y() * view.get_scale());
 	}
 
 	private static int un_ou_moins_un() {
