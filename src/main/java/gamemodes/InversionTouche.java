@@ -1,16 +1,17 @@
 package gamemodes;
 
 import javafx.scene.input.KeyCode;
-import java.util.Random;
-import model.Court;
 
-public class InversionToucheDroite implements Gamemode {
-	private Court court1;
+public class InversionTouche implements Gamemode {
+	private model.Court court1;
 	private boolean inverted = false;
+	private boolean gauche;
 
-	public InversionToucheDroite() {}
+	public InversionTouche(boolean gauche) {
+		this.gauche = gauche;
+	}
 	public String getName() {
-		return "Invert keys right";
+		return "Invert keys (" + (gauche ? "gauche" : "droite") + ")";
 	}
 
 	public void on_key_pressed(KeyCode key) {}
@@ -21,9 +22,10 @@ public class InversionToucheDroite implements Gamemode {
 	public void update(model.Court court, double dt) {
 		court1 = court;
 		if (!inverted) {
-			KeyCode k = court.get_player_b().get_down_key();
-			court.get_player_b().set_down_key(court.get_player_b().get_up_key());
-			court.get_player_b().set_up_key(k);
+			var player = gauche ? court.get_player_a() : court.get_player_b();
+			KeyCode k = player.get_down_key();
+			player.set_down_key(player.get_up_key());
+			player.set_up_key(k);
 			inverted = true;
 		}
 	}
@@ -31,9 +33,10 @@ public class InversionToucheDroite implements Gamemode {
 	public void reset() {
 		if (court1 == null) { return; }
 		if (inverted) {
-			KeyCode k = court1.get_player_b().get_down_key();
-			court1.get_player_b().set_down_key(court1.get_player_b().get_up_key());
-			court1.get_player_b().set_up_key(k);
+			var player = gauche ? court1.get_player_a() : court1.get_player_b();
+			KeyCode k = player.get_down_key();
+			player.set_down_key(player.get_up_key());
+			player.set_up_key(k);
 			inverted = false;
 		}
 	}

@@ -2,6 +2,7 @@ package gamemodes;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+
 import model.Court;
 
 public class Infini implements Gamemode {
@@ -35,6 +36,6 @@ public class Infini implements Gamemode {
 		internal_scoreboard.no_render();
 	}
 	public void update_render(gui.GameView view, model.Court court) {
-		internal_scoreboard.update_render(court.getColor(internal_scoreboard.get_color_val()));
+		internal_scoreboard.update_render();
 	}
 }

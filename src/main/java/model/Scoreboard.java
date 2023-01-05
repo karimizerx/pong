@@ -1,9 +1,9 @@
 package model;
 
-import javafx.scene.text.*;
-import javax.swing.text.AttributeSet.ColorAttribute;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class Scoreboard {
 	private Pane root;
@@ -11,14 +11,14 @@ public class Scoreboard {
 	private Text text;
 	private int posX = 500;
 	private int posY = 20;
-	private int color_val = 1;
 
 	public static String make_scoreboard(int[] s) {
 		String acc = "";
-		for (int i = 0; i < s.length; i++) {
-			if(i != 0)
-				acc += " : ";
-			acc += s[i];
+		if (s.length != 0) {
+			acc += s[0];
+			for (int i = 1; i < s.length; i++) {
+				acc += " : " + s[i];
+			}
 		}
 		return acc;
 	}
@@ -31,13 +31,10 @@ public class Scoreboard {
 		this.text.setY(posY);
 		this.text.setFont(new Font(20));
 		this.text.setText(make_scoreboard(scores));
+		this.text.setFill(Color.BLACK);
 		root.getChildren().add(this.text);
 	}
 	
-	public int get_color_val() {
-		return this.color_val;
-	}
-
 	public Text get_text() {
 		return this.text;
 	}
@@ -48,9 +45,8 @@ public class Scoreboard {
 	public void no_render() {
 		this.text.setVisible(false);
 	}
-	public void update_render(Color c) {
+	public void update_render() {
 		this.text.setText(make_scoreboard(scores));
-		this.text.setFill(c);
 	}
 	
 	public boolean add_point(int i) { // j'utilise un booleen pour signaler si une erreur s'est produite

@@ -1,13 +1,10 @@
 package model;
 
 import java.util.LinkedList;
-
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.layout.Pane;
 
-import gamemodes.*;
+import gamemodes.Gamemode;
 
 public class Settings {
 	public KeyCode left_up;
@@ -17,8 +14,6 @@ public class Settings {
 	public KeyCode stop;
 	public KeyCode turbo;
 	public KeyCode pauseKey;
-	public Color forground_color;
-	public Color background_color;
 	public LinkedList<Gamemode> gamemodes;
 	public LinkedList<Gamemode> bm_gamemodes;
 	public LinkedList<Gamemode> possible_gamemodes;
@@ -34,17 +29,14 @@ public class Settings {
 		turbo = KeyCode.SPACE;
 		pauseKey = KeyCode.P;
 
-		forground_color = Color.BLACK;
-		background_color = Color.WHITE;
-
 		bm_gamemodes = new java.util.LinkedList<gamemodes.Gamemode>();
 
 		possible_bm_gamemodes = new LinkedList<Gamemode>();
 		possible_bm_gamemodes.add(new gamemodes.RacketLength(2));
 		possible_bm_gamemodes.add(new gamemodes.RackWTF());
 		possible_bm_gamemodes.add(new gamemodes.AccelRacket(1));
-		possible_bm_gamemodes.add(new gamemodes.InversionToucheGauche());
-		possible_bm_gamemodes.add(new gamemodes.InversionToucheDroite());
+		possible_bm_gamemodes.add(new gamemodes.InversionTouche(true));
+		possible_bm_gamemodes.add(new gamemodes.InversionTouche(false));
 
 		possible_gamemodes = new LinkedList<Gamemode>();
 		possible_gamemodes.add(new gamemodes.Scoreboard_versus(root));

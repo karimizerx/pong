@@ -1,38 +1,27 @@
 package gui;
 
-import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
-import javafx.scene.paint.Color;
+
 import model.Court;
-import model.Scoreboard;
 
 public class GameView {
 	// class parameters
 	private final Court court;
 	private final Pane game_root; // main node of the game
-	private final double scale;
 
 	/**
 	 * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout
 	 *              ce qu'il y a dessus)
 	 * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera
 	 *              affiché
-	 * @param scale le facteur d'échelle entre les distances du modèle et le nombre
-	 *              de pixels correspondants dans la vue
 	 */
-	public GameView(Court court, Pane root, double scale) {
+	public GameView(Court court, Pane root) {
 		this.court = court;
 		this.game_root = root;
-		this.scale = scale;
 
-		root.setMinWidth(court.get_width() * scale);
-		root.setMinHeight(court.get_height() * scale);
-	}
-
-	public double get_scale() {
-		return scale;
+		root.setMinWidth(court.get_width());
+		root.setMinHeight(court.get_height());
 	}
 
 	public void animate() {

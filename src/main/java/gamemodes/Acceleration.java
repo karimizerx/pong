@@ -20,7 +20,7 @@ public class Acceleration implements Gamemode {
 	public void update(model.Court court, double dt) {}
 
 	public void on_ball_touched_racket(model.Court court, boolean left) {
-		if(court.get_ball().get_dx()<800){
+		if (court.get_ball().get_dx() < 800) {
 			court.get_ball().scale_vel(accel_ball, accel_ball);
 			court.add_racket_speed(accel_racket);
 		}

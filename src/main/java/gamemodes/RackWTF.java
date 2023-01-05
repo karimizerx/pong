@@ -13,18 +13,14 @@ public class RackWTF implements Gamemode {
 
 	public void reset() {}
 
-	public void on_key_pressed(KeyCode key) {
-		if (key == KeyCode.R) {
-			reset();
-		}
-	}
+	public void on_key_pressed(KeyCode key) {}
 
 	public void on_key_released(KeyCode key) {}
 	public void on_ball_touched_racket(model.Court court, boolean left) {}
 	public void on_ball_left_terrain(model.Court court, boolean left) {}
 	
 	private double random(double min, double max) {
-		return Math.random() * (max - min + 1) + min;
+		return Math.random() * (max - min) + min;
 	}
 
 	public void update(model.Court court, double dt) {

@@ -1,30 +1,26 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Court;
-import model.Settings;
 
 import game_objects.Racket;
+import gamemodes.Gamemode;
+import model.Court;
 import model.Ressources;
-import gamemodes.*;
+import model.Settings;
 
 public class App extends Application {
-	
 	@Override
 	public void start(Stage primaryStage) {
 		var gameRoot = new Pane();
@@ -45,13 +41,11 @@ public class App extends Application {
 
 		// PLAY BUTTON
 		var play_button = new Button();
-		play_button.setOnAction(
-			new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent e) {
-					startGame(primaryStage, gameRoot, settings);
-				}
+		play_button.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				startGame(primaryStage, gameRoot, settings);
 			}
-		);
+		});
 		play_button.setPrefSize(180, 40);
 		Image play_image = Ressources.get_image("play");
 		ImageView play_view = new ImageView(play_image);
@@ -59,12 +53,11 @@ public class App extends Application {
 
 		// SETTINGS BUTTON
 		var settings_button = new Button("Settings");
-		settings_button.setOnAction(
-				new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						new SettingsView(primaryStage, settings, retour);
-					}
-				});
+		settings_button.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				new SettingsView(primaryStage, settings, retour);
+			}
+		});
 
 
 		box.getChildren().addAll(play_button, settings_button);
@@ -72,25 +65,22 @@ public class App extends Application {
 		root.setCenter(box);
 		box.setAlignment(Pos.CENTER);
 
-		var menuScene = new Scene(root,1000,600);
+		var menuScene = new Scene(root, 1000, 600);
 		primaryStage.setScene(menuScene);
 		primaryStage.show();
 		
 	}
 
 	public void startGame(Stage primaryStage, Pane root, Settings settings) {
-
 		var gameScene = new Scene(root);
-		var player_a = new Racket(root, settings.left_up,  settings.left_down,
-			 105, 200, 10, 100, Ressources.get_image("racket_l"));
-		var player_b = new Racket(root, settings.right_up, settings.right_down,
-			-105, 200, 10, 100, Ressources.get_image("racket_r"));
+		var player_a = new Racket(root, settings.left_up,  settings.left_down,   105, 200, 30, 100);
+		var player_b = new Racket(root, settings.right_up, settings.right_down, -105, 200, 30, 100);
 
 		for (Gamemode g : settings.gamemodes) {
 			g.render();
 		}
-		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.forground_color, settings.background_color, settings.pauseKey);
-		var gameView = new GameView(court, root, 1.0);
+		var court = new Court(root, player_a, player_b, 1000, 600, settings.gamemodes, settings.pauseKey);
+		var gameView = new GameView(court, root);
 		gameScene.setOnKeyPressed(ev -> {
 			court.on_key_pressed(ev.getCode());
 		});
@@ -103,7 +93,6 @@ public class App extends Application {
 		gameScene.heightProperty().addListener((obs, oldVal, newVal) -> {
 			court.set_height((double) newVal);
 		});
-		gameScene.setFill(court.get_secondaire());
 		primaryStage.setScene(gameScene);
 		primaryStage.show();
 		gameView.animate();

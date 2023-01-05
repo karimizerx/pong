@@ -1,15 +1,10 @@
 package model;
 
-import javafx.scene.shape.Circle;
-import javafx.scene.paint.Color;
-import javafx.scene.layout.Pane;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-
-import game_objects.Racket;
-import model.Ressources;
+import javafx.scene.layout.Pane;
 
 import game_objects.Ball;
+import game_objects.Racket;
 import gui.GameView;
 
 public class Court {
@@ -18,8 +13,6 @@ public class Court {
 	private double width, height; // m
 	private double racket_speed = 250; // m/s
 	private final Ball ball;
-	private Color primaire;
-	private Color secondaire;
 	private KeyCode pauseKey;
 	private boolean paused = false;
 
@@ -28,26 +21,23 @@ public class Court {
 	java.util.LinkedList<gamemodes.Gamemode> gamemodes;
 
 	public Court(Pane root, Racket player_a, Racket player_b, double width, double height,
-			java.util.LinkedList<gamemodes.Gamemode> gamemodes, Color prim, Color secon, KeyCode pauseKey) {
+	             java.util.LinkedList<gamemodes.Gamemode> gamemodes, KeyCode pauseKey) {
 		this.player_a = player_a;
 		this.player_b = player_b;
-		this.ball = new Ball(root, Ressources.get_image("ball"));
+		this.ball = new Ball(root);
 		this.width = width;
 		this.last_width = width;
 		this.height = height;
 		this.gamemodes = gamemodes;
-		this.primaire = prim;
-		this.secondaire = secon;
 		this.pauseKey = pauseKey;
+		root.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundImage(
+			Ressources.get_image("background"),
+			javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+			javafx.scene.layout.BackgroundRepeat.NO_REPEAT,
+			javafx.scene.layout.BackgroundPosition.CENTER,
+			new javafx.scene.layout.BackgroundSize(javafx.scene.layout.BackgroundSize.AUTO, 1, false, true, false, true)
+		)));
 		reset();
-	}
-
-	public Color get_primaire() {
-		return this.primaire;
-	}
-
-	public Color get_secondaire() {
-		return this.secondaire;
 	}
 
 	public Racket get_player_a() {
@@ -122,12 +112,12 @@ public class Court {
 	}
 
 	public void update(double dt) {
-		double mult = get_width()/last_width;
+		double mult = get_width() / last_width;
 		last_width = get_width();
-		ball.scale_vel(mult,mult);
-		racket_speed*=mult;
+		ball.scale_vel(mult, mult);
+		racket_speed *= mult;
 
-		if(!paused){
+		if (!paused) {
 			for (gamemodes.Gamemode gamemode : gamemodes) {
 				gamemode.update(this, dt);
 			}
@@ -137,20 +127,13 @@ public class Court {
 		}
 	}
 
-	public Color getColor(int o) {
-		if (o == 1) {
-			return primaire;
-		} else
-			return secondaire;
-	}
-
 	public void render(GameView view) {
 		for (gamemodes.Gamemode gamemode : gamemodes) {
 			gamemode.update_render(view, this);
 		}
-		ball.render(view, this, getColor(ball.get_color_val()));
-		player_a.render(view, this, getColor(ball.get_color_val()));
-		player_b.render(view, this, getColor(ball.get_color_val()));
+		ball.render(view, this);
+		player_a.render(view, this);
+		player_b.render(view, this);
 	}
 
 	void reset() {
@@ -160,7 +143,7 @@ public class Court {
 		this.player_a.reset(this);
 		this.player_b.reset(this);
 		this.ball.reset(this);
-		this.racket_speed = 250 * get_width() / 600; 
-		this.ball.scale_vel(get_width()/1000,get_width()/1000);
+		this.racket_speed = 250 * get_width() / 600;
+		this.ball.scale_vel(get_width() / 1000, get_width() / 1000);
 	}
 }
