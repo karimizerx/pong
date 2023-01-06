@@ -31,3 +31,5 @@ Si aucune de ces options n'est activée, bonus malus ne servira à rien.
 3. Jouer !
 
 [Membres du groupe.](https://gaufre.informatique.univ-paris-diderot.fr/mi-zer/pong/blob/master/membres.md)
+
+[Vidéo de présentation finale](https://www.youtube.com/watch?v=9QrNTuWSlwQ)
