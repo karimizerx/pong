@@ -30,4 +30,4 @@ Si aucune de ces options n'est activée, bonus malus ne servira à rien.
 (si sur les machines de la halle aux farines, il y a un problème d'environnement. Il faut donc effectuer `source SCRIPT/envsetup` avant d'exécuter gradlew).
 3. Jouer !
 
-[Membres du groupe.](https://gaufre.informatique.univ-paris-diderot.fr/mi-zer/pong/blob/master/readme.md)
+[Membres du groupe.](https://gaufre.informatique.univ-paris-diderot.fr/mi-zer/pong/blob/master/membres.md)
