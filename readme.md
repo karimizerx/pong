@@ -2,7 +2,7 @@
 
 ## Présentation
 
-Ce jeu de raquettes, programmé en Java 17 avec JavaFX, est est configuré avec Gradle. Ce jeu est basé sur le jeu [Pong](https://fr.wikipedia.org/wiki/Pong), un classique des salles d'arcades dans les années 1970.
+Ce jeu de raquettes, programmé en Java 17 avec JavaFX, est configuré avec Gradle. Ce jeu est basé sur le jeu [Pong](https://fr.wikipedia.org/wiki/Pong), un classique des salles d'arcades dans les années 1970.
 
 Le principe est simple : un terrain, deux raquettes et une balle. Le jeu se joue à deux (ou moins), chaque joueur pouvant déplacer sa raquette sur un axe haut/bas et ayant pour but de ne pas laisser passer la balle derrière sa raquette (ce qui correspond à un échec). La balle se déplace à vitesse constante entre ses rebonds et rebondit sur les parois (limites haute et basse de la fenêtre) et sur les raquettes.
 
